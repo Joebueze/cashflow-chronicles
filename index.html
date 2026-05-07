@@ -5,310 +5,139 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CashFlow Chronicle — Make Money Online</title>
 <meta name="description" content="Practical tips on how to make money online, side hustles, investing, freelancing and passive income strategies.">
-
-<!-- ============================================================
-  MONETAG — Push Notification / Pop Script
-  STEP: Replace the src URL below with your real Monetag script URL
-  Get it from: monetag.com → Sites → Add Site → Get Code
-  It looks like: https://glseye.com/tag.min.js?z=XXXXXXX
-=============================================================== -->
 <!-- <script src="YOUR_MONETAG_SCRIPT_URL" async></script> -->
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0a0a0f;--bg2:#111118;--bg3:#1a1a24;--bg4:#22222f;
-  --accent:#c9a84c;--accent2:#e8c96a;
-  --text:#f0ede8;--text2:#a09d97;--text3:#6a6760;
-  --border:rgba(255,255,255,0.07);--border2:rgba(201,168,76,0.3);
-  --green:#4eca8b;--red:#e25454;
+  --bg:#0f0f0f;--bg2:#181818;--bg3:#222;
+  --accent:#c9a84c;--text:#e8e8e8;--text2:#999;--text3:#555;--border:#2a2a2a;
 }
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:15px;line-height:1.6}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:15px;line-height:1.6}
 a{text-decoration:none;color:inherit}
-
-/* NAV */
-nav{display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:64px;border-bottom:1px solid var(--border);background:rgba(10,10,15,0.97);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
-.logo{font-family:'Playfair Display',serif;font-size:1.35rem}
+img{display:block;width:100%;height:100%;object-fit:cover}
+nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:56px;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+.logo{font-family:'Playfair Display',serif;font-size:1.4rem;letter-spacing:-0.02em}
 .logo span{color:var(--accent)}
-.logo-sub{font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text3);margin-top:-2px}
-.nav-links{display:flex;gap:1.8rem;list-style:none;align-items:center}
-.nav-links a{color:var(--text2);font-size:0.82rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s}
-.nav-links a:hover{color:var(--accent)}
-.nav-cta{background:var(--accent)!important;color:#0a0a0f!important;padding:0.4rem 1.1rem;border-radius:2px}
-
-/* TICKER */
-.ticker-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:0.5rem 2.5rem;display:flex;align-items:center;gap:2rem;overflow:hidden}
-.ticker-label{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text3);white-space:nowrap;font-weight:500;border-right:1px solid var(--border);padding-right:1.2rem}
-.tickers{display:flex;gap:2rem}
-.tick{display:flex;align-items:center;gap:0.45rem;font-size:0.76rem;white-space:nowrap}
-.tick-name{color:var(--text3);font-weight:500}
-.tick-val{color:var(--text);font-weight:500}
-.up{color:#4eca8b}.dn{color:#e25454}
-
-/* HERO */
-.hero{display:grid;grid-template-columns:1.1fr 0.9fr;border-bottom:1px solid var(--border);min-height:440px}
-.hero-left{padding:3rem 2.5rem;display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid var(--border)}
-.hero-tag{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:1.2rem}
-.hero-tag::before{content:'';display:block;width:18px;height:1px;background:var(--accent)}
-.hero-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.18;font-weight:700;margin-bottom:1rem}
-.hero-title em{font-style:italic;color:var(--accent)}
-.hero-excerpt{color:var(--text2);font-size:0.92rem;line-height:1.75;max-width:440px;margin-bottom:2rem;font-weight:300}
-.hero-meta{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);padding-top:1.2rem}
-.author-row{display:flex;align-items:center;gap:0.75rem}
-.avatar{width:36px;height:36px;border-radius:50%;background:var(--bg4);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:0.72rem;color:var(--accent);font-weight:500}
-.author-name{font-size:0.82rem;font-weight:500}
-.author-date{font-size:0.73rem;color:var(--text3)}
-.read-btn{font-size:0.78rem;font-weight:500;color:var(--accent);background:none;border:none;border-bottom:1px solid var(--border2);padding-bottom:2px;cursor:pointer;letter-spacing:0.06em;text-transform:uppercase;font-family:'DM Sans',sans-serif}
-.hero-image{background:var(--bg3);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem;padding:2rem}
-.big-stat{font-family:'Playfair Display',serif;font-size:3.5rem;color:var(--accent);font-weight:700;line-height:1;text-align:center}
-.big-stat-label{font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text3);margin-top:0.4rem;text-align:center}
-.stat-row{display:flex;gap:2rem;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border)}
-.mini-stat{text-align:center}
-.mini-val{font-size:1.2rem;font-weight:500;color:var(--text);font-family:'Playfair Display',serif}
-.mini-label{font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-top:0.2rem}
-
-/* CATEGORIES */
-.categories{display:flex;gap:0.4rem;padding:1rem 2.5rem;border-bottom:1px solid var(--border);background:var(--bg2);overflow-x:auto}
-.cat-btn{background:transparent;border:1px solid var(--border);color:var(--text2);padding:0.32rem 0.9rem;border-radius:2px;font-size:0.72rem;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;cursor:pointer;transition:all 0.15s;white-space:nowrap;font-family:'DM Sans',sans-serif}
-.cat-btn:hover,.cat-btn.active{background:var(--accent);border-color:var(--accent);color:#0a0a0f}
-
-/* AD BANNER SLOT */
-.ad-banner{max-width:100%;padding:0.8rem 2.5rem;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center}
-.ad-banner-inner{width:100%;max-width:728px;min-height:90px;background:var(--bg3);border:1px dashed var(--border2);border-radius:2px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.3rem}
-.ad-tag{font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3)}
-.ad-note{font-size:0.72rem;color:var(--text3)}
-
-/* MAIN GRID */
-.main-grid{display:grid;grid-template-columns:1fr 300px}
-.posts-section{padding:2rem 2.5rem;border-right:1px solid var(--border)}
-.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem}
-.section-title{font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--text3);font-weight:500}
-.see-all{font-size:0.68rem;color:var(--accent);background:none;border:none;cursor:pointer;letter-spacing:0.08em;text-transform:uppercase;font-family:'DM Sans',sans-serif}
-
-/* POST CARDS */
-.post-card{display:grid;grid-template-columns:1fr 110px;gap:1.2rem;padding:1.4rem 0;border-bottom:1px solid var(--border);cursor:pointer;transition:opacity 0.15s}
-.post-card:hover{opacity:0.75}
-.post-card:first-child{padding-top:0}
-.post-tag{font-size:0.66rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:0.4rem}
-.post-title{font-family:'Playfair Display',serif;font-size:1rem;line-height:1.32;font-weight:700;margin-bottom:0.45rem;color:var(--text)}
-.post-excerpt{font-size:0.8rem;color:var(--text2);line-height:1.65;font-weight:300;margin-bottom:0.75rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.post-foot{display:flex;align-items:center;gap:1rem;font-size:0.7rem;color:var(--text3)}
-.post-thumb{width:110px;height:78px;background:var(--bg3);border-radius:2px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.6rem;opacity:0.35;align-self:start;margin-top:4px;overflow:hidden}
-.post-thumb img{width:100%;height:100%;object-fit:cover;opacity:0.75}
-
-/* SIDEBAR */
-.sidebar{padding:2rem 1.4rem}
-.newsletter{background:var(--bg3);border:1px solid var(--border2);border-radius:2px;padding:1.3rem;margin-bottom:1.5rem}
-.nl-title{font-family:'Playfair Display',serif;font-size:0.98rem;margin-bottom:0.35rem}
-.nl-sub{font-size:0.76rem;color:var(--text2);margin-bottom:1rem;font-weight:300;line-height:1.5}
-.nl-input{width:100%;background:var(--bg4);border:1px solid var(--border);color:var(--text);padding:0.5rem 0.75rem;font-size:0.8rem;border-radius:2px;margin-bottom:0.5rem;font-family:'DM Sans',sans-serif;outline:none}
-.nl-input:focus{border-color:var(--accent)}
-.nl-input::placeholder{color:var(--text3)}
-.nl-btn{width:100%;background:var(--accent);border:none;color:#0a0a0f;padding:0.55rem;font-size:0.76rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;border-radius:2px;cursor:pointer;font-family:'DM Sans',sans-serif}
-.nl-btn:hover{background:var(--accent2)}
-
-/* SIDEBAR AD */
-.sidebar-ad{margin-bottom:1.5rem}
-.sidebar-ad-inner{min-height:250px;background:var(--bg3);border:1px dashed var(--border2);border-radius:2px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.3rem}
-
-/* TRENDING */
-.sidebar-block{margin-bottom:1.5rem}
-.trending-item{display:flex;gap:0.9rem;padding:0.85rem 0;border-bottom:1px solid var(--border);cursor:pointer;transition:opacity 0.15s}
-.trending-item:hover{opacity:0.7}
+.nav-links{display:flex;gap:1.5rem;list-style:none;align-items:center}
+.nav-links a{color:var(--text2);font-size:0.8rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{background:var(--accent)!important;color:#0f0f0f!important;padding:0.35rem 1rem;border-radius:3px;font-size:0.78rem!important}
+.container{max-width:1200px;margin:0 auto;padding:0 2rem}
+.cat-bar{border-bottom:1px solid var(--border);background:var(--bg)}
+.cat-bar-inner{display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+.cat-bar-inner::-webkit-scrollbar{display:none}
+.cat-btn{padding:0.75rem 1.1rem;font-size:0.78rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--text2);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:all 0.2s}
+.cat-btn:hover{color:var(--text)}
+.cat-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.main-grid{display:grid;grid-template-columns:1fr 300px;gap:3rem;padding:2.5rem 0}
+.featured{margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;cursor:pointer}
+.featured:hover .featured-title{color:var(--accent)}
+.featured-img{height:280px;border-radius:4px;overflow:hidden;background:var(--bg3)}
+.featured-tag{font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem}
+.featured-title{font-family:'Playfair Display',serif;font-size:1.8rem;line-height:1.25;margin-bottom:1rem;transition:color 0.2s}
+.featured-excerpt{color:var(--text2);font-size:0.9rem;line-height:1.7;margin-bottom:1rem}
+.featured-meta{font-size:0.78rem;color:var(--text3)}
+.featured-meta span{margin-right:1rem}
+.post-card{display:grid;grid-template-columns:1fr 120px;gap:1.25rem;padding:1.25rem 0;border-bottom:1px solid var(--border);cursor:pointer;align-items:start}
+.post-card:hover .pc-title{color:var(--accent)}
+.post-card:last-child{border-bottom:none}
+.pc-tag{font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:0.4rem}
+.pc-title{font-size:1rem;font-weight:600;line-height:1.4;margin-bottom:0.4rem;transition:color 0.2s}
+.pc-excerpt{font-size:0.85rem;color:var(--text2);line-height:1.6;margin-bottom:0.5rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pc-meta{font-size:0.75rem;color:var(--text3)}
+.pc-meta span{margin-right:0.75rem}
+.pc-thumb{height:80px;border-radius:3px;overflow:hidden;background:var(--bg3)}
+.sidebar-section{margin-bottom:2.5rem}
+.sidebar-title{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);border-bottom:1px solid var(--border);padding-bottom:0.6rem;margin-bottom:1rem}
+.trending-item{display:flex;gap:0.75rem;padding:0.75rem 0;border-bottom:1px solid var(--border);cursor:pointer}
+.trending-item:hover .ti-title{color:var(--accent)}
 .trending-item:last-child{border-bottom:none}
-.trend-num{font-size:1rem;font-family:'Playfair Display',serif;color:var(--text3);font-weight:700;min-width:20px;line-height:1.2}
-.trend-title{font-size:0.82rem;line-height:1.4;font-weight:500;color:var(--text)}
-.trend-cat{font-size:0.67rem;color:var(--accent);margin-top:0.2rem;text-transform:uppercase;letter-spacing:0.08em}
-
-/* FOOTER */
-footer{border-top:1px solid var(--border);padding:1.8rem 2.5rem;display:flex;align-items:center;justify-content:space-between;background:var(--bg2)}
-.footer-logo{font-family:'Playfair Display',serif;font-size:1rem}
-.footer-logo span{color:var(--accent)}
-.footer-links{display:flex;gap:1.5rem;list-style:none}
-.footer-links a{color:var(--text3);font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase}
-.footer-copy{font-size:0.7rem;color:var(--text3)}
-
-/* LOADING SKELETON */
-.skeleton{background:linear-gradient(90deg,var(--bg3) 25%,var(--bg4) 50%,var(--bg3) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:2px}
-@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-.skel-title{height:18px;margin-bottom:8px;width:80%}
-.skel-line{height:12px;margin-bottom:6px;width:100%}
-.skel-line.short{width:40%}
+.ti-num{font-size:1.4rem;font-weight:700;color:var(--border);line-height:1;min-width:28px}
+.ti-title{font-size:0.85rem;font-weight:500;line-height:1.4;margin-bottom:0.2rem;transition:color 0.2s}
+.ti-cat{font-size:0.72rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em}
+.ad-slot{background:var(--bg2);border:1px dashed var(--border);border-radius:4px;padding:1.5rem;text-align:center;margin-bottom:2rem}
+.ad-label{font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:0.5rem}
+.newsletter{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:1.25rem}
+.nl-title{font-size:0.95rem;font-weight:600;margin-bottom:0.4rem}
+.nl-sub{font-size:0.82rem;color:var(--text2);margin-bottom:1rem}
+.nl-input{width:100%;padding:0.55rem 0.75rem;background:var(--bg3);border:1px solid var(--border);border-radius:3px;color:var(--text);font-size:0.85rem;margin-bottom:0.6rem;outline:none}
+.nl-input:focus{border-color:var(--accent)}
+.nl-btn{width:100%;padding:0.55rem;background:var(--accent);color:#0f0f0f;border:none;border-radius:3px;font-size:0.85rem;font-weight:600;cursor:pointer}
+.skeleton{animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:0.4}50%{opacity:0.7}}
+.skel-card{padding:1.25rem 0;border-bottom:1px solid var(--border)}
+.skel-line{height:12px;background:var(--bg3);border-radius:2px;margin-bottom:8px}
+.empty{padding:3rem 0;text-align:center;color:var(--text3);font-size:0.9rem}
+footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:var(--text3);font-size:0.8rem;margin-top:2rem}
+@media(max-width:768px){
+  .main-grid{grid-template-columns:1fr}
+  .featured{grid-template-columns:1fr}
+  .featured-img{height:200px}
+  .nav-links{display:none}
+}
 </style>
 </head>
 <body>
-
-<!-- NAV -->
 <nav>
-  <div>
-    <div class="logo">CashFlow <span>Chronicle</span></div>
-    <div class="logo-sub">Make Money · Build Wealth · Live Free</div>
-  </div>
+  <div class="logo">CashFlow <span>Chronicle</span></div>
   <ul class="nav-links">
     <li><a href="#">Make Money</a></li>
     <li><a href="#">Side Hustles</a></li>
     <li><a href="#">Investing</a></li>
     <li><a href="#">Online Business</a></li>
-    <li><a href="#">Passive Income</a></li>
     <li><a href="#" class="nav-cta">Free Guide</a></li>
   </ul>
 </nav>
-
-<!-- TICKER -->
-<div class="ticker-bar">
-  <span class="ticker-label">Trending</span>
-  <div class="tickers">
-    <div class="tick"><span class="tick-name">Freelancing</span><span class="up">🔥 Hot</span></div>
-    <div class="tick"><span class="tick-name">Crypto</span><span class="up">↑ Rising</span></div>
-    <div class="tick"><span class="tick-name">AI Side Hustles</span><span class="up">🔥 Hot</span></div>
-    <div class="tick"><span class="tick-name">Affiliate Marketing</span><span class="up">↑ Rising</span></div>
-    <div class="tick"><span class="tick-name">Dropshipping</span><span class="dn">↓ Cooling</span></div>
+<div class="cat-bar">
+  <div class="container">
+    <div class="cat-bar-inner">
+      <button class="cat-btn active" onclick="filterCat('all',this)">All Posts</button>
+      <button class="cat-btn" onclick="filterCat('Make Money Online',this)">Make Money Online</button>
+      <button class="cat-btn" onclick="filterCat('Side Hustles',this)">Side Hustles</button>
+      <button class="cat-btn" onclick="filterCat('Freelancing',this)">Freelancing</button>
+      <button class="cat-btn" onclick="filterCat('Investing',this)">Investing</button>
+      <button class="cat-btn" onclick="filterCat('Passive Income',this)">Passive Income</button>
+      <button class="cat-btn" onclick="filterCat('Online Business',this)">Online Business</button>
+      <button class="cat-btn" onclick="filterCat('Crypto',this)">Crypto</button>
+      <button class="cat-btn" onclick="filterCat('Affiliate Marketing',this)">Affiliate Marketing</button>
+    </div>
   </div>
 </div>
-
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-left">
+<div class="container">
+  <div class="main-grid">
     <div>
-      <div class="hero-tag">Featured Post</div>
-      <h1 class="hero-title">7 Proven Ways to Make <em>Real Money</em> Online in 2026 — No Capital Needed</h1>
-      <p class="hero-excerpt">From freelancing on Fiverr to building faceless YouTube channels — these are methods thousands are using right now to earn online from their phones.</p>
-    </div>
-    <div class="hero-meta">
-      <div class="author-row">
-        <div class="avatar">CC</div>
-        <div>
-          <div class="author-name">CashFlow Chronicle</div>
-          <div class="author-date" id="hero-date">Loading...</div>
-        </div>
+      <div id="featured-section"></div>
+      <div id="post-list">
+        <div class="skel-card skeleton"><div class="skel-line" style="width:60%;height:14px"></div><div class="skel-line" style="width:90%"></div><div class="skel-line" style="width:75%"></div></div>
+        <div class="skel-card skeleton"><div class="skel-line" style="width:50%;height:14px"></div><div class="skel-line" style="width:85%"></div><div class="skel-line" style="width:70%"></div></div>
+        <div class="skel-card skeleton"><div class="skel-line" style="width:65%;height:14px"></div><div class="skel-line" style="width:80%"></div><div class="skel-line" style="width:60%"></div></div>
       </div>
-      <button class="read-btn" id="hero-read-btn">Read Article →</button>
     </div>
-  </div>
-  <div class="hero-image">
-    <div class="big-stat">$4,200</div>
-    <div class="big-stat-label">Average monthly income reported by our readers</div>
-    <div class="stat-row">
-      <div class="mini-stat"><div class="mini-val" id="reader-count">—</div><div class="mini-label">Readers</div></div>
-      <div class="mini-stat"><div class="mini-val" id="post-count">—</div><div class="mini-label">Articles</div></div>
-      <div class="mini-stat"><div class="mini-val">98%</div><div class="mini-label">Free</div></div>
-    </div>
-  </div>
-</div>
-
-<!-- ============================================================
-  ADSTERRA BANNER AD — Leaderboard 728x90
-  STEP: Replace this comment block with your real Adsterra banner code
-  Get it from: publishers.adsterra.com → My Sites → Ad Units → Banner
-  Paste the <script> tag they give you inside .ad-banner-inner below
-=============================================================== -->
-<div class="ad-banner">
-  <div class="ad-banner-inner" id="adsterra-banner-top">
-    <span class="ad-tag">Advertisement · Adsterra</span>
-    <span class="ad-note">728×90 Banner — Paste your Adsterra code here</span>
-    <!-- PASTE ADSTERRA BANNER CODE HERE -->
+    <aside>
+      <div class="ad-slot">
+        <div class="ad-label">Advertisement</div>
+        <!-- PASTE ADSTERRA CODE HERE -->
+        <div style="color:var(--text3);font-size:0.8rem;margin-top:0.5rem">300×250 Ad Space</div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-title">Trending Now</div>
+        <div id="trending-list"></div>
+      </div>
+      <div class="newsletter">
+        <div class="nl-title">Get Weekly Money Tips</div>
+        <div class="nl-sub">Join readers getting actionable income ideas every Sunday.</div>
+        <input class="nl-input" type="email" placeholder="Your email address">
+        <button class="nl-btn">Subscribe Free →</button>
+      </div>
+    </aside>
   </div>
 </div>
+<footer>© 2026 CashFlow Chronicle · <a href="admin.html" style="color:var(--text3)">Admin</a></footer>
 
-<!-- CATEGORIES -->
-<div class="categories">
-  <button class="cat-btn active" onclick="filterCat('all',this)">All Posts</button>
-  <button class="cat-btn" onclick="filterCat('Make Money Online',this)">Make Money Online</button>
-  <button class="cat-btn" onclick="filterCat('Side Hustles',this)">Side Hustles</button>
-  <button class="cat-btn" onclick="filterCat('Freelancing',this)">Freelancing</button>
-  <button class="cat-btn" onclick="filterCat('Investing',this)">Investing</button>
-  <button class="cat-btn" onclick="filterCat('Passive Income',this)">Passive Income</button>
-  <button class="cat-btn" onclick="filterCat('Online Business',this)">Online Business</button>
-  <button class="cat-btn" onclick="filterCat('Crypto',this)">Crypto</button>
-  <button class="cat-btn" onclick="filterCat('Affiliate Marketing',this)">Affiliate Marketing</button>
-</div>
-
-<!-- MAIN -->
-<div class="main-grid">
-  <div class="posts-section">
-    <div class="section-header">
-      <span class="section-title">Latest Articles</span>
-      <button class="see-all">View All →</button>
-    </div>
-    <!-- Posts load from Firebase here -->
-    <div id="post-list">
-      <!-- Loading skeletons -->
-      <div class="post-card" style="cursor:default">
-        <div><div class="skeleton skel-title"></div><div class="skeleton skel-line"></div><div class="skeleton skel-line"></div><div class="skeleton skel-line short"></div></div>
-        <div class="post-thumb skeleton"></div>
-      </div>
-      <div class="post-card" style="cursor:default">
-        <div><div class="skeleton skel-title"></div><div class="skeleton skel-line"></div><div class="skeleton skel-line"></div><div class="skeleton skel-line short"></div></div>
-        <div class="post-thumb skeleton"></div>
-      </div>
-      <div class="post-card" style="cursor:default">
-        <div><div class="skeleton skel-title"></div><div class="skeleton skel-line"></div><div class="skeleton skel-line"></div><div class="skeleton skel-line short"></div></div>
-        <div class="post-thumb skeleton"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-    <div class="newsletter">
-      <div class="nl-title">Get Free Money Tips Weekly</div>
-      <div class="nl-sub">Join readers getting actionable income ideas every Sunday morning.</div>
-      <input class="nl-input" type="email" placeholder="Enter your email"/>
-      <button class="nl-btn">Join Free →</button>
-    </div>
-
-    <!-- ============================================================
-      ADSTERRA SIDEBAR AD — 300x250
-      STEP: Replace with your real Adsterra 300x250 code
-    =============================================================== -->
-    <div class="sidebar-ad">
-      <div class="sidebar-ad-inner" id="adsterra-sidebar">
-        <span class="ad-tag">Advertisement · Adsterra</span>
-        <span class="ad-note">300×250 — Paste your code here</span>
-        <!-- PASTE ADSTERRA 300x250 CODE HERE -->
-      </div>
-    </div>
-
-    <div class="sidebar-block">
-      <div class="section-header">
-        <span class="section-title">Most Popular</span>
-      </div>
-      <div id="trending-list">
-        <div class="trending-item"><div class="trend-num">01</div><div><div class="trend-title skeleton skel-title" style="height:14px;width:160px"></div></div></div>
-        <div class="trending-item"><div class="trend-num">02</div><div><div class="trend-title skeleton skel-title" style="height:14px;width:140px"></div></div></div>
-        <div class="trending-item"><div class="trend-num">03</div><div><div class="trend-title skeleton skel-title" style="height:14px;width:150px"></div></div></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-logo">CashFlow <span>Chronicle</span></div>
-  <ul class="footer-links">
-    <li><a href="#">About</a></li>
-    <li><a href="#">Advertise</a></li>
-    <li><a href="#">Privacy Policy</a></li>
-    <li><a href="#">Contact</a></li>
-    <li><a href="admin.html">Admin</a></li>
-  </ul>
-  <div class="footer-copy">© 2026 CashFlow Chronicle</div>
-</footer>
-
-<!-- ============================================================
-  FIREBASE + POSTS LOADER
-  STEP: Paste your Firebase config values below
-  Get them from: Firebase Console → Project Settings → Your Apps
-=============================================================== -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script>
-
-
-
-
-  // ⬇️ PASTE YOUR FIREBASE CONFIG HERE (from Firebase Console)
   const firebaseConfig = {
     apiKey: "AIzaSyDzQNQUd5ppfjib6TE0M_New44Hp0uvuP8",
     authDomain: "cashflow-chronicles.firebaseapp.com",
@@ -317,87 +146,77 @@ footer{border-top:1px solid var(--border);padding:1.8rem 2.5rem;display:flex;ali
     messagingSenderId: "503268643904",
     appId: "1:503268643904:web:a617fe71e68c58bbdd3ba5"
   };
-
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
-
   let allPosts = [];
-  let currentCat = 'all';
 
-  // Load all posts from Firestore
   async function loadPosts() {
     try {
-      const q = db.collection('posts').limit(20);
-      const snap = await q.get();
+      const snap = await db.collection('posts').get();
       allPosts = [];
       snap.forEach(doc => allPosts.push({ id: doc.id, ...doc.data() }));
-      renderPosts(allPosts);
-      renderTrending(allPosts);
-      document.getElementById('post-count').textContent = allPosts.length + '+';
-      document.getElementById('reader-count').textContent = '12K+';
-      // Set hero to latest post
-      if (allPosts.length > 0) {
-        const latest = allPosts[0];
-        document.getElementById('hero-date').textContent = latest.date || '';
-        document.getElementById('hero-read-btn').onclick = () => location.href = 'post.html?id=' + latest.id;
-      }
+      allPosts.sort((a,b) => (b.createdAt?.seconds||0) - (a.createdAt?.seconds||0));
+      renderAll(allPosts);
     } catch(e) {
       console.error('Firebase error:', e);
-      document.getElementById('post-list').innerHTML = '<p style="color:var(--text3);font-size:0.8rem;padding:1rem 0">Could not load posts. Check your Firebase config.</p>';
+      document.getElementById('post-list').innerHTML = '<div class="empty">Could not load posts.</div>';
     }
+  }
+
+  function renderAll(posts) {
+    renderFeatured(posts);
+    renderPosts(posts.slice(1));
+    renderTrending(posts);
+  }
+
+  function renderFeatured(posts) {
+    const sec = document.getElementById('featured-section');
+    if (!posts.length) { sec.innerHTML = ''; return; }
+    const p = posts[0];
+    sec.innerHTML = `
+      <div class="featured" onclick="location.href='post.html?id=${p.id}'">
+        <div class="featured-img">${p.coverImage ? `<img src="${p.coverImage}" alt="${p.title}" onerror="this.parentElement.style.background='var(--bg3)'">` : ''}</div>
+        <div>
+          <div class="featured-tag">${p.category || 'Featured'}</div>
+          <div class="featured-title">${p.title}</div>
+          <div class="featured-excerpt">${p.excerpt || ''}</div>
+          <div class="featured-meta"><span>${p.date || ''}</span><span>${p.readTime || 5} min read</span></div>
+        </div>
+      </div>`;
   }
 
   function renderPosts(posts) {
     const list = document.getElementById('post-list');
-    if (!posts.length) {
-      list.innerHTML = '<p style="color:var(--text3);font-size:0.82rem;padding:1rem 0">No posts yet. Go to your admin panel and publish your first post!</p>';
-      return;
-    }
+    if (!posts.length) { list.innerHTML = ''; return; }
     list.innerHTML = posts.map(p => `
       <div class="post-card" onclick="location.href='post.html?id=${p.id}'">
         <div>
-          <div class="post-tag">${p.category || 'General'}</div>
-          <div class="post-title">${p.title}</div>
-          <div class="post-excerpt">${p.excerpt || ''}</div>
-          <div class="post-foot">
-            <span>${p.date || ''}</span>
-            <span>${p.readTime || 5} min read</span>
-          </div>
+          <div class="pc-tag">${p.category || 'General'}</div>
+          <div class="pc-title">${p.title}</div>
+          <div class="pc-excerpt">${p.excerpt || ''}</div>
+          <div class="pc-meta"><span>${p.date || ''}</span><span>${p.readTime || 5} min read</span></div>
         </div>
-        <div class="post-thumb">
-          ${p.coverImage
-            ? `<img src="${p.coverImage}" alt="${p.title}" onerror="this.style.display='none'">`
-            : '📄'}
-        </div>
-      </div>
-    `).join('');
+        <div class="pc-thumb">${p.coverImage ? `<img src="${p.coverImage}" alt="${p.title}" onerror="this.parentElement.style.display='none'">` : ''}</div>
+      </div>`).join('');
   }
 
   function renderTrending(posts) {
-    const list = document.getElementById('trending-list');
-    const top = posts.slice(0, 5);
-    list.innerHTML = top.map((p, i) => `
+    document.getElementById('trending-list').innerHTML = posts.slice(0,5).map((p,i) => `
       <div class="trending-item" onclick="location.href='post.html?id=${p.id}'">
-        <div class="trend-num">0${i+1}</div>
-        <div>
-          <div class="trend-title">${p.title}</div>
-          <div class="trend-cat">${p.category || ''}</div>
-        </div>
-      </div>
-    `).join('');
+        <div class="ti-num">0${i+1}</div>
+        <div><div class="ti-title">${p.title}</div><div class="ti-cat">${p.category || ''}</div></div>
+      </div>`).join('');
   }
 
-  // Category filter
   window.filterCat = function(cat, btn) {
     document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    currentCat = cat;
-    if (cat === 'all') renderPosts(allPosts);
-    else renderPosts(allPosts.filter(p => p.category === cat));
+    const f = cat === 'all' ? allPosts : allPosts.filter(p => p.category === cat);
+    renderFeatured(f);
+    renderPosts(f.slice(1));
   };
 
   loadPosts();
 </script>
-
 </body>
 </html>
