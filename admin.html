@@ -44,6 +44,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .topbar-btn{background:transparent;border:1px solid var(--border);color:var(--text2);padding:0.35rem 0.85rem;border-radius:2px;font-size:0.72rem;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s}
 .topbar-btn:hover{border-color:var(--text2);color:var(--text)}
 .topbar-btn.danger:hover{border-color:var(--red);color:var(--red)}
+.post-mgr-item{display:flex;align-items:center;justify-content:space-between;padding:0.6rem 0.8rem;background:var(--bg3);border-radius:3px;margin-bottom:0.5rem;gap:1rem}
+.post-mgr-title{font-size:0.85rem;color:var(--text);font-weight:500;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.post-mgr-cat{font-size:0.72rem;color:var(--text3);margin-top:2px}
+.post-mgr-del{background:none;border:1px solid var(--red);color:var(--red);padding:0.25rem 0.65rem;border-radius:2px;font-size:0.72rem;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;transition:all 0.15s}
+.post-mgr-del:hover{background:var(--red);color:#fff}
 .publish-btn{background:var(--accent);border:none;color:#0a0a0f;padding:0.38rem 1.1rem;border-radius:2px;font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif}
 .publish-btn:disabled{opacity:0.5;cursor:not-allowed}
 
@@ -146,9 +151,19 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     <div class="topbar-right">
       <button class="topbar-btn" onclick="saveDraft()">Save Draft</button>
       <button class="topbar-btn" onclick="viewSite()">View Site</button>
+      <button class="topbar-btn" onclick="toggleManage()" id="manage-btn">📋 Manage Posts</button>
       <button class="topbar-btn danger" onclick="doLogout()">Log Out</button>
       <button class="publish-btn" id="publish-btn" onclick="doPublish()">⚡ Publish Post</button>
     </div>
+  </div>
+
+  <!-- MANAGE POSTS PANEL -->
+  <div id="manage-panel" style="display:none;padding:1.5rem 2rem;border-bottom:1px solid var(--border);background:var(--bg2)">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
+      <h3 style="font-size:0.9rem;font-weight:600;color:var(--text)">All Published Posts</h3>
+      <button onclick="loadAllPosts()" style="font-size:0.75rem;color:var(--accent);background:none;border:none;cursor:pointer;">↺ Refresh</button>
+    </div>
+    <div id="posts-manager-list" style="color:var(--text3);font-size:0.85rem">Loading posts...</div>
   </div>
 
   <div class="admin-body">
@@ -531,6 +546,50 @@ function addTag(e) {
   }
 }
 function removeTag(btn, val) { tags.splice(tags.indexOf(val),1); btn.parentElement.remove(); }
+
+// MANAGE POSTS
+function toggleManage() {
+  const panel = document.getElementById('manage-panel');
+  const isHidden = panel.style.display === 'none';
+  panel.style.display = isHidden ? 'block' : 'none';
+  if (isHidden) loadAllPosts();
+}
+
+async function loadAllPosts() {
+  const list = document.getElementById('posts-manager-list');
+  list.innerHTML = '<span style="color:var(--text3)">Loading...</span>';
+  try {
+    const snap = await db.collection('posts').get();
+    const posts = [];
+    snap.forEach(d => posts.push({id: d.id, ...d.data()}));
+    posts.sort((a,b) => (b.createdAt?.seconds||0) - (a.createdAt?.seconds||0));
+    if (!posts.length) { list.innerHTML = '<span style="color:var(--text3)">No posts yet.</span>'; return; }
+    list.innerHTML = posts.map(p => `
+      <div class="post-mgr-item">
+        <div style="flex:1;overflow:hidden">
+          <div class="post-mgr-title">${p.title || 'Untitled'}</div>
+          <div class="post-mgr-cat">${p.category || ''} · ${p.date || ''}</div>
+        </div>
+        <button class="post-mgr-del" onclick="deletePost('${p.id}', this)">🗑 Delete</button>
+      </div>`).join('');
+  } catch(e) {
+    list.innerHTML = '<span style="color:var(--red)">Error loading posts: ' + e.message + '</span>';
+  }
+}
+
+async function deletePost(id, btn) {
+  if (!confirm('Are you sure you want to delete this post? This cannot be undone.')) return;
+  btn.textContent = 'Deleting...';
+  btn.disabled = true;
+  try {
+    await db.collection('posts').doc(id).delete();
+    btn.closest('.post-mgr-item').remove();
+  } catch(e) {
+    alert('Error deleting post: ' + e.message);
+    btn.textContent = '🗑 Delete';
+    btn.disabled = false;
+  }
+}
 
 function saveDraft() {
   const badge = document.getElementById('status-badge');

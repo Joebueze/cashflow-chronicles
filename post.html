@@ -5,144 +5,129 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CashFlow Chronicle</title>
 <meta name="description" content="Make money tips, side hustles, investing and passive income strategies.">
-
-<!-- ============================================================
-  MONETAG — Push Notification / Pop Script
-  STEP: Replace the src URL below with your real Monetag script URL
-  Get it from: monetag.com → Sites → Add Site → Get Code
-=============================================================== -->
 <!-- <script src="YOUR_MONETAG_SCRIPT_URL" async></script> -->
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0a0a0f;--bg2:#111118;--bg3:#1a1a24;--bg4:#22222f;
-  --accent:#c9a84c;--accent2:#e8c96a;
-  --text:#f0ede8;--text2:#a09d97;--text3:#6a6760;
-  --border:rgba(255,255,255,0.07);--border2:rgba(201,168,76,0.3);
-  --green:#4eca8b;
-  --max-w:740px;
+  --bg:#0f0f0f;--bg2:#181818;--bg3:#222;--bg4:#2a2a2a;
+  --accent:#c9a84c;--text:#e8e8e8;--text2:#aaa;--text3:#555;
+  --border:#2a2a2a;--max-w:720px;
 }
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.7}
-nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:60px;border-bottom:1px solid var(--border);background:rgba(10,10,15,0.97);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
-.logo{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--text);text-decoration:none}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:16px;line-height:1.7}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:56px;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+.logo{font-family:'Playfair Display',serif;font-size:1.2rem}
 .logo span{color:var(--accent)}
-.nav-right{display:flex;align-items:center;gap:1.2rem}
-.nav-back{font-size:0.75rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--text3);cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;transition:color 0.15s}
+.nav-back{font-size:0.78rem;color:var(--text3);background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:color 0.2s}
 .nav-back:hover{color:var(--accent)}
-.nav-subscribe{background:var(--accent);border:none;color:#0a0a0f;padding:0.35rem 0.9rem;border-radius:2px;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif}
-.progress-bar{position:fixed;top:60px;left:0;width:0%;height:2px;background:var(--accent);z-index:99;transition:width 0.1s linear}
+.nav-subscribe{background:var(--accent);border:none;color:#0f0f0f;padding:0.35rem 0.9rem;border-radius:3px;font-size:0.75rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif}
+.progress-bar{position:fixed;top:56px;left:0;width:0%;height:2px;background:var(--accent);z-index:99;transition:width 0.1s linear}
 
 /* HERO */
-.post-hero{width:100%;max-height:480px;overflow:hidden;border-bottom:1px solid var(--border);position:relative}
-.post-hero img{width:100%;height:480px;object-fit:cover;display:block;opacity:0.85}
-.post-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(10,10,15,0.92) 100%)}
-.post-hero-meta{position:absolute;bottom:0;left:0;right:0;padding:2rem}
-.hero-tag-line{display:flex;align-items:center;gap:0.5rem;font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem}
-.hero-tag-line::before{content:'';display:block;width:16px;height:1px;background:var(--accent)}
-.post-hero-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.15;font-weight:700;color:var(--text);text-shadow:0 2px 20px rgba(0,0,0,0.5);max-width:800px}
+.post-hero{width:100%;max-height:500px;overflow:hidden;position:relative;background:var(--bg3)}
+.post-hero img{width:100%;height:500px;object-fit:cover;display:block}
+.post-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 30%,rgba(15,15,15,0.95) 100%)}
+.post-hero-meta{position:absolute;bottom:0;left:0;right:0;padding:2.5rem 2rem 2rem}
+.hero-tag{font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem}
+.post-hero-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.5rem);line-height:1.18;font-weight:700;color:#fff;max-width:760px}
 
-/* META */
-.post-meta-row{max-width:var(--max-w);margin:0 auto;padding:1.2rem 2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
-.meta-left{display:flex;align-items:center;gap:0.9rem}
-.meta-avatar{width:38px;height:38px;border-radius:50%;background:var(--bg4);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:0.75rem;color:var(--accent);font-weight:500;flex-shrink:0}
-.meta-author{font-size:0.82rem;font-weight:500}
+/* META ROW */
+.meta-row{max-width:var(--max-w);margin:0 auto;padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+.meta-left{display:flex;align-items:center;gap:0.8rem}
+.meta-avatar{width:36px;height:36px;border-radius:50%;background:var(--bg4);border:1px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:0.72rem;color:var(--accent);font-weight:600;flex-shrink:0}
+.meta-author{font-size:0.83rem;font-weight:500}
 .meta-date{font-size:0.74rem;color:var(--text3)}
-.meta-right{display:flex;align-items:center;gap:1rem}
-.meta-stat{font-size:0.74rem;color:var(--text3)}
+.meta-right{font-size:0.75rem;color:var(--text3)}
 
 /* EXCERPT */
-.post-excerpt-block{max-width:var(--max-w);margin:1.5rem auto 0;padding:0 2rem}
-.post-excerpt-text{font-size:1.05rem;color:var(--text2);line-height:1.8;font-weight:300;font-style:italic;border-left:3px solid var(--accent);padding-left:1.2rem}
+.post-excerpt-block{max-width:var(--max-w);margin:1.8rem auto 0;padding:0 1.5rem}
+.post-excerpt-text{font-size:1.05rem;color:var(--text2);line-height:1.8;font-style:italic;border-left:3px solid var(--accent);padding-left:1.2rem}
 
-/* AD SLOTS */
-.ad-slot{max-width:var(--max-w);margin:1.5rem auto;padding:0 2rem}
-.ad-inner{border:1px dashed var(--border2);border-radius:2px;padding:0.8rem;min-height:100px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.3rem}
-.ad-label{font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3)}
-.ad-note{font-size:0.72rem;color:var(--text3)}
+/* AD SLOT */
+.ad-slot{max-width:var(--max-w);margin:1.5rem auto;padding:0 1.5rem}
+.ad-inner{border:1px dashed var(--border);border-radius:3px;padding:0.8rem;min-height:90px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.3rem}
+.ad-label{font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3)}
 
-/* CONTENT */
-.post-content{max-width:var(--max-w);margin:2rem auto;padding:0 2rem 3rem}
-.post-content h2{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--text);margin:2.2rem 0 0.8rem;line-height:1.25}
-.post-content h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:1.8rem 0 0.6rem}
-.post-content p{margin-bottom:1.3rem;color:var(--text2);font-weight:300;line-height:1.85;font-size:0.96rem}
-.post-content strong{color:var(--text);font-weight:500}
+/* ARTICLE CONTENT */
+.post-content{max-width:var(--max-w);margin:2rem auto;padding:0 1.5rem 3rem}
+.post-content h2{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:700;color:var(--text);margin:2.5rem 0 0.8rem;line-height:1.25}
+.post-content h3{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--text);margin:2rem 0 0.6rem}
+.post-content p{margin-bottom:1.4rem;color:var(--text2);font-weight:300;line-height:1.9;font-size:0.97rem}
+.post-content strong{color:var(--text);font-weight:600}
 .post-content em{color:var(--accent);font-style:italic}
-.post-content ul,.post-content ol{margin:0.8rem 0 1.3rem 1.5rem;color:var(--text2);font-weight:300;font-size:0.96rem}
-.post-content li{margin-bottom:0.45rem;line-height:1.7}
-.post-content blockquote{border-left:3px solid var(--accent);padding:0.8rem 1.2rem;margin:1.5rem 0;background:var(--bg3);border-radius:0 3px 3px 0}
+.post-content ul,.post-content ol{margin:0.8rem 0 1.4rem 1.5rem;color:var(--text2);font-size:0.96rem}
+.post-content li{margin-bottom:0.5rem;line-height:1.75}
+.post-content blockquote{border-left:3px solid var(--accent);padding:0.8rem 1.2rem;margin:1.5rem 0;background:var(--bg2);border-radius:0 3px 3px 0}
 .post-content blockquote p{color:var(--text2);font-style:italic;margin-bottom:0}
 .post-content a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
-.post-content img{width:100%;border-radius:3px;margin:1.5rem 0 0.5rem;border:1px solid var(--border);display:block}
+.post-content img{width:100%;border-radius:4px;margin:1.8rem 0 0.5rem;display:block;border:1px solid var(--border)}
 .post-content hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
 
-/* AFFILIATE */
-.affiliate-box{max-width:var(--max-w);margin:2rem auto;padding:0 2rem}
-.aff-inner{background:var(--bg3);border:1px solid var(--border2);border-radius:3px;padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
-.aff-label{font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:0.3rem}
-.aff-title{font-size:0.9rem;font-weight:500;color:var(--text)}
-.aff-sub{font-size:0.76rem;color:var(--text2);margin-top:0.15rem}
-.aff-btn{background:var(--accent);border:none;color:#0a0a0f;padding:0.5rem 1.1rem;border-radius:2px;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;white-space:nowrap;font-family:'DM Sans',sans-serif}
-
 /* SHARE */
-.share-section{max-width:var(--max-w);margin:0 auto;padding:1.5rem 2rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.share-label{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text3);font-weight:500;margin-bottom:0.8rem}
-.share-btns{display:flex;gap:0.6rem;flex-wrap:wrap}
-.share-btn{display:flex;align-items:center;gap:0.4rem;padding:0.4rem 0.9rem;border-radius:2px;font-size:0.74rem;font-weight:500;cursor:pointer;border:1px solid var(--border);background:var(--bg3);color:var(--text2);transition:all 0.15s;font-family:'DM Sans',sans-serif}
-.share-btn:hover{border-color:var(--border2);color:var(--accent)}
+.share-section{max-width:var(--max-w);margin:0 auto;padding:1.5rem;border-top:1px solid var(--border)}
+.share-label{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);margin-bottom:0.8rem}
+.share-btns{display:flex;gap:0.5rem;flex-wrap:wrap}
+.share-btn{padding:0.4rem 0.9rem;border-radius:3px;font-size:0.76rem;font-weight:500;cursor:pointer;border:1px solid var(--border);background:var(--bg2);color:var(--text2);transition:all 0.15s;font-family:'Inter',sans-serif}
+.share-btn:hover{border-color:var(--accent);color:var(--accent)}
 
 /* NEWSLETTER */
-.post-newsletter{max-width:var(--max-w);margin:2rem auto;padding:0 2rem}
-.nl-inner{background:var(--bg3);border:1px solid var(--border);border-radius:3px;padding:1.8rem 2rem;text-align:center}
+.post-newsletter{max-width:var(--max-w);margin:2rem auto;padding:0 1.5rem}
+.nl-inner{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:1.8rem 2rem;text-align:center}
 .nl-title{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:0.4rem}
-.nl-sub{font-size:0.82rem;color:var(--text2);margin-bottom:1.2rem;font-weight:300}
+.nl-sub{font-size:0.83rem;color:var(--text2);margin-bottom:1.2rem;font-weight:300}
 .nl-row{display:flex;gap:0.5rem;max-width:380px;margin:0 auto}
-.nl-input{flex:1;background:var(--bg4);border:1px solid var(--border);color:var(--text);padding:0.55rem 0.85rem;font-size:0.82rem;border-radius:2px;outline:none;font-family:'DM Sans',sans-serif}
+.nl-input{flex:1;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:0.55rem 0.85rem;font-size:0.83rem;border-radius:3px;outline:none;font-family:'Inter',sans-serif}
 .nl-input:focus{border-color:var(--accent)}
-.nl-input::placeholder{color:var(--text3)}
-.nl-btn{background:var(--accent);border:none;color:#0a0a0f;padding:0.55rem 1rem;border-radius:2px;font-size:0.78rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:0.06em;text-transform:uppercase}
+.nl-btn{background:var(--accent);border:none;color:#0f0f0f;padding:0.55rem 1rem;border-radius:3px;font-size:0.8rem;font-weight:600;cursor:pointer}
 
 /* RELATED */
-.related-section{max-width:860px;margin:0 auto;padding:2rem 2rem 3rem}
-.related-title{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text3);font-weight:500;margin-bottom:1.2rem;padding-bottom:0.7rem;border-bottom:1px solid var(--border)}
+.related-section{max-width:860px;margin:0 auto;padding:2rem 1.5rem 3rem}
+.related-heading{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text3);margin-bottom:1.2rem;padding-bottom:0.7rem;border-bottom:1px solid var(--border)}
 .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-.related-card{background:var(--bg3);border:1px solid var(--border);border-radius:3px;overflow:hidden;cursor:pointer;transition:border-color 0.15s}
-.related-card:hover{border-color:var(--border2)}
-.related-thumb{height:100px;background:var(--bg4);display:flex;align-items:center;justify-content:center;font-size:2rem;opacity:0.3;overflow:hidden}
-.related-thumb img{width:100%;height:100%;object-fit:cover;opacity:0.7}
+.related-card{background:var(--bg2);border:1px solid var(--border);border-radius:4px;overflow:hidden;cursor:pointer;transition:border-color 0.2s}
+.related-card:hover{border-color:var(--accent)}
+.related-thumb{height:100px;overflow:hidden;background:var(--bg3)}
+.related-thumb img{width:100%;height:100%;object-fit:cover}
 .related-body{padding:0.8rem}
-.related-tag{font-size:0.64rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.3rem;font-weight:500}
-.related-title-text{font-family:'Playfair Display',serif;font-size:0.88rem;line-height:1.3;font-weight:700;color:var(--text)}
-.related-time{font-size:0.7rem;color:var(--text3);margin-top:0.4rem}
+.related-tag{font-size:0.64rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:0.3rem;font-weight:600}
+.related-title-text{font-size:0.88rem;font-weight:500;line-height:1.35}
+.related-time{font-size:0.72rem;color:var(--text3);margin-top:0.4rem}
 
-.back-top{position:fixed;bottom:2rem;right:2rem;background:var(--bg3);border:1px solid var(--border2);color:var(--accent);width:40px;height:40px;border-radius:2px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;opacity:0;transition:opacity 0.2s;z-index:50}
+.back-top{position:fixed;bottom:2rem;right:2rem;background:var(--bg2);border:1px solid var(--border);color:var(--accent);width:40px;height:40px;border-radius:3px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.1rem;opacity:0;transition:opacity 0.2s;z-index:50}
 .back-top.show{opacity:1}
+
+@media(max-width:640px){
+  .related-grid{grid-template-columns:1fr}
+  .post-hero img{height:260px}
+}
 </style>
 </head>
 <body>
 
 <nav>
   <a class="logo" href="index.html">CashFlow <span>Chronicle</span></a>
-  <div class="nav-right">
+  <div style="display:flex;align-items:center;gap:1rem">
     <button class="nav-back" onclick="location.href='index.html'">← All Posts</button>
     <button class="nav-subscribe">Free Newsletter</button>
   </div>
 </nav>
 <div class="progress-bar" id="progress"></div>
 
-<!-- HERO — filled by Firebase -->
+<!-- HERO IMAGE -->
 <div class="post-hero" id="hero-section">
   <img id="post-cover" src="" alt="cover" onerror="document.getElementById('hero-section').style.display='none'"/>
   <div class="post-hero-overlay"></div>
   <div class="post-hero-meta">
-    <div class="hero-tag-line" id="post-category">Loading...</div>
+    <div class="hero-tag" id="post-category">Loading...</div>
     <h1 class="post-hero-title" id="post-title">Loading article...</h1>
   </div>
 </div>
 
 <!-- META -->
-<div class="post-meta-row">
+<div class="meta-row">
   <div class="meta-left">
     <div class="meta-avatar">CC</div>
     <div>
@@ -150,9 +135,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem
       <div class="meta-date" id="post-date">—</div>
     </div>
   </div>
-  <div class="meta-right">
-    <div class="meta-stat">📖 <span id="post-readtime">—</span></div>
-  </div>
+  <div class="meta-right">📖 <span id="post-readtime">—</span></div>
 </div>
 
 <!-- EXCERPT -->
@@ -160,46 +143,24 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem
   <p class="post-excerpt-text" id="post-excerpt">Loading...</p>
 </div>
 
-<!-- ============================================================
-  ADSTERRA AD — Top of article (728x90 or Native)
-  STEP: Replace contents of .ad-inner with your real Adsterra code
-  Get it from: publishers.adsterra.com → Ad Units
-=============================================================== -->
+<!-- AD TOP -->
 <div class="ad-slot">
-  <div class="ad-inner" id="adsterra-top">
+  <div class="ad-inner">
     <span class="ad-label">Advertisement · Adsterra</span>
-    <span class="ad-note">Paste your Adsterra top-of-article ad code here</span>
     <!-- PASTE ADSTERRA CODE HERE -->
   </div>
 </div>
 
-<!-- ARTICLE BODY — loaded from Firebase -->
+<!-- ARTICLE BODY -->
 <div class="post-content" id="post-body">
   <p style="color:var(--text3)">Loading article...</p>
 </div>
 
-<!-- ============================================================
-  ADSTERRA AD — Mid-article (Native / Banner)
-  STEP: Replace with your Adsterra mid-article unit code
-=============================================================== -->
+<!-- AD MID -->
 <div class="ad-slot">
-  <div class="ad-inner" id="adsterra-mid">
+  <div class="ad-inner">
     <span class="ad-label">Advertisement · Adsterra</span>
-    <span class="ad-note">Paste your Adsterra mid-article ad code here</span>
     <!-- PASTE ADSTERRA CODE HERE -->
-  </div>
-</div>
-
-<!-- AFFILIATE BOX -->
-<div class="affiliate-box">
-  <div class="aff-inner">
-    <div>
-      <div class="aff-label">Sponsored · Affiliate</div>
-      <div class="aff-title">Start freelancing on Fiverr — it's free</div>
-      <div class="aff-sub">Join millions earning online. No experience needed.</div>
-    </div>
-    <!-- STEP: Replace href="#" with your real affiliate link -->
-    <a href="#" target="_blank" rel="noopener"><button class="aff-btn">Get Started Free →</button></a>
   </div>
 </div>
 
@@ -226,24 +187,10 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem
   </div>
 </div>
 
-<!-- ============================================================
-  ADSTERRA AD — Bottom of article
-  STEP: Replace with your Adsterra bottom unit code
-=============================================================== -->
-<div class="ad-slot">
-  <div class="ad-inner" id="adsterra-bottom">
-    <span class="ad-label">Advertisement · Adsterra</span>
-    <span class="ad-note">Paste your Adsterra bottom ad code here</span>
-    <!-- PASTE ADSTERRA CODE HERE -->
-  </div>
-</div>
-
 <!-- RELATED POSTS -->
 <div class="related-section">
-  <div class="related-title">More Articles You'll Love</div>
-  <div class="related-grid" id="related-grid">
-    <div class="related-card"><div class="related-thumb">📄</div><div class="related-body"><div class="related-tag">Loading</div><div class="related-title-text">Loading related posts...</div></div></div>
-  </div>
+  <div class="related-heading">More Articles You'll Love</div>
+  <div class="related-grid" id="related-grid"></div>
 </div>
 
 <button class="back-top" id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
@@ -258,21 +205,12 @@ window.addEventListener('scroll',()=>{
 function shareTwitter(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href),'_blank')}
 function shareWhatsApp(){window.open('https://wa.me/?text='+encodeURIComponent(document.title+' '+location.href),'_blank')}
 function shareFacebook(){window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),'_blank')}
-function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{btn.textContent='✓ Copied!';btn.style.color='var(--green)';setTimeout(()=>{btn.textContent='🔗 Copy Link';btn.style.color='';},2000)})}
+function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{btn.textContent='✓ Copied!';setTimeout(()=>{btn.textContent='🔗 Copy Link';},2000)})}
 </script>
 
-<!-- ============================================================
-  FIREBASE LOADER
-  STEP: Paste your Firebase config values below
-=============================================================== -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script>
-
-
-
-
-  // ⬇️ PASTE YOUR FIREBASE CONFIG HERE
   const firebaseConfig = {
     apiKey: "AIzaSyDzQNQUd5ppfjib6TE0M_New44Hp0uvuP8",
     authDomain: "cashflow-chronicles.firebaseapp.com",
@@ -282,28 +220,31 @@ function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{bt
     appId: "1:503268643904:web:a617fe71e68c58bbdd3ba5"
   };
 
-  firebase.initializeApp(firebaseConfig);
+  if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
-
   const postId = new URLSearchParams(location.search).get('id');
 
   async function loadPost() {
     if (!postId) {
-      document.getElementById('post-body').innerHTML = '<p style="color:var(--text3)">No post ID in URL. Open this page from the homepage by clicking a post.</p>';
+      document.getElementById('post-body').innerHTML = '<p style="color:var(--text3)">No post ID. Go back to homepage and click a post.</p>';
+      document.getElementById('hero-section').style.display = 'none';
       return;
     }
     try {
       const snap = await db.collection('posts').doc(postId).get();
-      if (!snap.exists()) { document.getElementById('post-body').innerHTML = '<p style="color:var(--text3)">Post not found.</p>'; return; }
+      if (!snap.exists) {
+        document.getElementById('post-body').innerHTML = '<p style="color:var(--text3)">Post not found.</p>';
+        document.getElementById('hero-section').style.display = 'none';
+        return;
+      }
       const p = snap.data();
-
       document.title = p.title + ' — CashFlow Chronicle';
-      document.getElementById('post-title').textContent    = p.title;
+      document.getElementById('post-title').textContent    = p.title || '';
       document.getElementById('post-category').textContent = p.category || '';
       document.getElementById('post-date').textContent     = p.date || '';
       document.getElementById('post-readtime').textContent = (p.readTime || 5) + ' min read';
       document.getElementById('post-excerpt').textContent  = p.excerpt || '';
-      document.getElementById('post-body').innerHTML       = p.content || '';
+      document.getElementById('post-body').innerHTML       = p.content || '<p>No content.</p>';
 
       if (p.coverImage) {
         document.getElementById('post-cover').src = p.coverImage;
@@ -311,42 +252,35 @@ function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{bt
         document.getElementById('hero-section').style.display = 'none';
       }
 
-      // Update meta description for SEO
       document.querySelector('meta[name="description"]').setAttribute('content', p.excerpt || '');
-
-      // Load related posts
-      loadRelated(p.category, postId);
-
+      loadRelated(postId);
     } catch(e) {
-      console.error(e);
-      document.getElementById('post-body').innerHTML = '<p style="color:var(--text3)">Could not load post. Check your Firebase config.</p>';
+      console.error('Post load error:', e);
+      document.getElementById('post-body').innerHTML = '<p style="color:var(--text3)">Error loading post: ' + e.message + '</p>';
+      document.getElementById('hero-section').style.display = 'none';
     }
   }
 
-  async function loadRelated(category, currentId) {
+  async function loadRelated(currentId) {
     try {
-      const q = db.collection('posts').limit(4);
-      const snaps = await q.get();
-      const grid = document.getElementById('related-grid');
+      const snap = await db.collection('posts').limit(10).get();
       const posts = [];
-      snaps.forEach(d => { if (d.id !== currentId) posts.push({id:d.id,...d.data()}); });
-      if (!posts.length) { grid.innerHTML = '<p style="color:var(--text3);font-size:0.8rem">No related posts yet.</p>'; return; }
+      snap.forEach(d => { if (d.id !== currentId) posts.push({id:d.id,...d.data()}); });
+      const grid = document.getElementById('related-grid');
+      if (!posts.length) { grid.innerHTML = '<p style="color:var(--text3);font-size:0.85rem">No other posts yet.</p>'; return; }
       grid.innerHTML = posts.slice(0,3).map(r => `
         <div class="related-card" onclick="location.href='post.html?id=${r.id}'">
-          <div class="related-thumb">
-            ${r.coverImage ? `<img src="${r.coverImage}" alt="${r.title}">` : '📄'}
-          </div>
+          <div class="related-thumb">${r.coverImage ? `<img src="${r.coverImage}" alt="${r.title}" onerror="this.parentElement.style.background='var(--bg3)'">` : ''}</div>
           <div class="related-body">
             <div class="related-tag">${r.category||''}</div>
             <div class="related-title-text">${r.title}</div>
             <div class="related-time">${r.readTime||5} min read</div>
           </div>
         </div>`).join('');
-    } catch(e) { console.warn('Related posts error',e); }
+    } catch(e) { console.warn('Related error:', e); }
   }
 
   loadPost();
 </script>
-
 </body>
 </html>
