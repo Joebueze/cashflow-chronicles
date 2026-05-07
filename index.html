@@ -327,7 +327,7 @@ footer{border-top:1px solid var(--border);padding:1.8rem 2.5rem;display:flex;ali
   // Load all posts from Firestore
   async function loadPosts() {
     try {
-      const q = db.collection('posts').orderBy('createdAt','desc').limit(20);
+      const q = db.collection('posts').limit(20);
       const snap = await q.get();
       allPosts = [];
       snap.forEach(doc => allPosts.push({ id: doc.id, ...doc.data() }));
