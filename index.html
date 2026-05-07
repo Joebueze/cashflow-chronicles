@@ -301,10 +301,12 @@ footer{border-top:1px solid var(--border);padding:1.8rem 2.5rem;display:flex;ali
   STEP: Paste your Firebase config values below
   Get them from: Firebase Console → Project Settings → Your Apps
 =============================================================== -->
-<script type="module">
-  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-  import { getFirestore, collection, getDocs, query, orderBy, limit, where }
-    from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
+
+
+
 
   // ⬇️ PASTE YOUR FIREBASE CONFIG HERE (from Firebase Console)
   const firebaseConfig = {
@@ -316,8 +318,8 @@ footer{border-top:1px solid var(--border);padding:1.8rem 2.5rem;display:flex;ali
     appId: "1:503268643904:web:a617fe71e68c58bbdd3ba5"
   };
 
-  const app = initializeApp(firebaseConfig);
-  const db  = getFirestore(app);
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
 
   let allPosts = [];
   let currentCat = 'all';
@@ -325,8 +327,8 @@ footer{border-top:1px solid var(--border);padding:1.8rem 2.5rem;display:flex;ali
   // Load all posts from Firestore
   async function loadPosts() {
     try {
-      const q = query(collection(db,'posts'), orderBy('createdAt','desc'), limit(20));
-      const snap = await getDocs(q);
+      const q = db.collection('posts').orderBy('createdAt','desc').limit(20);
+      const snap = await q.get();
       allPosts = [];
       snap.forEach(doc => allPosts.push({ id: doc.id, ...doc.data() }));
       renderPosts(allPosts);

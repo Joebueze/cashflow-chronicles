@@ -265,10 +265,12 @@ function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{bt
   FIREBASE LOADER
   STEP: Paste your Firebase config values below
 =============================================================== -->
-<script type="module">
-  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-  import { getFirestore, doc, getDoc, collection, getDocs, query, where, orderBy, limit }
-    from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
+
+
+
 
   // ⬇️ PASTE YOUR FIREBASE CONFIG HERE
   const firebaseConfig = {
@@ -280,8 +282,8 @@ function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{bt
     appId: "1:503268643904:web:a617fe71e68c58bbdd3ba5"
   };
 
-  const app = initializeApp(firebaseConfig);
-  const db  = getFirestore(app);
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
 
   const postId = new URLSearchParams(location.search).get('id');
 
@@ -291,7 +293,7 @@ function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{bt
       return;
     }
     try {
-      const snap = await getDoc(doc(db,'posts',postId));
+      const snap = await db.collection('posts').doc(postId).get();
       if (!snap.exists()) { document.getElementById('post-body').innerHTML = '<p style="color:var(--text3)">Post not found.</p>'; return; }
       const p = snap.data();
 
@@ -323,8 +325,8 @@ function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{bt
 
   async function loadRelated(category, currentId) {
     try {
-      const q = query(collection(db,'posts'), where('category','==',category), orderBy('createdAt','desc'), limit(4));
-      const snaps = await getDocs(q);
+      const q = db.collection('posts').where('category','==',category).orderBy('createdAt','desc').limit(4);
+      const snaps = await q.get();
       const grid = document.getElementById('related-grid');
       const posts = [];
       snaps.forEach(d => { if (d.id !== currentId) posts.push({id:d.id,...d.data()}); });
