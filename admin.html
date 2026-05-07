@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CashFlow Chronicle — Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0f;--bg2:#111118;--bg3:#1a1a24;--bg4:#22222f;--bg5:#2a2a3a;
+  --accent:#c9a84c;--accent2:#e8c96a;
+  --text:#f0ede8;--text2:#a09d97;--text3:#6a6760;
+  --border:rgba(255,255,255,0.07);--border2:rgba(201,168,76,0.3);
+  --green:#4eca8b;--red:#e25454;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px}
+
+/* LOGIN */
+#login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh}
+.login-box{background:var(--bg3);border:1px solid var(--border2);border-radius:4px;padding:2.5rem 2rem;width:360px}
+.login-logo{font-family:'Playfair Display',serif;font-size:1.3rem;text-align:center;margin-bottom:0.3rem}
+.login-logo span{color:var(--accent)}
+.login-sub{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);text-align:center;margin-bottom:2rem}
+.field-label{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:0.4rem;display:block;font-weight:500}
+.field-input{width:100%;background:var(--bg4);border:1px solid var(--border);color:var(--text);padding:0.6rem 0.8rem;font-size:0.85rem;border-radius:2px;margin-bottom:1rem;font-family:'DM Sans',sans-serif;outline:none;transition:border 0.15s}
+.field-input:focus{border-color:var(--accent)}
+.field-input::placeholder{color:var(--text3)}
+.login-btn{width:100%;background:var(--accent);border:none;color:#0a0a0f;padding:0.7rem;font-size:0.82rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:0.5rem}
+.login-btn:hover{background:var(--accent2)}
+.login-error{background:rgba(226,84,84,0.12);border:1px solid rgba(226,84,84,0.3);color:var(--red);font-size:0.78rem;padding:0.5rem 0.75rem;border-radius:2px;margin-bottom:1rem;display:none}
+.login-hint{font-size:0.72rem;color:var(--text3);text-align:center;margin-top:1rem}
+.login-hint span{color:var(--accent)}
+
+/* ADMIN LAYOUT */
+#admin-screen{display:none;min-height:100vh;flex-direction:column}
+
+/* TOPBAR */
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px;background:var(--bg2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.topbar-logo{font-family:'Playfair Display',serif;font-size:1.05rem}
+.topbar-logo span{color:var(--accent)}
+.topbar-badge{font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;background:var(--bg4);color:var(--text3);padding:0.2rem 0.5rem;border-radius:2px;margin-left:0.6rem}
+.topbar-right{display:flex;align-items:center;gap:1rem}
+.topbar-btn{background:transparent;border:1px solid var(--border);color:var(--text2);padding:0.35rem 0.85rem;border-radius:2px;font-size:0.72rem;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s}
+.topbar-btn:hover{border-color:var(--text2);color:var(--text)}
+.topbar-btn.danger:hover{border-color:var(--red);color:var(--red)}
+.publish-btn{background:var(--accent);border:none;color:#0a0a0f;padding:0.38rem 1.1rem;border-radius:2px;font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif}
+.publish-btn:disabled{opacity:0.5;cursor:not-allowed}
+
+/* ADMIN BODY */
+.admin-body{display:grid;grid-template-columns:1fr 260px;flex:1;min-height:calc(100vh - 56px)}
+
+/* EDITOR */
+.editor-area{padding:2rem 2.5rem;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:1.2rem}
+.cover-upload{border:2px dashed var(--border2);border-radius:4px;height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden;background:var(--bg3)}
+.cover-upload:hover{border-color:var(--accent);background:var(--bg4)}
+.cover-upload.has-image{border-style:solid;border-color:var(--border)}
+.cover-upload input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.cover-icon{font-size:2rem;margin-bottom:0.5rem;opacity:0.4}
+.cover-label{font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);font-weight:500}
+.cover-sublabel{font-size:0.68rem;color:var(--text3);margin-top:0.25rem}
+#cover-preview{display:none;width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.cover-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.55);display:none;align-items:center;justify-content:center;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent)}
+.cover-upload.has-image:hover .cover-overlay{display:flex}
+.cover-upload.has-image .cover-upload-content{display:none}
+.cover-upload-content{display:flex;flex-direction:column;align-items:center}
+.field-row{display:flex;flex-direction:column;gap:0.4rem}
+.title-input{width:100%;background:transparent;border:none;border-bottom:1px solid var(--border);color:var(--text);padding:0.6rem 0;font-size:1.6rem;font-family:'Playfair Display',serif;font-weight:700;outline:none;transition:border 0.15s}
+.title-input:focus{border-bottom-color:var(--accent)}
+.title-input::placeholder{color:var(--text3)}
+.excerpt-box{width:100%;background:var(--bg2);border:1px solid var(--border);color:var(--text);padding:0.7rem 0.9rem;font-size:0.83rem;border-radius:2px;font-family:'DM Sans',sans-serif;outline:none;resize:vertical;min-height:70px;line-height:1.6}
+.excerpt-box:focus{border-color:rgba(255,255,255,0.15)}
+.excerpt-box::placeholder{color:var(--text3)}
+
+/* TOOLBAR */
+.editor-toolbar{display:flex;align-items:center;gap:0.3rem;padding:0.5rem 0;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.tb-btn{background:transparent;border:1px solid transparent;color:var(--text2);padding:0.3rem 0.55rem;border-radius:2px;font-size:0.78rem;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s;line-height:1}
+.tb-btn:hover{background:var(--bg4);border-color:var(--border);color:var(--text)}
+.tb-sep{width:1px;height:18px;background:var(--border);margin:0 0.2rem}
+.tb-img-btn{background:var(--bg4);border:1px solid var(--border2);color:var(--accent);padding:0.3rem 0.8rem;border-radius:2px;font-size:0.72rem;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:0.06em;text-transform:uppercase;display:flex;align-items:center;gap:0.35rem}
+.tb-img-btn:hover{background:var(--bg5)}
+.editor-content{min-height:320px;background:var(--bg2);border:1px solid var(--border);border-radius:2px;padding:1.2rem 1.4rem;outline:none;line-height:1.8;color:var(--text);font-size:0.92rem;position:relative}
+.editor-content:empty::before{content:'Start writing your post here...\A\AShare tips, insights, strategies — your readers are waiting!';white-space:pre;color:var(--text3);font-weight:300;pointer-events:none}
+.editor-content:focus{border-color:rgba(255,255,255,0.12)}
+.inline-img-wrapper{margin:1.2rem 0;border:1px solid var(--border);border-radius:2px;overflow:hidden;position:relative}
+.inline-img-wrapper img{width:100%;display:block;max-height:340px;object-fit:cover}
+.inline-img-caption{padding:0.4rem 0.7rem;background:var(--bg3);font-size:0.72rem;color:var(--text3)}
+.remove-img{position:absolute;top:6px;right:6px;background:rgba(0,0,0,0.7);border:1px solid var(--border);color:var(--text2);width:22px;height:22px;border-radius:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.75rem}
+.remove-img:hover{color:var(--red);border-color:var(--red)}
+.wc-bar{display:flex;gap:1.2rem;padding:0.5rem 0;border-top:1px solid var(--border);margin-top:0.2rem}
+.wc-item{font-size:0.72rem;color:var(--text3)}
+.wc-item span{color:var(--text2);font-weight:500}
+
+/* SIDEBAR */
+.admin-sidebar{padding:1.5rem 1.2rem;display:flex;flex-direction:column;gap:1.2rem}
+.sidebar-card{background:var(--bg3);border:1px solid var(--border);border-radius:3px;padding:1rem 1.1rem}
+.sidebar-card-title{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text3);font-weight:500;margin-bottom:0.9rem;padding-bottom:0.6rem;border-bottom:1px solid var(--border)}
+.status-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.6rem}
+.status-label{font-size:0.8rem;color:var(--text2)}
+.status-badge{font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.2rem 0.55rem;border-radius:2px;font-weight:500}
+.status-badge.draft{background:rgba(160,157,151,0.12);color:var(--text2)}
+.status-badge.published{background:rgba(78,202,139,0.12);color:var(--green)}
+.status-badge.saving{background:rgba(201,168,76,0.12);color:var(--accent)}
+.field-select{width:100%;background:var(--bg4);border:1px solid var(--border);color:var(--text);padding:0.5rem 0.7rem;font-size:0.8rem;border-radius:2px;font-family:'DM Sans',sans-serif;outline:none;margin-bottom:0.6rem}
+.field-select:focus{border-color:var(--accent)}
+.tags-input-wrap{display:flex;flex-wrap:wrap;gap:0.4rem;background:var(--bg4);border:1px solid var(--border);border-radius:2px;padding:0.4rem 0.5rem;min-height:36px;cursor:text}
+.tag-pill{background:var(--bg5);border:1px solid var(--border2);color:var(--accent);font-size:0.68rem;padding:0.15rem 0.5rem;border-radius:2px;display:flex;align-items:center;gap:0.3rem}
+.tag-pill button{background:none;border:none;color:var(--text3);cursor:pointer;font-size:0.7rem;padding:0}
+.tags-real-input{background:transparent;border:none;color:var(--text);font-size:0.78rem;outline:none;font-family:'DM Sans',sans-serif;min-width:80px;flex:1}
+.tags-real-input::placeholder{color:var(--text3)}
+.seo-preview{background:var(--bg4);border-radius:2px;padding:0.8rem;margin-top:0.5rem}
+.seo-title{color:#8ab4f8;font-size:0.82rem;margin-bottom:0.2rem}
+.seo-url{color:#4eca8b;font-size:0.7rem;margin-bottom:0.2rem}
+.seo-desc{color:var(--text2);font-size:0.72rem;line-height:1.5}
+
+/* TOAST */
+#toast{position:fixed;bottom:2rem;right:2rem;background:var(--green);color:#0a0a0f;padding:0.7rem 1.3rem;border-radius:3px;font-size:0.82rem;font-weight:600;display:none;z-index:999;letter-spacing:0.05em}
+#toast.error{background:var(--red);color:#fff}
+.hidden-file{display:none}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">CashFlow <span>Chronicle</span></div>
+    <div class="login-sub">Admin Panel</div>
+    <div class="login-error" id="login-error">Incorrect email or password. Please try again.</div>
+    <label class="field-label">Email</label>
+    <input class="field-input" id="login-user" type="email" placeholder="your@email.com" autocomplete="email"/>
+    <label class="field-label">Password</label>
+    <input class="field-input" id="login-pass" type="password" placeholder="••••••••" autocomplete="current-password"/>
+    <button class="login-btn" id="login-btn" onclick="doLogin()">Sign In →</button>
+    <div class="login-hint">Use the email + password you set in <span>Firebase Auth</span></div>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div id="admin-screen">
+  <div class="topbar">
+    <div style="display:flex;align-items:center;gap:0.8rem">
+      <div class="topbar-logo">CashFlow <span>Chronicle</span></div>
+      <span class="topbar-badge">Admin</span>
+    </div>
+    <div class="topbar-right">
+      <button class="topbar-btn" onclick="saveDraft()">Save Draft</button>
+      <button class="topbar-btn" onclick="viewSite()">View Site</button>
+      <button class="topbar-btn danger" onclick="doLogout()">Log Out</button>
+      <button class="publish-btn" id="publish-btn" onclick="doPublish()">⚡ Publish Post</button>
+    </div>
+  </div>
+
+  <div class="admin-body">
+    <div class="editor-area">
+
+      <!-- COVER IMAGE -->
+      <div>
+        <label class="field-label">Cover Image (Top of Post)</label>
+        <div class="cover-upload" id="cover-drop" onclick="document.getElementById('cover-file').click()">
+          <img id="cover-preview" alt="cover"/>
+          <div class="cover-overlay">🖼 Change Image</div>
+          <div class="cover-upload-content">
+            <div class="cover-icon">🖼</div>
+            <div class="cover-label">Click to upload cover image</div>
+            <div class="cover-sublabel">JPG, PNG, WEBP — recommended 1200×630px</div>
+          </div>
+        </div>
+        <input type="file" id="cover-file" class="hidden-file" accept="image/*" onchange="loadCover(event)"/>
+      </div>
+
+      <!-- TITLE -->
+      <div class="field-row">
+        <label class="field-label">Post Title</label>
+        <input class="title-input" id="post-title" type="text" placeholder="Enter your post title..." oninput="updateMeta()"/>
+      </div>
+
+      <!-- EXCERPT -->
+      <div class="field-row">
+        <label class="field-label">Excerpt / Summary</label>
+        <textarea class="excerpt-box" id="post-excerpt" placeholder="Write a short summary (shown on homepage and in Google)..." oninput="updateMeta()"></textarea>
+      </div>
+
+      <!-- CONTENT -->
+      <div>
+        <label class="field-label">Post Content</label>
+        <div class="editor-toolbar">
+          <button class="tb-btn" onclick="fmt('bold')"><b>B</b></button>
+          <button class="tb-btn" onclick="fmt('italic')"><i>I</i></button>
+          <button class="tb-btn" onclick="fmt('underline')"><u>U</u></button>
+          <div class="tb-sep"></div>
+          <button class="tb-btn" onclick="fmtBlock('h2')">H2</button>
+          <button class="tb-btn" onclick="fmtBlock('h3')">H3</button>
+          <button class="tb-btn" onclick="fmtBlock('p')">¶</button>
+          <div class="tb-sep"></div>
+          <button class="tb-btn" onclick="fmt('insertUnorderedList')">• List</button>
+          <button class="tb-btn" onclick="fmt('insertOrderedList')">1. List</button>
+          <div class="tb-sep"></div>
+          <button class="tb-btn" onclick="fmt('insertHorizontalRule')">— Line</button>
+          <div class="tb-sep"></div>
+          <button class="tb-img-btn" onclick="document.getElementById('inline-file').click()">📷 Insert Image</button>
+          <input type="file" id="inline-file" class="hidden-file" accept="image/*" onchange="insertInlineImage(event)"/>
+        </div>
+        <div class="editor-content" id="editor" contenteditable="true" oninput="countWords()"></div>
+        <div class="wc-bar">
+          <div class="wc-item">Words: <span id="wc">0</span></div>
+          <div class="wc-item">Read time: <span id="rt">0 min</span></div>
+          <div class="wc-item">Characters: <span id="cc">0</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="admin-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">Post Status</div>
+        <div class="status-row"><span class="status-label">Status</span><span class="status-badge draft" id="status-badge">Draft</span></div>
+        <div class="status-row"><span class="status-label">Visibility</span><span class="status-label" style="color:var(--text)">Public</span></div>
+        <div class="status-row" style="margin-top:0.5rem"><span class="status-label">Published</span><span class="status-label" style="color:var(--text);font-size:0.75rem" id="pub-date">—</span></div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">Category</div>
+        <select class="field-select" id="post-category">
+          <option value="">Select category...</option>
+          <option>Make Money Online</option>
+          <option>Side Hustles</option>
+          <option>Freelancing</option>
+          <option>Investing</option>
+          <option>Passive Income</option>
+          <option>Online Business</option>
+          <option>Crypto</option>
+          <option>Affiliate Marketing</option>
+          <option>Personal Finance</option>
+        </select>
+        <label class="field-label" style="margin-top:0.5rem">Tags</label>
+        <div class="tags-input-wrap" id="tags-wrap" onclick="document.getElementById('tag-input').focus()">
+          <input class="tags-real-input" id="tag-input" placeholder="Add tag, press Enter..." onkeydown="addTag(event)"/>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">SEO Preview</div>
+        <div class="seo-preview">
+          <div class="seo-title" id="seo-title">Your post title will appear here</div>
+          <div class="seo-url" id="seo-url">cashflowchronicle.com/your-post-title</div>
+          <div class="seo-desc" id="seo-desc">Your excerpt will show as the Google description...</div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">Writing Tips</div>
+        <div style="display:flex;flex-direction:column;gap:0.6rem">
+          <div style="font-size:0.75rem;color:var(--text2);line-height:1.5">✅ Aim for <span style="color:var(--text)">1,500+ words</span> for Google ranking</div>
+          <div style="font-size:0.75rem;color:var(--text2);line-height:1.5">✅ Add <span style="color:var(--text)">2–3 images</span> to keep readers engaged</div>
+          <div style="font-size:0.75rem;color:var(--text2);line-height:1.5">✅ Include your <span style="color:var(--text)">main keyword</span> in the title</div>
+          <div style="font-size:0.75rem;color:var(--text2);line-height:1.5">✅ Fill in the <span style="color:var(--text)">excerpt</span> — it's your Google snippet</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast">✓ Post Published Successfully!</div>
+
+<!-- ============================================================
+  FIREBASE — Auth + Firestore + Storage
+  STEP: Paste your Firebase config values below
+=============================================================== -->
+<script type="module">
+  import { initializeApp }
+    from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+  import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged }
+    from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+  import { getFirestore, collection, addDoc, serverTimestamp }
+    from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+  // ⬇️ PASTE YOUR FIREBASE CONFIG HERE
+  const firebaseConfig = {
+    apiKey: "AIzaSyDzQNQUd5ppfjib6TE0M_New44Hp0uvuP8",
+    authDomain: "cashflow-chronicles.firebaseapp.com",
+    projectId: "cashflow-chronicles",
+    storageBucket: "cashflow-chronicles.firebasestorage.app",
+    messagingSenderId: "503268643904",
+    appId: "1:503268643904:web:a617fe71e68c58bbdd3ba5"
+  };
+
+  const app     = initializeApp(firebaseConfig);
+  const auth    = getAuth(app);
+  const db      = getFirestore(app);
+  const CLOUDINARY_CLOUD = 'dsyev4eqm';
+  const CLOUDINARY_PRESET = 'ml_default';
+
+  // Check if already logged in
+  onAuthStateChanged(auth, user => {
+    if (user) showAdmin();
+    else showLogin();
+  });
+
+  function showAdmin() {
+    document.getElementById('login-screen').style.display = 'none';
+    const s = document.getElementById('admin-screen');
+    s.style.display = 'flex';
+    s.style.flexDirection = 'column';
+  }
+  function showLogin() {
+    document.getElementById('admin-screen').style.display = 'none';
+    document.getElementById('login-screen').style.display = 'flex';
+  }
+
+  // LOGIN
+  window.doLogin = async () => {
+    const btn = document.getElementById('login-btn');
+    const err = document.getElementById('login-error');
+    const email = document.getElementById('login-user').value.trim();
+    const pass  = document.getElementById('login-pass').value;
+    btn.textContent = 'Signing in...';
+    btn.disabled = true;
+    err.style.display = 'none';
+    try {
+      await signInWithEmailAndPassword(auth, email, pass);
+      showAdmin();
+    } catch(e) {
+      err.style.display = 'block';
+      btn.textContent = 'Sign In →';
+      btn.disabled = false;
+    }
+  };
+
+  // LOGOUT
+  window.doLogout = async () => {
+    await signOut(auth);
+    showLogin();
+  };
+
+  window.viewSite = () => window.open('index.html','_blank');
+
+  // Upload image to Cloudinary
+  async function uploadToCloudinary(file) {
+    const fd = new FormData();
+    fd.append('file', file);
+    fd.append('upload_preset', CLOUDINARY_PRESET);
+    const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`, { method: 'POST', body: fd });
+    const data = await res.json();
+    return data.secure_url;
+  }
+
+  // Upload all inline images to Cloudinary
+  async function uploadInlineImages(editorEl) {
+    const imgs = editorEl.querySelectorAll('img');
+    for (const img of imgs) {
+      if (img.src.startsWith('https://res.cloudinary.com')) continue;
+      try {
+        const res  = await fetch(img.src);
+        const blob = await res.blob();
+        const file = new File([blob], `inline_${Date.now()}.jpg`, {type: 'image/jpeg'});
+        img.src = await uploadToCloudinary(file);
+      } catch(e) { console.warn('Inline image upload failed', e); }
+    }
+    return editorEl.innerHTML;
+  }
+
+  // PUBLISH
+  window.doPublish = async () => {
+    const title    = document.getElementById('post-title').value.trim();
+    const excerpt  = document.getElementById('post-excerpt').value.trim();
+    const category = document.getElementById('post-category').value;
+    const words    = parseInt(document.getElementById('wc').textContent) || 0;
+    const coverFile= document.getElementById('cover-file').files[0];
+
+    if (!title)    { showToast('Please add a post title.', true); return; }
+    if (!category) { showToast('Please select a category.', true); return; }
+    if (!excerpt)  { showToast('Please add an excerpt.', true); return; }
+
+    const btn = document.getElementById('publish-btn');
+    btn.textContent = 'Publishing...';
+    btn.disabled = true;
+
+    try {
+      // Upload cover image
+      let coverURL = '';
+      if (coverFile) {
+        coverURL = await uploadToCloudinary(coverFile);
+      }
+
+      // Upload inline images and get final HTML
+      const editor  = document.getElementById('editor');
+      const content = await uploadInlineImages(editor);
+
+      // Save post to Firestore
+      await addDoc(collection(db, 'posts'), {
+        title, excerpt, content, category,
+        coverImage: coverURL,
+        readTime: Math.max(1, Math.round(words / 200)),
+        date: new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}),
+        status: 'published',
+        createdAt: serverTimestamp()
+      });
+
+      // Update UI
+      const badge = document.getElementById('status-badge');
+      badge.textContent = 'Published';
+      badge.className = 'status-badge published';
+      document.getElementById('pub-date').textContent = new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+      showToast('✓ Post Published Successfully!');
+
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        if (confirm('Post published! Clear the editor for a new post?')) {
+          document.getElementById('post-title').value = '';
+          document.getElementById('post-excerpt').value = '';
+          document.getElementById('editor').innerHTML = '';
+          document.getElementById('cover-file').value = '';
+          document.getElementById('cover-preview').style.display = 'none';
+          document.getElementById('cover-drop').classList.remove('has-image');
+          document.getElementById('post-category').value = '';
+          badge.textContent = 'Draft';
+          badge.className = 'status-badge draft';
+          document.getElementById('pub-date').textContent = '—';
+          countWords();
+        }
+      }, 3000);
+
+    } catch(e) {
+      console.error(e);
+      showToast('Error publishing. Check your Firebase config.', true);
+    }
+    btn.textContent = '⚡ Publish Post';
+    btn.disabled = false;
+  };
+
+  function showToast(msg, isError=false) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = isError ? 'error' : '';
+    t.style.display = 'block';
+    setTimeout(() => t.style.display='none', 4000);
+  }
+  window.showToast = showToast;
+</script>
+
+<script>
+// Cover image preview
+function loadCover(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const prev = document.getElementById('cover-preview');
+    prev.src = ev.target.result;
+    prev.style.display = 'block';
+    document.getElementById('cover-drop').classList.add('has-image');
+  };
+  reader.readAsDataURL(file);
+}
+
+// Inline image insert
+function insertInlineImage(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const editor = document.getElementById('editor');
+    editor.focus();
+    const wrapper = document.createElement('div');
+    wrapper.className = 'inline-img-wrapper';
+    wrapper.contentEditable = 'false';
+    const btn = document.createElement('button');
+    btn.className = 'remove-img';
+    btn.innerHTML = '✕';
+    btn.onclick = () => wrapper.remove();
+    const img = document.createElement('img');
+    img.src = ev.target.result;
+    const cap = document.createElement('div');
+    cap.className = 'inline-img-caption';
+    cap.contentEditable = 'true';
+    cap.textContent = 'Add image caption (optional)';
+    cap.onfocus = () => { if (cap.textContent === 'Add image caption (optional)') cap.textContent = ''; };
+    wrapper.appendChild(btn);
+    wrapper.appendChild(img);
+    wrapper.appendChild(cap);
+    const sel = window.getSelection();
+    if (sel.rangeCount) {
+      const range = sel.getRangeAt(0);
+      range.collapse(false);
+      range.insertNode(wrapper);
+      range.setStartAfter(wrapper);
+      range.collapse(true);
+      sel.removeAllRanges();
+      sel.addRange(range);
+    } else { editor.appendChild(wrapper); }
+    const p = document.createElement('p');
+    p.innerHTML = '<br>';
+    wrapper.after(p);
+    countWords();
+  };
+  reader.readAsDataURL(file);
+  e.target.value = '';
+}
+
+function fmt(cmd) { document.getElementById('editor').focus(); document.execCommand(cmd,false,null); }
+function fmtBlock(tag) { document.getElementById('editor').focus(); document.execCommand('formatBlock',false,tag); }
+
+function countWords() {
+  const text = (document.getElementById('editor').innerText || '').trim();
+  const words = text === '' ? 0 : text.split(/\s+/).length;
+  document.getElementById('wc').textContent = words;
+  document.getElementById('cc').textContent = text.replace(/\s/g,'').length;
+  document.getElementById('rt').textContent = Math.max(1, Math.round(words/200)) + ' min';
+}
+
+function updateMeta() {
+  const title   = document.getElementById('post-title').value || 'Your post title';
+  const excerpt = document.getElementById('post-excerpt').value || 'Your excerpt will show as the Google description...';
+  const slug    = title.toLowerCase().replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,'-').slice(0,50);
+  document.getElementById('seo-title').textContent = title;
+  document.getElementById('seo-url').textContent   = 'cashflowchronicle.com/' + slug;
+  document.getElementById('seo-desc').textContent  = excerpt.slice(0,155) + (excerpt.length>155?'...':'');
+}
+
+const tags = [];
+function addTag(e) {
+  if (e.key==='Enter' || e.key===',') {
+    e.preventDefault();
+    const val = e.target.value.trim().replace(',','');
+    if (val && !tags.includes(val)) {
+      tags.push(val);
+      const pill = document.createElement('div');
+      pill.className = 'tag-pill';
+      pill.innerHTML = val + ` <button onclick="removeTag(this,'${val}')">✕</button>`;
+      document.getElementById('tags-wrap').insertBefore(pill, document.getElementById('tag-input'));
+    }
+    e.target.value = '';
+  }
+}
+function removeTag(btn, val) { tags.splice(tags.indexOf(val),1); btn.parentElement.remove(); }
+
+function saveDraft() {
+  const badge = document.getElementById('status-badge');
+  badge.textContent = 'Saved ✓';
+  badge.className = 'status-badge saving';
+  setTimeout(() => { badge.textContent = 'Draft'; badge.className = 'status-badge draft'; }, 2000);
+}
+
+document.getElementById('login-pass').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
+document.getElementById('login-user').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
+</script>
+</body>
+</html>
