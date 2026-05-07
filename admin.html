@@ -267,13 +267,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   FIREBASE — Auth + Firestore + Storage
   STEP: Paste your Firebase config values below
 =============================================================== -->
-<script type="module">
-  import { initializeApp }
-    from 'https://cdn.jsdelivr.net/npm/firebase@10.12.0/app/+esm';
-  import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged }
-    from 'https://cdn.jsdelivr.net/npm/firebase@10.12.0/auth/+esm';
-  import { getFirestore, collection, addDoc, serverTimestamp }
-    from 'https://cdn.jsdelivr.net/npm/firebase@10.12.0/firestore/+esm';
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
 
   // ⬇️ PASTE YOUR FIREBASE CONFIG HERE
   const firebaseConfig = {
@@ -285,14 +282,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     appId: "1:503268643904:web:a617fe71e68c58bbdd3ba5"
   };
 
-  const app     = initializeApp(firebaseConfig);
-  const auth    = getAuth(app);
-  const db      = getFirestore(app);
+  firebase.initializeApp(firebaseConfig);
+  const auth    = firebase.auth();
+  const db      = firebase.firestore();
   const CLOUDINARY_CLOUD = 'dsyev4eqm';
   const CLOUDINARY_PRESET = 'ml_default';
 
   // Check if already logged in
-  onAuthStateChanged(auth, user => {
+  auth.onAuthStateChanged(user => {
     if (user) showAdmin();
     else showLogin();
   });
@@ -318,7 +315,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     btn.disabled = true;
     err.style.display = 'none';
     try {
-      await signInWithEmailAndPassword(auth, email, pass);
+      await auth.signInWithEmailAndPassword(email, pass);
       showAdmin();
     } catch(e) {
       err.style.display = 'block';
@@ -329,7 +326,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 
   // LOGOUT
   window.doLogout = async () => {
-    await signOut(auth);
+    await auth.signOut();
     showLogin();
   };
 
@@ -388,13 +385,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       const content = await uploadInlineImages(editor);
 
       // Save post to Firestore
-      await addDoc(collection(db, 'posts'), {
+      await db.collection('posts').add({
         title, excerpt, content, category,
         coverImage: coverURL,
         readTime: Math.max(1, Math.round(words / 200)),
         date: new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}),
         status: 'published',
-        createdAt: serverTimestamp()
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
       });
 
       // Update UI
