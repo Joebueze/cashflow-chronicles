@@ -5,6 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CashFlow Chronicle</title>
 <meta name="description" content="Make money tips, side hustles, investing and passive income strategies.">
+
+<!-- ✅ OPEN GRAPH & TWITTER CARD — dynamically updated per post -->
+<meta property="og:site_name" content="CashFlow Chronicle" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="CashFlow Chronicle" />
+<meta property="og:description" content="Make money tips, side hustles, investing and passive income strategies." />
+<meta property="og:image" content="https://www.cashflow-chronicle.com/og-image.jpg" />
+<meta property="og:url" content="https://www.cashflow-chronicle.com/" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@CashFlowChron" />
+<meta name="twitter:title" content="CashFlow Chronicle" />
+<meta name="twitter:description" content="Make money tips, side hustles, investing and passive income strategies." />
+<meta name="twitter:image" content="https://www.cashflow-chronicle.com/og-image.jpg" />
+
 <script src="https://pl29431077.profitablecpmratenetwork.com/05/37/af/0537afda97917547b6def6cf69883d93.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -53,6 +67,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem
 
 /* ARTICLE CONTENT */
 .post-content{max-width:var(--max-w);margin:2rem auto;padding:0 1.5rem 3rem}
+.post-content h1{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:var(--text);margin:2rem 0 0.8rem;line-height:1.2}
 .post-content h2{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:700;color:var(--text);margin:2.5rem 0 0.8rem;line-height:1.25}
 .post-content h3{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--text);margin:2rem 0 0.6rem}
 .post-content p{margin-bottom:1.4rem;color:var(--text2);font-weight:300;line-height:1.9;font-size:0.97rem}
@@ -233,6 +248,54 @@ function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{bt
   const db = firebase.firestore();
   const postId = new URLSearchParams(location.search).get('id');
 
+  // ✅ Helper: update all Open Graph + Twitter meta tags dynamically
+  function updateMetaTags(title, description, imageUrl, pageUrl) {
+    const setMeta = (sel, val) => {
+      const el = document.querySelector(sel);
+      if (el) el.setAttribute('content', val);
+    };
+    // Page title
+    document.title = title + ' — CashFlow Chronicle';
+    // Description
+    document.querySelector('meta[name="description"]') &&
+      document.querySelector('meta[name="description"]').setAttribute('content', description);
+    // Open Graph
+    setMeta('meta[property="og:title"]',       title);
+    setMeta('meta[property="og:description"]', description);
+    setMeta('meta[property="og:image"]',       imageUrl);
+    setMeta('meta[property="og:url"]',         pageUrl);
+    // Twitter
+    setMeta('meta[name="twitter:title"]',       title);
+    setMeta('meta[name="twitter:description"]', description);
+    setMeta('meta[name="twitter:image"]',       imageUrl);
+
+    // ✅ Schema markup — inject Article structured data for Google
+    const existing = document.getElementById('post-schema');
+    if (existing) existing.remove();
+    const schema = document.createElement('script');
+    schema.type = 'application/ld+json';
+    schema.id   = 'post-schema';
+    schema.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": title,
+      "description": description,
+      "image": imageUrl,
+      "url": pageUrl,
+      "datePublished": new Date().toISOString(),
+      "publisher": {
+        "@type": "Organization",
+        "name": "CashFlow Chronicle",
+        "url": "https://www.cashflow-chronicle.com"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "CashFlow Chronicle"
+      }
+    });
+    document.head.appendChild(schema);
+  }
+
   async function loadPost() {
     if (!postId) {
       document.getElementById('post-body').innerHTML = '<p style="color:var(--text3)">No post ID. Go back to homepage and click a post.</p>';
@@ -247,7 +310,8 @@ function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{bt
         return;
       }
       const p = snap.data();
-      document.title = p.title + ' — CashFlow Chronicle';
+
+      // Populate page content
       document.getElementById('post-title').textContent    = p.title || '';
       document.getElementById('post-category').textContent = p.category || '';
       document.getElementById('post-date').textContent     = p.date || '';
@@ -261,7 +325,12 @@ function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{bt
         document.getElementById('hero-section').style.display = 'none';
       }
 
-      document.querySelector('meta[name="description"]').setAttribute('content', p.excerpt || '');
+      // ✅ Update all meta/OG/Twitter tags with real post data
+      const pageUrl   = 'https://www.cashflow-chronicle.com/post.html?id=' + postId;
+      const imageUrl  = p.coverImage || 'https://www.cashflow-chronicle.com/og-image.jpg';
+      const excerpt   = (p.excerpt || '').slice(0, 155);
+      updateMetaTags(p.title || 'CashFlow Chronicle', excerpt, imageUrl, pageUrl);
+
       loadRelated(postId);
     } catch(e) {
       console.error('Post load error:', e);
