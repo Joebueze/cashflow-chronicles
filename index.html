@@ -12,7 +12,7 @@
 <!-- ✅ CANONICAL TAG -->
 <link rel="canonical" href="https://www.cashflow-chronicle.com/" />
 
-<!-- ✅ OPEN GRAPH: Facebook & WhatsApp sharing -->
+<!-- ✅ OPEN GRAPH -->
 <meta property="og:title" content="CashFlow Chronicle — Make Money Online" />
 <meta property="og:description" content="Practical tips on how to make money online, side hustles, investing, freelancing and passive income strategies." />
 <meta property="og:url" content="https://www.cashflow-chronicle.com/" />
@@ -20,13 +20,13 @@
 <meta property="og:site_name" content="CashFlow Chronicle" />
 <meta property="og:image" content="https://www.cashflow-chronicle.com/og-image.jpg" />
 
-<!-- ✅ TWITTER CARD: Twitter/X sharing -->
+<!-- ✅ TWITTER CARD -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="CashFlow Chronicle — Make Money Online" />
 <meta name="twitter:description" content="Practical tips on how to make money online, side hustles, investing, freelancing and passive income strategies." />
 <meta name="twitter:image" content="https://www.cashflow-chronicle.com/og-image.jpg" />
 
-<!-- ✅ SCHEMA MARKUP: Tells Google exactly what your site is -->
+<!-- ✅ SCHEMA MARKUP -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -51,8 +51,20 @@
 </script>
 
 <meta name="p:domain_verify" content="e68f19a5760f07358d5cae11a040373c"/>
-<script src="https://pl29431077.profitablecpmratenetwork.com/05/37/af/0537afda97917547b6def6cf69883d93.js"></script>
+
+<!-- ✅ PERFORMANCE: Preconnect to external domains so they load faster -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://firestore.googleapis.com">
+<link rel="preconnect" href="https://www.gstatic.com">
+<link rel="preconnect" href="https://res.cloudinary.com">
+
+<!-- ✅ PERFORMANCE: Load fonts efficiently with display=swap -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- ✅ PERFORMANCE: Ad script loads async so it never blocks the page -->
+<script src="https://pl29431077.profitablecpmratenetwork.com/05/37/af/0537afda97917547b6def6cf69883d93.js" async defer></script>
+
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -177,6 +189,7 @@ footer{border-top:1px solid var(--border);padding:1.8rem 2.5rem;display:flex;ali
   .post-thumb{display:none!important}
 }
 </style>
+<!-- ✅ PERFORMANCE: Ad script loads after page with async -->
 <script src="https://5gvci.com/act/files/tag.min.js?z=10998928" data-cfasync="false" async></script>
 </head>
 <body>
@@ -297,6 +310,8 @@ footer{border-top:1px solid var(--border);padding:1.8rem 2.5rem;display:flex;ali
   </ul>
   <div class="footer-copy">© 2026 CashFlow Chronicle</div>
 </footer>
+
+<!-- ✅ PERFORMANCE: Firebase loads at bottom so page renders first -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script>
@@ -328,7 +343,7 @@ footer{border-top:1px solid var(--border);padding:1.8rem 2.5rem;display:flex;ali
       }
     } catch(e) {
       console.error('Firebase error:', e);
-      document.getElementById('post-list').innerHTML = '<p style="color:var(--text3);font-size:0.8rem;padding:1rem 0">Could not load posts.</p>';
+      document.getElementById('post-list').innerHTML = '<p style="color:var(--text3);font-size:0.8rem;padding:1rem 0">Could not load posts. Please check your connection.</p>';
     }
   }
   function renderPosts(posts) {
@@ -342,7 +357,7 @@ footer{border-top:1px solid var(--border);padding:1.8rem 2.5rem;display:flex;ali
           <div class="post-excerpt">${p.excerpt || ''}</div>
           <div class="post-foot"><span>${p.date || ''}</span><span>${p.readTime || 5} min read</span></div>
         </div>
-        <div class="post-thumb">${p.coverImage ? `<img src="${p.coverImage}" alt="${p.title}" onerror="this.style.display='none'">` : '📄'}</div>
+        <div class="post-thumb">${p.coverImage ? `<img src="${p.coverImage}" alt="${p.title}" loading="lazy" onerror="this.style.display='none'">` : '📄'}</div>
       </div>`).join('');
   }
   function renderTrending(posts) {

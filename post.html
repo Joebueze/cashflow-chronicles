@@ -6,7 +6,7 @@
 <title>CashFlow Chronicle</title>
 <meta name="description" content="Make money tips, side hustles, investing and passive income strategies.">
 
-<!-- ✅ OPEN GRAPH & TWITTER CARD — dynamically updated per post -->
+<!-- ✅ OPEN GRAPH & TWITTER CARD — updated dynamically per post -->
 <meta property="og:site_name" content="CashFlow Chronicle" />
 <meta property="og:type" content="article" />
 <meta property="og:title" content="CashFlow Chronicle" />
@@ -14,13 +14,23 @@
 <meta property="og:image" content="https://www.cashflow-chronicle.com/og-image.jpg" />
 <meta property="og:url" content="https://www.cashflow-chronicle.com/" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@CashFlowChron" />
 <meta name="twitter:title" content="CashFlow Chronicle" />
 <meta name="twitter:description" content="Make money tips, side hustles, investing and passive income strategies." />
 <meta name="twitter:image" content="https://www.cashflow-chronicle.com/og-image.jpg" />
 
-<script src="https://pl29431077.profitablecpmratenetwork.com/05/37/af/0537afda97917547b6def6cf69883d93.js"></script>
+<!-- ✅ PERFORMANCE: Preconnect to all external domains -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://firestore.googleapis.com">
+<link rel="preconnect" href="https://www.gstatic.com">
+<link rel="preconnect" href="https://res.cloudinary.com">
+
+<!-- ✅ PERFORMANCE: Fonts with display=swap so text shows instantly -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- ✅ PERFORMANCE: Ad script async so it never blocks page render -->
+<script src="https://pl29431077.profitablecpmratenetwork.com/05/37/af/0537afda97917547b6def6cf69883d93.js" async defer></script>
+
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -30,8 +40,6 @@
 }
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:16px;line-height:1.7}
 a{text-decoration:none;color:inherit}
-
-/* NAV */
 nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:56px;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
 .logo{font-family:'Playfair Display',serif;font-size:1.2rem}
 .logo span{color:var(--accent)}
@@ -39,33 +47,24 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem
 .nav-back:hover{color:var(--accent)}
 .nav-subscribe{background:var(--accent);border:none;color:#0f0f0f;padding:0.35rem 0.9rem;border-radius:3px;font-size:0.75rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif}
 .progress-bar{position:fixed;top:56px;left:0;width:0%;height:2px;background:var(--accent);z-index:99;transition:width 0.1s linear}
-
-/* HERO */
 .post-hero{width:100%;max-height:500px;overflow:hidden;position:relative;background:var(--bg3)}
 .post-hero img{width:100%;height:500px;object-fit:cover;display:block}
 .post-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 30%,rgba(15,15,15,0.95) 100%)}
 .post-hero-meta{position:absolute;bottom:0;left:0;right:0;padding:2.5rem 2rem 2rem}
 .hero-tag{font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem}
 .post-hero-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.5rem);line-height:1.18;font-weight:700;color:#fff;max-width:760px}
-
-/* META ROW */
 .meta-row{max-width:var(--max-w);margin:0 auto;padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
 .meta-left{display:flex;align-items:center;gap:0.8rem}
 .meta-avatar{width:36px;height:36px;border-radius:50%;background:var(--bg4);border:1px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:0.72rem;color:var(--accent);font-weight:600;flex-shrink:0}
 .meta-author{font-size:0.83rem;font-weight:500}
 .meta-date{font-size:0.74rem;color:var(--text3)}
 .meta-right{font-size:0.75rem;color:var(--text3)}
-
-/* EXCERPT */
 .post-excerpt-block{max-width:var(--max-w);margin:1.8rem auto 0;padding:0 1.5rem}
 .post-excerpt-text{font-size:1.05rem;color:var(--text2);line-height:1.8;font-style:italic;border-left:3px solid var(--accent);padding-left:1.2rem}
-
-/* AD SLOT */
 .ad-slot{max-width:var(--max-w);margin:1.5rem auto;padding:0 1.5rem}
 .ad-inner{border:1px dashed var(--border);border-radius:3px;padding:0.8rem;min-height:90px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.3rem}
 .ad-label{font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3)}
-
-/* ARTICLE CONTENT */
+/* ✅ ARTICLE CONTENT STYLES */
 .post-content{max-width:var(--max-w);margin:2rem auto;padding:0 1.5rem 3rem}
 .post-content h1{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:var(--text);margin:2rem 0 0.8rem;line-height:1.2}
 .post-content h2{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:700;color:var(--text);margin:2.5rem 0 0.8rem;line-height:1.25}
@@ -80,15 +79,11 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem
 .post-content a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
 .post-content img{width:100%;border-radius:4px;margin:1.8rem 0 0.5rem;display:block;border:1px solid var(--border)}
 .post-content hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
-
-/* SHARE */
 .share-section{max-width:var(--max-w);margin:0 auto;padding:1.5rem;border-top:1px solid var(--border)}
 .share-label{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);margin-bottom:0.8rem}
 .share-btns{display:flex;gap:0.5rem;flex-wrap:wrap}
 .share-btn{padding:0.4rem 0.9rem;border-radius:3px;font-size:0.76rem;font-weight:500;cursor:pointer;border:1px solid var(--border);background:var(--bg2);color:var(--text2);transition:all 0.15s;font-family:'Inter',sans-serif}
 .share-btn:hover{border-color:var(--accent);color:var(--accent)}
-
-/* NEWSLETTER */
 .post-newsletter{max-width:var(--max-w);margin:2rem auto;padding:0 1.5rem}
 .nl-inner{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:1.8rem 2rem;text-align:center}
 .nl-title{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:0.4rem}
@@ -97,8 +92,6 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem
 .nl-input{flex:1;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:0.55rem 0.85rem;font-size:0.83rem;border-radius:3px;outline:none;font-family:'Inter',sans-serif}
 .nl-input:focus{border-color:var(--accent)}
 .nl-btn{background:var(--accent);border:none;color:#0f0f0f;padding:0.55rem 1rem;border-radius:3px;font-size:0.8rem;font-weight:600;cursor:pointer}
-
-/* RELATED */
 .related-section{max-width:860px;margin:0 auto;padding:2rem 1.5rem 3rem}
 .related-heading{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text3);margin-bottom:1.2rem;padding-bottom:0.7rem;border-bottom:1px solid var(--border)}
 .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
@@ -110,10 +103,8 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem
 .related-tag{font-size:0.64rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:0.3rem;font-weight:600}
 .related-title-text{font-size:0.88rem;font-weight:500;line-height:1.35}
 .related-time{font-size:0.72rem;color:var(--text3);margin-top:0.4rem}
-
 .back-top{position:fixed;bottom:2rem;right:2rem;background:var(--bg2);border:1px solid var(--border);color:var(--accent);width:40px;height:40px;border-radius:3px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.1rem;opacity:0;transition:opacity 0.2s;z-index:50}
 .back-top.show{opacity:1}
-
 @media(max-width:640px){
   .related-grid{grid-template-columns:1fr}
   .post-hero img{height:260px}
@@ -122,7 +113,6 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem
 <script src="https://5gvci.com/act/files/tag.min.js?z=10998928" data-cfasync="false" async></script>
 </head>
 <body>
-
 <nav>
   <a class="logo" href="index.html">CashFlow <span>Chronicle</span></a>
   <div style="display:flex;align-items:center;gap:1rem">
@@ -131,18 +121,15 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem
   </div>
 </nav>
 <div class="progress-bar" id="progress"></div>
-
-<!-- HERO IMAGE -->
 <div class="post-hero" id="hero-section">
-  <img id="post-cover" src="" alt="cover" onerror="document.getElementById('hero-section').style.display='none'"/>
+  <!-- ✅ PERFORMANCE: fetchpriority=high loads cover image first -->
+  <img id="post-cover" src="" alt="cover" fetchpriority="high" onerror="document.getElementById('hero-section').style.display='none'"/>
   <div class="post-hero-overlay"></div>
   <div class="post-hero-meta">
     <div class="hero-tag" id="post-category">Loading...</div>
     <h1 class="post-hero-title" id="post-title">Loading article...</h1>
   </div>
 </div>
-
-<!-- META -->
 <div class="meta-row">
   <div class="meta-left">
     <div class="meta-avatar">CC</div>
@@ -153,42 +140,24 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem
   </div>
   <div class="meta-right">📖 <span id="post-readtime">—</span></div>
 </div>
-
-<!-- EXCERPT -->
 <div class="post-excerpt-block">
   <p class="post-excerpt-text" id="post-excerpt">Loading...</p>
 </div>
-
-<!-- AD TOP -->
 <div class="ad-slot">
   <div class="ad-inner">
-    <script>
-  atOptions = {
-    'key' : '93ce30f44b14d149ecb6a1d59fdf3d28',
-    'format' : 'iframe',
-    'height' : 90,
-    'width' : 728,
-    'params' : {}
-  };
-</script>
-<script src="https://www.highperformanceformat.com/93ce30f44b14d149ecb6a1d59fdf3d28/invoke.js"></script>
+    <script>atOptions={'key':'93ce30f44b14d149ecb6a1d59fdf3d28','format':'iframe','height':90,'width':728,'params':{}};</script>
+    <script src="https://www.highperformanceformat.com/93ce30f44b14d149ecb6a1d59fdf3d28/invoke.js"></script>
   </div>
 </div>
-
-<!-- ARTICLE BODY -->
 <div class="post-content" id="post-body">
   <p style="color:var(--text3)">Loading article...</p>
 </div>
-
-<!-- AD MID -->
 <div class="ad-slot">
   <div class="ad-inner">
-    <script async="async" data-cfasync="false" src="https://pl29431078.profitablecpmratenetwork.com/e4b651689ac3e6fa53757723de545f94/invoke.js"></script>
-<div id="container-e4b651689ac3e6fa53757723de545f94"></div>
+    <script async data-cfasync="false" src="https://pl29431078.profitablecpmratenetwork.com/e4b651689ac3e6fa53757723de545f94/invoke.js"></script>
+    <div id="container-e4b651689ac3e6fa53757723de545f94"></div>
   </div>
 </div>
-
-<!-- SHARE -->
 <div class="share-section">
   <div class="share-label">Share this article</div>
   <div class="share-btns">
@@ -198,8 +167,6 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem
     <button class="share-btn" onclick="copyLink(this)">🔗 Copy Link</button>
   </div>
 </div>
-
-<!-- NEWSLETTER -->
 <div class="post-newsletter">
   <div class="nl-inner">
     <div class="nl-title">Enjoyed this? Get more every week.</div>
@@ -210,13 +177,10 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem
     </div>
   </div>
 </div>
-
-<!-- RELATED POSTS -->
 <div class="related-section">
   <div class="related-heading">More Articles You'll Love</div>
   <div class="related-grid" id="related-grid"></div>
 </div>
-
 <button class="back-top" id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
@@ -232,6 +196,7 @@ function shareFacebook(){window.open('https://www.facebook.com/sharer/sharer.php
 function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{btn.textContent='✓ Copied!';setTimeout(()=>{btn.textContent='🔗 Copy Link';},2000)})}
 </script>
 
+<!-- ✅ PERFORMANCE: Firebase loads at very bottom -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script>
@@ -243,55 +208,31 @@ function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{bt
     messagingSenderId: "503268643904",
     appId: "1:503268643904:web:a617fe71e68c58bbdd3ba5"
   };
-
   if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
   const postId = new URLSearchParams(location.search).get('id');
 
-  // ✅ Helper: update all Open Graph + Twitter meta tags dynamically
   function updateMetaTags(title, description, imageUrl, pageUrl) {
-    const setMeta = (sel, val) => {
-      const el = document.querySelector(sel);
-      if (el) el.setAttribute('content', val);
-    };
-    // Page title
+    const setMeta = (sel, val) => { const el = document.querySelector(sel); if (el) el.setAttribute('content', val); };
     document.title = title + ' — CashFlow Chronicle';
-    // Description
-    document.querySelector('meta[name="description"]') &&
-      document.querySelector('meta[name="description"]').setAttribute('content', description);
-    // Open Graph
-    setMeta('meta[property="og:title"]',       title);
+    document.querySelector('meta[name="description"]')?.setAttribute('content', description);
+    setMeta('meta[property="og:title"]', title);
     setMeta('meta[property="og:description"]', description);
-    setMeta('meta[property="og:image"]',       imageUrl);
-    setMeta('meta[property="og:url"]',         pageUrl);
-    // Twitter
-    setMeta('meta[name="twitter:title"]',       title);
+    setMeta('meta[property="og:image"]', imageUrl);
+    setMeta('meta[property="og:url"]', pageUrl);
+    setMeta('meta[name="twitter:title"]', title);
     setMeta('meta[name="twitter:description"]', description);
-    setMeta('meta[name="twitter:image"]',       imageUrl);
-
-    // ✅ Schema markup — inject Article structured data for Google
+    setMeta('meta[name="twitter:image"]', imageUrl);
     const existing = document.getElementById('post-schema');
     if (existing) existing.remove();
     const schema = document.createElement('script');
     schema.type = 'application/ld+json';
-    schema.id   = 'post-schema';
+    schema.id = 'post-schema';
     schema.textContent = JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": title,
-      "description": description,
-      "image": imageUrl,
-      "url": pageUrl,
-      "datePublished": new Date().toISOString(),
-      "publisher": {
-        "@type": "Organization",
-        "name": "CashFlow Chronicle",
-        "url": "https://www.cashflow-chronicle.com"
-      },
-      "author": {
-        "@type": "Organization",
-        "name": "CashFlow Chronicle"
-      }
+      "@context":"https://schema.org","@type":"BlogPosting",
+      "headline":title,"description":description,"image":imageUrl,"url":pageUrl,
+      "publisher":{"@type":"Organization","name":"CashFlow Chronicle","url":"https://www.cashflow-chronicle.com"},
+      "author":{"@type":"Organization","name":"CashFlow Chronicle"}
     });
     document.head.appendChild(schema);
   }
@@ -310,27 +251,24 @@ function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{bt
         return;
       }
       const p = snap.data();
-
-      // Populate page content
       document.getElementById('post-title').textContent    = p.title || '';
       document.getElementById('post-category').textContent = p.category || '';
       document.getElementById('post-date').textContent     = p.date || '';
       document.getElementById('post-readtime').textContent = (p.readTime || 5) + ' min read';
       document.getElementById('post-excerpt').textContent  = p.excerpt || '';
       document.getElementById('post-body').innerHTML       = p.content || '<p>No content.</p>';
-
       if (p.coverImage) {
         document.getElementById('post-cover').src = p.coverImage;
       } else {
         document.getElementById('hero-section').style.display = 'none';
       }
-
-      // ✅ Update all meta/OG/Twitter tags with real post data
-      const pageUrl   = 'https://www.cashflow-chronicle.com/post.html?id=' + postId;
-      const imageUrl  = p.coverImage || 'https://www.cashflow-chronicle.com/og-image.jpg';
-      const excerpt   = (p.excerpt || '').slice(0, 155);
-      updateMetaTags(p.title || 'CashFlow Chronicle', excerpt, imageUrl, pageUrl);
-
+      // ✅ Add lazy loading to all images inside post content
+      document.querySelectorAll('#post-body img').forEach(img => {
+        img.setAttribute('loading', 'lazy');
+      });
+      const pageUrl  = 'https://www.cashflow-chronicle.com/post.html?id=' + postId;
+      const imageUrl = p.coverImage || 'https://www.cashflow-chronicle.com/og-image.jpg';
+      updateMetaTags(p.title || 'CashFlow Chronicle', (p.excerpt||'').slice(0,155), imageUrl, pageUrl);
       loadRelated(postId);
     } catch(e) {
       console.error('Post load error:', e);
@@ -348,7 +286,7 @@ function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{bt
       if (!posts.length) { grid.innerHTML = '<p style="color:var(--text3);font-size:0.85rem">No other posts yet.</p>'; return; }
       grid.innerHTML = posts.slice(0,3).map(r => `
         <div class="related-card" onclick="location.href='post.html?id=${r.id}'">
-          <div class="related-thumb">${r.coverImage ? `<img src="${r.coverImage}" alt="${r.title}" onerror="this.parentElement.style.background='var(--bg3)'">` : ''}</div>
+          <div class="related-thumb">${r.coverImage ? `<img src="${r.coverImage}" alt="${r.title}" loading="lazy" onerror="this.parentElement.style.background='var(--bg3)'">` : ''}</div>
           <div class="related-body">
             <div class="related-tag">${r.category||''}</div>
             <div class="related-title-text">${r.title}</div>
@@ -357,12 +295,11 @@ function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{bt
         </div>`).join('');
     } catch(e) { console.warn('Related error:', e); }
   }
-
   loadPost();
 </script>
 </body>
 </html>
-<!-- MOBILE FIX INJECTED -->
+<!-- MOBILE FIX -->
 <style>
 @media(max-width:768px){
   nav{padding:0 1rem!important;height:52px!important}
