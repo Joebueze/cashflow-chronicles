@@ -161,6 +161,37 @@ footer{border-top:1px solid var(--border);padding:1.8rem 2.5rem;display:flex;ali
 .skel-title{height:18px;margin-bottom:8px;width:80%}
 .skel-line{height:12px;margin-bottom:6px;width:100%}
 .skel-line.short{width:40%}
+
+/* HERO IMAGE */
+.hero-image-cover{position:relative;overflow:hidden;background:var(--bg3)}
+.hero-image-cover img{width:100%;height:100%;object-fit:cover;display:block;opacity:0.6;transition:opacity 0.3s}
+.hero-image-cover .hero-img-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,10,15,0.5) 0%,transparent 100%)}
+.hero-image-placeholder{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem;padding:2rem;height:100%}
+
+/* ABOUT SECTION */
+.about-section{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2);padding:3rem 2.5rem}
+.about-inner{display:grid;grid-template-columns:1fr 1fr;gap:3rem;max-width:1100px;margin:0 auto;align-items:center}
+.about-tag{font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:0.8rem;display:flex;align-items:center;gap:0.5rem}
+.about-tag::before{content:'';display:block;width:18px;height:1px;background:var(--accent)}
+.about-title{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;line-height:1.2;margin-bottom:1rem}
+.about-title em{font-style:italic;color:var(--accent)}
+.about-text{color:var(--text2);font-size:0.88rem;line-height:1.85;font-weight:300;margin-bottom:1.2rem}
+.about-stats{display:flex;gap:2rem;padding-top:1.2rem;border-top:1px solid var(--border)}
+.about-stat-val{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--accent);font-weight:700}
+.about-stat-label{font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-top:0.2rem}
+.about-cards{display:flex;flex-direction:column;gap:0.8rem}
+.about-card{background:var(--bg3);border:1px solid var(--border);border-radius:3px;padding:1rem 1.2rem;display:flex;align-items:flex-start;gap:0.9rem;transition:border-color 0.2s}
+.about-card:hover{border-color:var(--border2)}
+.about-card-icon{font-size:1.3rem;margin-top:0.1rem;flex-shrink:0}
+.about-card-title{font-size:0.82rem;font-weight:600;color:var(--text);margin-bottom:0.2rem}
+.about-card-text{font-size:0.76rem;color:var(--text2);line-height:1.5;font-weight:300}
+
+/* LOAD MORE */
+.load-more-wrap{display:flex;justify-content:center;padding:1.5rem 0 0.5rem}
+.load-more-btn{background:transparent;border:1px solid var(--border2);color:var(--accent);padding:0.6rem 2rem;border-radius:2px;font-size:0.78rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;display:flex;align-items:center;gap:0.5rem}
+.load-more-btn:hover{background:var(--accent);color:#0a0a0f;border-color:var(--accent)}
+.load-more-btn:disabled{opacity:0.4;cursor:not-allowed}
+.load-more-btn.hidden{display:none}
 @media(max-width:768px){
   nav{padding:0 1rem!important;height:52px!important}
   .nav-links{display:none!important}
@@ -182,6 +213,10 @@ footer{border-top:1px solid var(--border);padding:1.8rem 2.5rem;display:flex;ali
   .post-excerpt{display:none!important}
   footer{flex-direction:column!important;gap:0.75rem!important;text-align:center!important;padding:1rem!important}
   .footer-links{justify-content:center!important;flex-wrap:wrap!important;gap:1rem!important}
+  .about-inner{grid-template-columns:1fr!important;gap:1.5rem!important}
+  .about-section{padding:2rem 1rem!important}
+  .about-title{font-size:1.3rem!important}
+  .about-stats{gap:1.2rem!important}
 }
 @media(max-width:480px){
   .hero-title{font-size:1.2rem!important}
@@ -220,9 +255,9 @@ footer{border-top:1px solid var(--border);padding:1.8rem 2.5rem;display:flex;ali
 <div class="hero">
   <div class="hero-left">
     <div>
-      <div class="hero-tag">Featured Post</div>
-      <h1 class="hero-title">7 Proven Ways to Make <em>Real Money</em> Online in 2026 — No Capital Needed</h1>
-      <p class="hero-excerpt">From freelancing on Fiverr to building faceless YouTube channels — these are methods thousands are using right now to earn online from their phones.</p>
+      <div class="hero-tag">Latest Post</div>
+      <h1 class="hero-title" id="hero-title">Loading latest article...</h1>
+      <p class="hero-excerpt" id="hero-excerpt">Fetching the latest from CashFlow Chronicle...</p>
     </div>
     <div class="hero-meta">
       <div class="author-row">
@@ -235,13 +270,17 @@ footer{border-top:1px solid var(--border);padding:1.8rem 2.5rem;display:flex;ali
       <button class="read-btn" id="hero-read-btn">Read Article →</button>
     </div>
   </div>
-  <div class="hero-image">
-    <div class="big-stat">$4,200</div>
-    <div class="big-stat-label">Average monthly income reported by our readers</div>
-    <div class="stat-row">
-      <div class="mini-stat"><div class="mini-val" id="reader-count">—</div><div class="mini-label">Readers</div></div>
-      <div class="mini-stat"><div class="mini-val" id="post-count">—</div><div class="mini-label">Articles</div></div>
-      <div class="mini-stat"><div class="mini-val">98%</div><div class="mini-label">Free</div></div>
+  <div class="hero-image hero-image-cover" id="hero-image-area">
+    <img id="hero-cover-img" src="" alt="Latest post cover" loading="eager" style="display:none;width:100%;height:100%;object-fit:cover;opacity:0.65"/>
+    <div class="hero-img-overlay"></div>
+    <div class="hero-image-placeholder" id="hero-placeholder">
+      <div class="big-stat">$4,200</div>
+      <div class="big-stat-label">Average monthly income reported by our readers</div>
+      <div class="stat-row">
+        <div class="mini-stat"><div class="mini-val" id="reader-count">—</div><div class="mini-label">Readers</div></div>
+        <div class="mini-stat"><div class="mini-val" id="post-count">—</div><div class="mini-label">Articles</div></div>
+        <div class="mini-stat"><div class="mini-val">98%</div><div class="mini-label">Free</div></div>
+      </div>
     </div>
   </div>
 </div>
@@ -274,6 +313,11 @@ footer{border-top:1px solid var(--border);padding:1.8rem 2.5rem;display:flex;ali
       <div class="post-card" style="cursor:default"><div><div class="skeleton skel-title"></div><div class="skeleton skel-line"></div><div class="skeleton skel-line"></div><div class="skeleton skel-line short"></div></div><div class="post-thumb skeleton"></div></div>
       <div class="post-card" style="cursor:default"><div><div class="skeleton skel-title"></div><div class="skeleton skel-line"></div><div class="skeleton skel-line"></div><div class="skeleton skel-line short"></div></div><div class="post-thumb skeleton"></div></div>
     </div>
+    <div class="load-more-wrap">
+      <button class="load-more-btn hidden" id="load-more-btn" onclick="loadMorePosts()">
+        ↓ Load More Articles
+      </button>
+    </div>
   </div>
   <div class="sidebar">
     <div class="newsletter">
@@ -299,6 +343,62 @@ footer{border-top:1px solid var(--border);padding:1.8rem 2.5rem;display:flex;ali
     </div>
   </div>
 </div>
+<!-- ABOUT SECTION -->
+<div class="about-section" id="about">
+  <div class="about-inner">
+    <div>
+      <div class="about-tag">About Us</div>
+      <h2 class="about-title">Your Guide to <em>Financial Freedom</em> Starts Here</h2>
+      <p class="about-text">CashFlow Chronicle is a personal finance and online income blog dedicated to helping everyday people discover proven, practical ways to make money online, build profitable side hustles, and create lasting financial freedom — without needing a degree, a large capital, or any special connections.</p>
+      <p class="about-text">We research, test, and write about strategies that actually work in the real world — from freelancing and affiliate marketing to investing and passive income. Every article is written with one goal in mind: to give you the knowledge and confidence to take control of your financial future.</p>
+      <div class="about-stats">
+        <div>
+          <div class="about-stat-val" id="about-post-count">10+</div>
+          <div class="about-stat-label">Articles Published</div>
+        </div>
+        <div>
+          <div class="about-stat-val">100%</div>
+          <div class="about-stat-label">Free to Read</div>
+        </div>
+        <div>
+          <div class="about-stat-val">Weekly</div>
+          <div class="about-stat-label">New Content</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-cards">
+      <div class="about-card">
+        <div class="about-card-icon">💡</div>
+        <div>
+          <div class="about-card-title">Practical & Actionable</div>
+          <div class="about-card-text">Every article gives you real steps you can take today — no fluff, no theory, just what works.</div>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">🌍</div>
+        <div>
+          <div class="about-card-title">Written for Everyone</div>
+          <div class="about-card-text">Whether you're a student, a professional, or a stay-at-home parent — our strategies work for anyone with internet access.</div>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">📈</div>
+        <div>
+          <div class="about-card-title">Always Up to Date</div>
+          <div class="about-card-text">The online income world changes fast. We keep our content fresh so you always have the latest opportunities.</div>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">🔒</div>
+        <div>
+          <div class="about-card-title">Honest & Trustworthy</div>
+          <div class="about-card-text">We never promote get-rich-quick schemes. Everything we recommend is legitimate and has been carefully researched.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer>
   <div class="footer-logo">CashFlow <span>Chronicle</span></div>
   <ul class="footer-links">
@@ -325,30 +425,56 @@ footer{border-top:1px solid var(--border);padding:1.8rem 2.5rem;display:flex;ali
   };
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
+
   let allPosts = [];
+  let visibleCount = 8; // Show 8 posts initially
+  const PAGE_SIZE = 8;  // Load 8 more each time
+
   async function loadPosts() {
     try {
-      const snap = await db.collection('posts').limit(20).get();
+      const snap = await db.collection('posts').limit(100).get();
       allPosts = [];
       snap.forEach(doc => allPosts.push({ id: doc.id, ...doc.data() }));
       allPosts.sort((a,b) => (b.createdAt?.seconds||0) - (a.createdAt?.seconds||0));
-      renderPosts(allPosts);
-      renderTrending(allPosts);
+
+      // Update counts
       document.getElementById('post-count').textContent = allPosts.length + '+';
       document.getElementById('reader-count').textContent = '12K+';
+      document.getElementById('about-post-count').textContent = allPosts.length + '+';
+
+      // Update hero with latest post
       if (allPosts.length > 0) {
         const latest = allPosts[0];
+        document.getElementById('hero-title').textContent = latest.title || '';
+        document.getElementById('hero-excerpt').textContent = latest.excerpt || '';
         document.getElementById('hero-date').textContent = latest.date || '';
         document.getElementById('hero-read-btn').onclick = () => location.href = 'post.html?id=' + latest.id;
+
+        // Show cover image if available
+        if (latest.coverImage) {
+          const img = document.getElementById('hero-cover-img');
+          img.src = latest.coverImage;
+          img.style.display = 'block';
+          document.getElementById('hero-placeholder').style.display = 'none';
+        }
       }
+
+      renderPosts(allPosts.slice(0, visibleCount));
+      renderTrending(allPosts);
+      updateLoadMoreBtn();
+
     } catch(e) {
       console.error('Firebase error:', e);
       document.getElementById('post-list').innerHTML = '<p style="color:var(--text3);font-size:0.8rem;padding:1rem 0">Could not load posts. Please check your connection.</p>';
     }
   }
+
   function renderPosts(posts) {
     const list = document.getElementById('post-list');
-    if (!posts.length) { list.innerHTML = '<p style="color:var(--text3);font-size:0.82rem;padding:1rem 0">No posts yet. Go to your admin panel and publish your first post!</p>'; return; }
+    if (!posts.length) {
+      list.innerHTML = '<p style="color:var(--text3);font-size:0.82rem;padding:1rem 0">No posts yet. Go to your admin panel and publish your first post!</p>';
+      return;
+    }
     list.innerHTML = posts.map(p => `
       <div class="post-card" onclick="location.href='post.html?id=${p.id}'">
         <div>
@@ -360,6 +486,7 @@ footer{border-top:1px solid var(--border);padding:1.8rem 2.5rem;display:flex;ali
         <div class="post-thumb">${p.coverImage ? `<img src="${p.coverImage}" alt="${p.title}" loading="lazy" onerror="this.style.display='none'">` : '📄'}</div>
       </div>`).join('');
   }
+
   function renderTrending(posts) {
     document.getElementById('trending-list').innerHTML = posts.slice(0,5).map((p,i) => `
       <div class="trending-item" onclick="location.href='post.html?id=${p.id}'">
@@ -367,12 +494,44 @@ footer{border-top:1px solid var(--border);padding:1.8rem 2.5rem;display:flex;ali
         <div><div class="trend-title">${p.title}</div><div class="trend-cat">${p.category || ''}</div></div>
       </div>`).join('');
   }
+
+  function updateLoadMoreBtn() {
+    const btn = document.getElementById('load-more-btn');
+    if (allPosts.length > visibleCount) {
+      btn.classList.remove('hidden');
+      btn.textContent = '↓ Load More Articles';
+      btn.disabled = false;
+    } else {
+      btn.classList.add('hidden');
+    }
+  }
+
+  window.loadMorePosts = function() {
+    const btn = document.getElementById('load-more-btn');
+    btn.textContent = 'Loading...';
+    btn.disabled = true;
+    visibleCount += PAGE_SIZE;
+    renderPosts(allPosts.slice(0, visibleCount));
+    updateLoadMoreBtn();
+    // Scroll to show new posts
+    document.getElementById('post-list').lastElementChild?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  };
+
   window.filterCat = function(cat, btn) {
     document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    if (cat === 'all') renderPosts(allPosts);
-    else renderPosts(allPosts.filter(p => p.category === cat));
+    const filtered = cat === 'all' ? allPosts : allPosts.filter(p => p.category === cat);
+    visibleCount = PAGE_SIZE;
+    renderPosts(filtered.slice(0, visibleCount));
+    // Hide load more when filtering by category
+    const loadBtn = document.getElementById('load-more-btn');
+    if (cat !== 'all' || filtered.length <= visibleCount) {
+      loadBtn.classList.add('hidden');
+    } else {
+      updateLoadMoreBtn();
+    }
   };
+
   loadPosts();
 </script>
 </body>
