@@ -199,16 +199,20 @@ footer{border-top:1px solid var(--border);padding:1.8rem 2.5rem;display:flex;ali
   .hero{grid-template-columns:1fr!important;min-height:auto!important}
   .hero-left{padding:1.5rem 1rem!important}
   .hero-image{display:none!important}
+  .hero-image-cover{display:none!important}
   .hero-title{font-size:1.4rem!important}
-  .hero-excerpt{font-size:0.85rem!important}
+  /* ✅ FIX: Limit hero excerpt to 3 lines on mobile */
+  .hero-excerpt{font-size:0.85rem!important;display:-webkit-box!important;-webkit-line-clamp:3!important;-webkit-box-orient:vertical!important;overflow:hidden!important;margin-bottom:1.2rem!important}
   .categories{padding:0.6rem 1rem!important;gap:0.3rem!important}
   .cat-btn{padding:0.28rem 0.7rem!important;font-size:0.65rem!important}
   .ad-banner{padding:0.5rem 1rem!important}
   .main-grid{grid-template-columns:1fr!important}
   .posts-section{padding:1rem!important;border-right:none!important}
   .sidebar{padding:1rem!important}
-  .post-card{grid-template-columns:1fr 75px!important;gap:0.75rem!important;padding:0.9rem 0!important}
-  .post-thumb{width:75px!important;height:55px!important}
+  /* ✅ FIX: Show thumbnails properly on mobile */
+  .post-card{grid-template-columns:1fr 80px!important;gap:0.75rem!important;padding:0.9rem 0!important}
+  .post-thumb{width:80px!important;height:60px!important;display:flex!important;opacity:1!important;border-radius:3px!important;overflow:hidden!important}
+  .post-thumb img{width:100%!important;height:100%!important;object-fit:cover!important;opacity:1!important;display:block!important}
   .post-title{font-size:0.88rem!important}
   .post-excerpt{display:none!important}
   footer{flex-direction:column!important;gap:0.75rem!important;text-align:center!important;padding:1rem!important}
@@ -220,8 +224,10 @@ footer{border-top:1px solid var(--border);padding:1.8rem 2.5rem;display:flex;ali
 }
 @media(max-width:480px){
   .hero-title{font-size:1.2rem!important}
-  .post-card{grid-template-columns:1fr!important}
-  .post-thumb{display:none!important}
+  /* ✅ FIX: Keep thumbnails visible even on small phones */
+  .post-card{grid-template-columns:1fr 70px!important}
+  .post-thumb{width:70px!important;height:52px!important;display:flex!important}
+  .post-thumb img{opacity:1!important;display:block!important}
 }
 </style>
 <!-- ✅ PERFORMANCE: Ad script loads after page with async -->
