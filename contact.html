@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us — CashFlow Chronicle</title>
+<meta name="description" content="Get in touch with CashFlow Chronicle. We'd love to hear from you.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.cashflow-chronicle.com/contact.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0f;--bg2:#111118;--bg3:#1a1a24;--bg4:#22222f;
+  --accent:#c9a84c;--accent2:#e8c96a;
+  --text:#f0ede8;--text2:#a09d97;--text3:#6a6760;
+  --border:rgba(255,255,255,0.07);--border2:rgba(201,168,76,0.3);
+  --green:#4eca8b;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:15px;line-height:1.7}
+a{text-decoration:none;color:inherit}
+nav{display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:64px;border-bottom:1px solid var(--border);background:rgba(10,10,15,0.97);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+.logo{font-family:'Playfair Display',serif;font-size:1.35rem}
+.logo span{color:var(--accent)}
+.logo-sub{font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text3);margin-top:-2px}
+.nav-back{font-size:0.78rem;color:var(--text3);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:color 0.2s}
+.nav-back:hover{color:var(--accent)}
+.page-hero{background:var(--bg2);border-bottom:1px solid var(--border);padding:3rem 2.5rem}
+.page-tag{font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:0.8rem;display:flex;align-items:center;gap:0.5rem}
+.page-tag::before{content:'';display:block;width:18px;height:1px;background:var(--accent)}
+.page-title{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;margin-bottom:0.5rem}
+.page-subtitle{color:var(--text3);font-size:0.88rem;max-width:500px;line-height:1.6}
+.contact-wrap{max-width:900px;margin:0 auto;padding:3rem 2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.contact-info h2{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin-bottom:0.5rem}
+.contact-info p{color:var(--text2);font-size:0.88rem;line-height:1.85;margin-bottom:1.5rem;font-weight:300}
+.contact-card{background:var(--bg3);border:1px solid var(--border);border-radius:3px;padding:1.2rem;margin-bottom:0.8rem;display:flex;align-items:center;gap:1rem;transition:border-color 0.2s}
+.contact-card:hover{border-color:var(--border2)}
+.contact-card-icon{font-size:1.4rem;flex-shrink:0}
+.contact-card-label{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:0.2rem}
+.contact-card-val{font-size:0.88rem;color:var(--accent);font-weight:500}
+.contact-card-val a{color:var(--accent)}
+.response-note{background:var(--bg3);border:1px solid var(--border2);border-radius:3px;padding:1rem 1.2rem;margin-top:1rem}
+.response-note p{font-size:0.82rem;color:var(--text2);margin:0;font-weight:300}
+.response-note strong{color:var(--accent2)}
+.contact-form{background:var(--bg2);border:1px solid var(--border);border-radius:3px;padding:1.8rem}
+.form-title{font-family:'Playfair Display',serif;font-size:1.15rem;margin-bottom:1.5rem}
+.field-group{margin-bottom:1.2rem}
+.field-label{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);font-weight:500;display:block;margin-bottom:0.4rem}
+.field-input{width:100%;background:var(--bg4);border:1px solid var(--border);color:var(--text);padding:0.65rem 0.9rem;font-size:0.85rem;border-radius:2px;font-family:'DM Sans',sans-serif;outline:none;transition:border 0.15s}
+.field-input:focus{border-color:var(--accent)}
+.field-input::placeholder{color:var(--text3)}
+.field-select{width:100%;background:var(--bg4);border:1px solid var(--border);color:var(--text);padding:0.65rem 0.9rem;font-size:0.85rem;border-radius:2px;font-family:'DM Sans',sans-serif;outline:none}
+.field-select:focus{border-color:var(--accent)}
+.field-textarea{width:100%;background:var(--bg4);border:1px solid var(--border);color:var(--text);padding:0.65rem 0.9rem;font-size:0.85rem;border-radius:2px;font-family:'DM Sans',sans-serif;outline:none;resize:vertical;min-height:120px;line-height:1.6;transition:border 0.15s}
+.field-textarea:focus{border-color:var(--accent)}
+.field-textarea::placeholder{color:var(--text3)}
+.submit-btn{width:100%;background:var(--accent);border:none;color:#0a0a0f;padding:0.75rem;font-size:0.82rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.15s;margin-top:0.5rem}
+.submit-btn:hover{background:var(--accent2)}
+.success-msg{display:none;background:rgba(78,202,139,0.1);border:1px solid rgba(78,202,139,0.3);color:var(--green);padding:0.8rem 1rem;border-radius:2px;font-size:0.85rem;text-align:center;margin-top:1rem}
+footer{border-top:1px solid var(--border);padding:1.8rem 2.5rem;display:flex;align-items:center;justify-content:space-between;background:var(--bg2);margin-top:2rem}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1rem}
+.footer-logo span{color:var(--accent)}
+.footer-links{display:flex;gap:1.5rem;list-style:none}
+.footer-links a{color:var(--text3);font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase}
+.footer-copy{font-size:0.7rem;color:var(--text3)}
+@media(max-width:768px){
+  nav{padding:0 1rem!important}
+  .page-hero{padding:2rem 1rem!important}
+  .page-title{font-size:1.6rem!important}
+  .contact-wrap{grid-template-columns:1fr!important;padding:2rem 1rem!important;gap:2rem!important}
+  footer{flex-direction:column!important;gap:0.75rem!important;text-align:center!important;padding:1rem!important}
+  .footer-links{justify-content:center!important;flex-wrap:wrap!important;gap:1rem!important}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html">
+    <div class="logo">CashFlow <span>Chronicle</span></div>
+    <div class="logo-sub">Make Money · Build Wealth · Live Free</div>
+  </a>
+  <button class="nav-back" onclick="location.href='index.html'">← Back to Home</button>
+</nav>
+
+<div class="page-hero">
+  <div class="page-tag">Get In Touch</div>
+  <h1 class="page-title">Contact Us</h1>
+  <p class="page-subtitle">Have a question, suggestion, or just want to say hello? We'd love to hear from you. We typically respond within 24-48 hours.</p>
+</div>
+
+<div class="contact-wrap">
+  <div class="contact-info">
+    <h2>Let's Talk</h2>
+    <p>Whether you have a question about our content, want to collaborate, or have a story idea — reach out and we'll get back to you as soon as possible.</p>
+
+    <div class="contact-card">
+      <div class="contact-card-icon">📧</div>
+      <div>
+        <div class="contact-card-label">Email Us</div>
+        <div class="contact-card-val"><a href="mailto:info.cashflowchronicle@gmail.com">info.cashflowchronicle@gmail.com</a></div>
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-card-icon">🌍</div>
+      <div>
+        <div class="contact-card-label">Website</div>
+        <div class="contact-card-val"><a href="https://www.cashflow-chronicle.com">www.cashflow-chronicle.com</a></div>
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-card-icon">💼</div>
+      <div>
+        <div class="contact-card-label">Business Enquiries</div>
+        <div class="contact-card-val"><a href="advertise.html">View Advertise Page →</a></div>
+      </div>
+    </div>
+
+    <div class="response-note">
+      <p>⏱ <strong>Response time:</strong> We aim to reply to all messages within 24–48 hours on business days.</p>
+    </div>
+  </div>
+
+  <div>
+    <div class="contact-form">
+      <div class="form-title">Send Us a Message</div>
+      <div class="field-group">
+        <label class="field-label">Your Name</label>
+        <input class="field-input" type="text" id="contact-name" placeholder="John Doe"/>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Email Address</label>
+        <input class="field-input" type="email" id="contact-email" placeholder="your@email.com"/>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Subject</label>
+        <select class="field-select" id="contact-subject">
+          <option value="">Select a subject...</option>
+          <option>General Question</option>
+          <option>Content Suggestion</option>
+          <option>Collaboration / Partnership</option>
+          <option>Advertise on CashFlow Chronicle</option>
+          <option>Report an Issue</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Message</label>
+        <textarea class="field-textarea" id="contact-message" placeholder="Write your message here..."></textarea>
+      </div>
+      <button class="submit-btn" onclick="submitContact()">Send Message →</button>
+      <div class="success-msg" id="success-msg">✓ Message sent! We'll get back to you within 24-48 hours.</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">CashFlow <span>Chronicle</span></div>
+  <ul class="footer-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="advertise.html">Advertise</a></li>
+    <li><a href="privacy.html">Privacy Policy</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="admin.html">Admin</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 CashFlow Chronicle</div>
+</footer>
+
+<script>
+function submitContact() {
+  const name    = document.getElementById('contact-name').value.trim();
+  const email   = document.getElementById('contact-email').value.trim();
+  const subject = document.getElementById('contact-subject').value;
+  const message = document.getElementById('contact-message').value.trim();
+
+  if (!name || !email || !subject || !message) {
+    alert('Please fill in all fields before sending.');
+    return;
+  }
+  if (!email.includes('@')) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+
+  // Open email client with prefilled details
+  const mailto = `mailto:info.cashflowchronicle@gmail.com?subject=${encodeURIComponent('[CashFlow Chronicle] ' + subject + ' — from ' + name)}&body=${encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message)}`;
+  window.location.href = mailto;
+
+  // Show success message
+  document.getElementById('success-msg').style.display = 'block';
+  document.getElementById('contact-name').value = '';
+  document.getElementById('contact-email').value = '';
+  document.getElementById('contact-subject').value = '';
+  document.getElementById('contact-message').value = '';
+}
+</script>
+</body>
+</html>
