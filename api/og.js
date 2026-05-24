@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
   const { id } = req.query;
-  
+
   const ua = req.headers['user-agent'] || '';
   const isCrawler = /flipboard|facebookexternalhit|twitterbot|googlebot|linkedinbot|whatsapp/i.test(ua);
 
@@ -9,12 +9,11 @@ export default async function handler(req, res) {
   }
 
   try {
-    const response = await fetch(
-      `https://firestore.googleapis.com/v1/projects/cashflow-chronicles/databases/(default)/documents/posts/${id}`
-    );
+    const url = `https://firestore.googleapis.com/v1/projects/cashflow-chronicles/databases/(default)/documents/posts/${id}?key=AIzaSyDzQNQUd5ppfjib6TE0M_New44Hp0uvuP8`;
+    const response = await fetch(url);
     const data = await response.json();
     const fields = data.fields || {};
-    
+
     const title = (fields.title?.stringValue || 'CashFlow Chronicle') + ' — CashFlow Chronicle';
     const desc = (fields.excerpt?.stringValue || 'Make money tips, side hustles, investing and passive income.').slice(0, 155);
     const image = fields.coverImage?.stringValue || 'https://www.cashflow-chronicle.com/og-image.jpg';
