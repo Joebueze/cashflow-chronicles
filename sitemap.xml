@@ -3,13 +3,21 @@
   <url>
     <loc>https://www.cashflow-chronicle.com/</loc>
     <priority>1.0</priority>
+    <changefreq>daily</changefreq>
   </url>
   <url>
-    <loc>https://www.cashflow-chronicle.com/about</loc>
-    <priority>0.8</priority>
+    <loc>https://www.cashflow-chronicle.com/privacy.html</loc>
+    <priority>0.4</priority>
+    <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://www.cashflow-chronicle.com/blog</loc>
-    <priority>0.8</priority>
+    <loc>https://www.cashflow-chronicle.com/contact.html</loc>
+    <priority>0.5</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.cashflow-chronicle.com/advertise.html</loc>
+    <priority>0.5</priority>
+    <changefreq>monthly</changefreq>
   </url>
 </urlset>
