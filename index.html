@@ -353,7 +353,8 @@ footer{border-top:1px solid var(--border);padding:1.8rem 2.5rem;display:flex;ali
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "api-key": "xkeysib-5be12f2d52e49379b79c1fbaec472b2b0a3c1edd82"
+            "api-key": "xkeysib-5be12f2d52e49379b79c1fbaec472b2b0a3c1edd82",
+            "Accept": "application/json"
           },
           body: JSON.stringify({
             email: email,
@@ -361,20 +362,19 @@ footer{border-top:1px solid var(--border);padding:1.8rem 2.5rem;display:flex;ali
             updateEnabled: true
           })
         });
-        if (response.ok || response.status === 204) {
+        const responseText = await response.text();
+        const data = responseText ? JSON.parse(responseText) : {};
+        if (response.status === 201 || response.status === 204) {
           msg.style.display = "block";
           msg.style.color = "#00c853";
           msg.textContent = "✅ Welcome! You have successfully subscribed.";
           document.getElementById("nl-email-input").value = "";
+        } else if (data.code === "duplicate_parameter") {
+          msg.style.display = "block";
+          msg.style.color = "#00c853";
+          msg.textContent = "✅ You are already subscribed!";
         } else {
-          const data = await response.json();
-          if (data.code === "duplicate_parameter") {
-            msg.style.display = "block";
-            msg.style.color = "#00c853";
-            msg.textContent = "✅ You are already subscribed!";
-          } else {
-            throw new Error("Subscription failed");
-          }
+          throw new Error(data.message || "Subscription failed");
         }
       } catch (error) {
         msg.style.display = "block";
