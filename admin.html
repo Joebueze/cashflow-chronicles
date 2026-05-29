@@ -1065,8 +1065,8 @@ function sanitiseHtml(raw) {
   const doc = parser.parseFromString('<div id="_root">' + html + '</div>', 'text/html');
   const root = doc.getElementById('_root');
 
-  // Remove dangerous elements entirely
-  ['script', 'style', 'iframe', 'object', 'embed', 'form', 'input', 'button', 'noscript'].forEach(tag => {
+  // Remove dangerous elements entirely (keep style tags for custom HTML styling)
+  ['script', 'iframe', 'object', 'embed', 'form', 'input', 'button', 'noscript'].forEach(tag => {
     root.querySelectorAll(tag).forEach(el => el.remove());
   });
 
@@ -1076,10 +1076,7 @@ function sanitiseHtml(raw) {
     Array.from(el.attributes).forEach(attr => {
       if (attr.name.startsWith('on')) el.removeAttribute(attr.name);
     });
-    // Remove inline styles (let the editor theme handle appearance)
-    el.removeAttribute('style');
-    el.removeAttribute('class');
-    el.removeAttribute('id');
+    // Keep class, id and style so custom HTML styling works correctly
     // Sanitise hrefs
     if (el.hasAttribute('href')) {
       const href = el.getAttribute('href');
