@@ -6,6 +6,9 @@
 <title>CashFlow Chronicle</title>
 <meta name="description" content="Make money tips, side hustles, investing and passive income strategies.">
 
+<!-- ✅ Dynamic canonical tag — updated per post -->
+<link rel="canonical" id="canonical-tag" href="https://www.cashflow-chronicle.com/" />
+
 <!-- ✅ OPEN GRAPH & TWITTER CARD — updated dynamically per post -->
 <meta property="og:site_name" content="CashFlow Chronicle" />
 <meta property="og:type" content="article" />
@@ -28,7 +31,6 @@
 <!-- ✅ PERFORMANCE: Fonts with display=swap so text shows instantly -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<!-- ✅ PERFORMANCE: Ad script async so it never blocks page render -->
 <!-- ✅ Monetag Push Notification -->
 <script src="https://5gvci.com/act/files/tag.min.js?z=11066870" data-cfasync="false" async></script>
 
@@ -65,7 +67,6 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem
 .ad-slot{max-width:var(--max-w);margin:1.5rem auto;padding:0 1.5rem}
 .ad-inner{border:1px dashed var(--border);border-radius:3px;padding:0.8rem;min-height:90px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.3rem}
 .ad-label{font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3)}
-/* ✅ ARTICLE CONTENT STYLES */
 .post-content{max-width:var(--max-w);margin:2rem auto;padding:0 1.5rem 3rem}
 .post-content h1{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:var(--text);margin:2rem 0 0.8rem;line-height:1.2}
 .post-content h2{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:700;color:var(--text);margin:2.5rem 0 0.8rem;line-height:1.25}
@@ -111,7 +112,6 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem
   .post-hero img{height:260px}
 }
 </style>
-
 </head>
 <body>
 <nav>
@@ -123,7 +123,6 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem
 </nav>
 <div class="progress-bar" id="progress"></div>
 <div class="post-hero" id="hero-section">
-  <!-- ✅ PERFORMANCE: fetchpriority=high loads cover image first -->
   <img id="post-cover" src="" alt="cover" fetchpriority="high" onerror="document.getElementById('hero-section').style.display='none'"/>
   <div class="post-hero-overlay"></div>
   <div class="post-hero-meta">
@@ -155,8 +154,8 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem
 </div>
 <div class="ad-slot">
   <div class="ad-inner">
-    <script async data-cfasync="false" src="https://pl29431078.profitablecpmratenetwork.com/e4b651689ac3e6fa53757723de545f94/invoke.js"></script>
-    <div id="container-e4b651689ac3e6fa53757723de545f94"></div>
+    <script>atOptions={'key':'0c59fa9d6ca3e16a45ab1e5c963696ef','format':'iframe','height':90,'width':728,'params':{}};</script>
+    <script src="https://www.highperformanceformat.com/0c59fa9d6ca3e16a45ab1e5c963696ef/invoke.js"></script>
   </div>
 </div>
 <div class="share-section">
@@ -197,7 +196,6 @@ function shareFacebook(){window.open('https://www.facebook.com/sharer/sharer.php
 function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{btn.textContent='✓ Copied!';setTimeout(()=>{btn.textContent='🔗 Copy Link';},2000)})}
 </script>
 
-<!-- ✅ PERFORMANCE: Firebase loads at very bottom -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script>
@@ -213,6 +211,14 @@ function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{bt
   const db = firebase.firestore();
   const postId = new URLSearchParams(location.search).get('id');
 
+  // ✅ Set dynamic canonical tag immediately using postId
+  if (postId) {
+    const canonicalTag = document.getElementById('canonical-tag');
+    if (canonicalTag) {
+      canonicalTag.setAttribute('href', 'https://www.cashflow-chronicle.com/post.html?id=' + postId);
+    }
+  }
+
   function updateMetaTags(title, description, imageUrl, pageUrl) {
     const setMeta = (sel, val) => { const el = document.querySelector(sel); if (el) el.setAttribute('content', val); };
     document.title = title + ' — CashFlow Chronicle';
@@ -224,6 +230,9 @@ function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{bt
     setMeta('meta[name="twitter:title"]', title);
     setMeta('meta[name="twitter:description"]', description);
     setMeta('meta[name="twitter:image"]', imageUrl);
+    // ✅ Also update canonical tag with full post URL
+    const canonicalTag = document.getElementById('canonical-tag');
+    if (canonicalTag) canonicalTag.setAttribute('href', pageUrl);
     const existing = document.getElementById('post-schema');
     if (existing) existing.remove();
     const schema = document.createElement('script');
@@ -263,7 +272,6 @@ function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{bt
       } else {
         document.getElementById('hero-section').style.display = 'none';
       }
-      // ✅ Add lazy loading to all images inside post content
       document.querySelectorAll('#post-body img').forEach(img => {
         img.setAttribute('loading', 'lazy');
       });
@@ -300,7 +308,6 @@ function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{bt
 </script>
 </body>
 </html>
-<!-- MOBILE FIX -->
 <style>
 @media(max-width:768px){
   nav{padding:0 1rem!important;height:52px!important}
