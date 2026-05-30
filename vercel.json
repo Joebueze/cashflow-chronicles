@@ -10,6 +10,11 @@
       ],
       "destination": "https://www.cashflow-chronicle.com/$1",
       "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
     }
   ],
   "headers": [
