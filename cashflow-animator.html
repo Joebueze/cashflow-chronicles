@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CashFlow Chronicle — Shorts Animator</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700;900&display=swap" rel="stylesheet"/>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --green:#00e676;--dark:#080c08;--card:#0f160f;
+    --border:#1a2e1a;--text:#e8f5e8;--muted:#4a7a4a;
+  }
+  body{background:var(--dark);color:var(--text);font-family:'Barlow',sans-serif;min-height:100vh}
+  header{background:linear-gradient(135deg,#0a1a0a,#0f2a0f);border-bottom:1px solid var(--border);padding:20px 24px;text-align:center}
+  .logo-tag{font-family:monospace;font-size:10px;letter-spacing:4px;color:var(--green);text-transform:uppercase;margin-bottom:6px}
+  h1{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:2px;color:#fff;line-height:1}
+  .subtitle{font-size:12px;color:var(--muted);font-family:monospace;margin-top:4px}
+  .container{max-width:680px;margin:0 auto;padding:24px 20px}
+  label{display:block;font-size:10px;letter-spacing:3px;color:var(--green);text-transform:uppercase;font-family:monospace;margin-bottom:8px}
+  textarea{width:100%;background:#0c140c;border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:'Barlow',sans-serif;font-size:14px;padding:14px;resize:vertical;outline:none;line-height:1.6;transition:border 0.2s}
+  textarea:focus{border-color:var(--green)}
+  .section{margin-bottom:24px}
+  .btn-generate{width:100%;padding:18px;background:linear-gradient(135deg,#00c853,#00e676);color:#000;border:none;border-radius:12px;font-size:17px;font-weight:900;font-family:'Bebas Neue',sans-serif;letter-spacing:2px;cursor:pointer;transition:all 0.2s;margin-bottom:8px}
+  .btn-generate:disabled{background:#1a2e1a;color:#2a4a2a;cursor:not-allowed}
+  .btn-generate:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,230,118,0.3)}
+  #status{text-align:center;font-family:monospace;font-size:12px;color:var(--green);min-height:20px;margin-bottom:16px}
+  /* Preview area */
+  #preview-wrap{display:none;animation:fadeUp 0.4s ease}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+  #canvas-wrap{position:relative;border-radius:14px;overflow:hidden;border:2px solid var(--border);background:#000;aspect-ratio:9/16;max-height:480px;margin:0 auto;display:flex;align-items:center;justify-content:center}
+  canvas{width:100%;height:100%;display:block}
+  .controls{display:flex;gap:10px;margin-top:14px}
+  .btn-ctrl{flex:1;padding:13px;border:1px solid var(--border);border-radius:10px;background:#0f160f;color:var(--text);font-family:'Barlow',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s}
+  .btn-ctrl:hover{border-color:var(--green);color:var(--green)}
+  .btn-download{flex:2;padding:13px;background:var(--green);color:#000;border:none;border-radius:10px;font-size:13px;font-weight:900;font-family:'Barlow',sans-serif;cursor:pointer;transition:all 0.2s}
+  .btn-download:hover{background:#00c853}
+  .btn-download:disabled{background:#1a2e1a;color:#2a4a2a;cursor:not-allowed}
+  /* Script output */
+  #script-out{display:none;margin-top:20px;background:#0c140c;border:1px solid var(--border);border-radius:12px;padding:16px}
+  .script-label{font-size:10px;letter-spacing:3px;color:var(--green);font-family:monospace;margin-bottom:10px}
+  .scene-card{background:#111a11;border:1px solid #1a2e1a;border-radius:8px;padding:12px;margin-bottom:8px}
+  .scene-num{font-size:10px;color:var(--green);font-family:monospace;letter-spacing:2px;margin-bottom:4px}
+  .scene-caption{font-size:14px;color:#c8e6c8;font-weight:600;margin-bottom:4px}
+  .scene-action{font-size:12px;color:var(--muted);font-style:italic}
+  .vo-box{background:#0a1a0a;border:1px solid #1a3a1a;border-radius:8px;padding:14px;margin-top:12px}
+  .vo-label{font-size:10px;color:var(--green);font-family:monospace;letter-spacing:2px;margin-bottom:8px}
+  .vo-text{font-size:13px;color:#a0c8a0;line-height:1.7}
+  .copy-btn{width:100%;margin-top:10px;padding:10px;background:transparent;border:1px solid var(--border);border-radius:8px;color:var(--muted);font-family:monospace;font-size:12px;cursor:pointer;transition:all 0.2s}
+  .copy-btn:hover{border-color:var(--green);color:var(--green)}
+  .tip-box{background:#0a1a0a;border:1px solid #1a3a1a;border-radius:10px;padding:14px;margin-top:20px;text-align:center}
+  .tip-box p{font-size:12px;color:var(--muted);font-family:monospace;line-height:1.8}
+  .tip-box strong{color:var(--green)}
+  /* Progress bar */
+  #progress-bar{width:100%;height:3px;background:#1a2e1a;border-radius:2px;margin-bottom:16px;display:none}
+  #progress-fill{height:100%;background:var(--green);border-radius:2px;width:0%;transition:width 0.4s}
+  .scene-progress{display:flex;gap:4px;margin-bottom:12px;justify-content:center}
+  .sp-dot{width:8px;height:8px;border-radius:50%;background:#1a2e1a;transition:all 0.3s}
+  .sp-dot.active{background:var(--green)}
+  .sp-dot.done{background:#00c853}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-tag">CashFlow Chronicle</div>
+  <h1>SHORTS ANIMATOR</h1>
+  <p class="subtitle">Paste your blog post → AI generates story → Animated video</p>
+</header>
+
+<div class="container">
+
+  <div class="section">
+    <label>Your Blog Post / Topic</label>
+    <textarea id="post-input" rows="6" placeholder="Paste your full blog post here, or just describe the topic e.g. '5 side hustles you can start with no money in Nigeria'..."></textarea>
+  </div>
+
+  <div id="progress-bar"><div id="progress-fill"></div></div>
+  <div id="status"></div>
+
+  <button class="btn-generate" id="gen-btn" onclick="startGeneration()">⚡ GENERATE ANIMATED SHORT</button>
+
+  <!-- Preview -->
+  <div id="preview-wrap">
+    <div class="scene-progress" id="scene-dots"></div>
+    <div id="canvas-wrap">
+      <canvas id="anim-canvas" width="405" height="720"></canvas>
+    </div>
+    <div class="controls">
+      <button class="btn-ctrl" onclick="replayAnimation()">↺ Replay</button>
+      <button class="btn-ctrl" onclick="prevScene()">← Scene</button>
+      <button class="btn-ctrl" onclick="nextScene()">Scene →</button>
+      <button class="btn-download" id="dl-btn" onclick="downloadVideo()">⬇ Download MP4</button>
+    </div>
+  </div>
+
+  <!-- Script output -->
+  <div id="script-out">
+    <div class="script-label">SCENE BREAKDOWN</div>
+    <div id="scenes-list"></div>
+    <div class="vo-box">
+      <div class="vo-label">VOICEOVER SCRIPT (paste into ElevenLabs)</div>
+      <div class="vo-text" id="vo-script"></div>
+      <button class="copy-btn" onclick="copyVO()">📋 Copy Voiceover Script</button>
+    </div>
+  </div>
+
+  <div class="tip-box" style="margin-top:20px">
+    <p>💡 <strong>Free Voiceover:</strong> ElevenLabs.io → paste script → download MP3<br/>
+    🎬 <strong>Merge in CapCut:</strong> Import video + audio → export → post directly<br/>
+    📱 <strong>Works on:</strong> YouTube Shorts · Instagram Reels · TikTok</p>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// SCENE DATA & ANIMATION ENGINE
+// ============================================================
+let scenes = [];
+let currentScene = 0;
+let animFrame = null;
+let sceneTimer = null;
+let isRecording = false;
+let mediaRecorder = null;
+let recordedChunks = [];
+let voiceoverText = "";
+
+const canvas = document.getElementById('anim-canvas');
+const ctx = canvas.getContext('2d');
+const W = canvas.width;
+const H = canvas.height;
+
+// Scene background colors
+const SCENE_COLORS = [
+  { bg: '#1a0505', accent: '#ff4444', name: 'pain' },       // Red - struggle
+  { bg: '#1a1005', accent: '#ff9800', name: 'agitate' },    // Orange - fear
+  { bg: '#0a1020', accent: '#4488ff', name: 'discover' },   // Blue - discovery
+  { bg: '#051a08', accent: '#00e676', name: 'result' },     // Green - win
+  { bg: '#050510', accent: '#aa44ff', name: 'cta' },        // Purple - CTA
+];
+
+// Animation state per scene
+let animState = {
+  t: 0,
+  phase: 0,
+  figX: W * 0.5,
+  figY: H * 0.55,
+  walkDir: 1,
+  emotion: 'neutral',
+  props: [],
+  caption: '',
+  subcaption: '',
+  sceneIdx: 0,
+};
+
+// ============================================================
+// AI GENERATION
+// ============================================================
+async function startGeneration() {
+  const post = document.getElementById('post-input').value.trim();
+  if (!post) { setStatus('⚠️ Please paste your blog post or topic first'); return; }
+
+  document.getElementById('gen-btn').disabled = true;
+  document.getElementById('preview-wrap').style.display = 'none';
+  document.getElementById('script-out').style.display = 'none';
+  document.getElementById('progress-bar').style.display = 'block';
+  setProgress(10);
+  setStatus('🧠 AI is crafting your story...');
+
+  const prompt = `You are a viral short-form video story creator for CashFlow Chronicle (cashflow-chronicle.com), a make money online / financial freedom blog.
+
+Based on this blog post or topic: "${post}"
+
+Create a 5-scene animated short video story following this EXACT formula:
+- Scene 1 HOOK/PAIN: Shocking relatable pain point that stops scroll in first 2 seconds
+- Scene 2 AGITATE: Make the struggle feel real and scary, build emotional connection
+- Scene 3 DISCOVERY: The turning point - hint at solution without revealing everything, build curiosity
+- Scene 4 RESULT: Happy ending - but leave it INCOMPLETE to force them to click
+- Scene 5 CTA: Direct them to the blog post with urgency
+
+Rules:
+- Each caption must be SHORT (max 8 words) — it appears on screen
+- Each voiceover line is 1-2 sentences spoken out loud
+- The story must feel PERSONAL like someone sharing their real experience
+- Create genuine curiosity and an open loop that FORCES the viewer to visit cashflow-chronicle.com
+- Stick figure emotions: stressed / scared / thinking / excited / celebrating / pointing
+
+Respond ONLY in valid JSON, no markdown, no backticks:
+{
+  "title": "Short punchy video title under 50 chars",
+  "scenes": [
+    {
+      "id": 1,
+      "type": "pain",
+      "caption": "Short on-screen text max 8 words",
+      "subcaption": "Secondary line max 6 words or empty string",
+      "emotion": "stressed",
+      "action": "figure walks in stressed, sees bills, freezes",
+      "voiceover": "The spoken line for this scene 1-2 sentences",
+      "duration": 4
+    }
+  ],
+  "voiceover_full": "Complete voiceover script all scenes combined, naturally flowing, 60-80 words total",
+  "hashtags": ["tag1","tag2","tag3","tag4","tag5"],
+  "cta_url": "cashflow-chronicle.com"
+}
+
+Emotions available: stressed, scared, thinking, excited, celebrating, pointing, neutral, walking, falling`;
+
+  try {
+    setProgress(30);
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-api-key': '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', 'anthropic-version': '2023-06-01' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    const data = await res.json();
+    const text = data.content?.map(b => b.text || '').join('') || '';
+    const clean = text.replace(/```json|```/g, '').trim();
+    const parsed = JSON.parse(clean);
+
+    setProgress(70);
+    setStatus('🎬 Building your animation...');
+
+    scenes = parsed.scenes;
+    voiceoverText = parsed.voiceover_full;
+
+    buildSceneDots();
+    renderScriptOutput(parsed);
+    setProgress(100);
+
+    setTimeout(() => {
+      document.getElementById('progress-bar').style.display = 'none';
+      document.getElementById('preview-wrap').style.display = 'block';
+      document.getElementById('script-out').style.display = 'block';
+      document.getElementById('gen-btn').disabled = false;
+      setStatus('✅ Ready! Hit Replay to watch or Download to save.');
+      currentScene = 0;
+      playScene(0);
+    }, 400);
+
+  } catch(e) {
+    setStatus('❌ Error generating. Please try again.');
+    document.getElementById('gen-btn').disabled = false;
+    document.getElementById('progress-bar').style.display = 'none';
+  }
+}
+
+// ============================================================
+// ANIMATION ENGINE
+// ============================================================
+function playScene(idx) {
+  if (!scenes || !scenes[idx]) return;
+  clearTimeout(sceneTimer);
+  cancelAnimationFrame(animFrame);
+
+  currentScene = idx;
+  updateDots();
+
+  const s = scenes[idx];
+  const colorScheme = SCENE_COLORS[Math.min(idx, SCENE_COLORS.length - 1)];
+
+  animState = {
+    t: 0,
+    sceneIdx: idx,
+    emotion: s.emotion || 'neutral',
+    caption: s.caption || '',
+    subcaption: s.subcaption || '',
+    color: colorScheme,
+    figX: W * 0.5,
+    figY: H * 0.56,
+    walkOffset: 0,
+    duration: (s.duration || 4) * 60,
+  };
+
+  function loop() {
+    animState.t++;
+    drawScene(animState);
+    animFrame = requestAnimationFrame(loop);
+
+    if (animState.t >= animState.duration) {
+      cancelAnimationFrame(animFrame);
+      const next = idx + 1;
+      if (next < scenes.length) {
+        sceneTimer = setTimeout(() => playScene(next), 300);
+      } else {
+        setStatus('🎬 Animation complete! Download your video.');
+      }
+    }
+  }
+  loop();
+}
+
+function drawScene(s) {
+  const { t, color, caption, subcaption, emotion, figX, figY, duration } = s;
+  const progress = t / duration;
+
+  // Background gradient
+  const grad = ctx.createLinearGradient(0, 0, 0, H);
+  grad.addColorStop(0, color.bg);
+  grad.addColorStop(1, shadeColor(color.bg, -20));
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, W, H);
+
+  // Animated background particles
+  drawParticles(t, color.accent);
+
+  // Scene number badge
+  ctx.fillStyle = color.accent + '22';
+  ctx.beginPath();
+  ctx.roundRect(20, 20, 80, 28, 14);
+  ctx.fill();
+  ctx.fillStyle = color.accent;
+  ctx.font = 'bold 11px monospace';
+  ctx.textAlign = 'left';
+  ctx.fillText(`SCENE ${s.sceneIdx + 1}/5`, 32, 38);
+
+  // Progress bar at top
+  ctx.fillStyle = '#ffffff15';
+  ctx.fillRect(0, 0, W, 4);
+  ctx.fillStyle = color.accent;
+  ctx.fillRect(0, 0, W * progress, 4);
+
+  // Draw stick figure
+  drawStickFigure(figX, figY, emotion, t, color.accent);
+
+  // Draw scene props
+  drawProps(s.sceneIdx, t, color.accent, figX, figY);
+
+  // Caption box at bottom
+  drawCaption(caption, subcaption, color, progress);
+
+  // CTA scene special overlay
+  if (s.sceneIdx === 4) {
+    drawCTAOverlay(t, color);
+  }
+}
+
+function drawStickFigure(x, y, emotion, t, accent) {
+  const walk = Math.sin(t * 0.15) * 6;
+  const breathe = Math.sin(t * 0.08) * 2;
+
+  ctx.save();
+  ctx.strokeStyle = '#ffffff';
+  ctx.lineWidth = 3.5;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+
+  const headR = 28;
+  const bodyLen = 65;
+  const armLen = 40;
+  const legLen = 50;
+
+  // Shadow
+  ctx.fillStyle = 'rgba(0,0,0,0.3)';
+  ctx.beginPath();
+  ctx.ellipse(x, y + legLen + 8, 30, 8, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+  // HEAD
+  ctx.beginPath();
+  ctx.arc(x, y - bodyLen - headR + breathe, headR, 0, Math.PI * 2);
+  ctx.fillStyle = '#111';
+  ctx.fill();
+  ctx.strokeStyle = '#ffffff';
+  ctx.lineWidth = 3;
+  ctx.stroke();
+
+  // GREEN SHIRT (body fill)
+  ctx.fillStyle = '#1a5c1a';
+  ctx.beginPath();
+  ctx.roundRect(x - 18, y - bodyLen + breathe, 36, bodyLen * 0.55, 4);
+  ctx.fill();
+  ctx.strokeStyle = '#2a8c2a';
+  ctx.lineWidth = 1;
+  ctx.stroke();
+
+  // BODY line
+  ctx.strokeStyle = '#ffffff';
+  ctx.lineWidth = 3.5;
+  ctx.beginPath();
+  ctx.moveTo(x, y - bodyLen + breathe);
+  ctx.lineTo(x, y);
+  ctx.stroke();
+
+  // ARMS based on emotion
+  ctx.lineWidth = 3;
+  if (emotion === 'stressed' || emotion === 'scared') {
+    // arms up stressed
+    ctx.beginPath();
+    ctx.moveTo(x, y - bodyLen * 0.6 + breathe);
+    ctx.lineTo(x - armLen, y - bodyLen * 0.9 + Math.sin(t * 0.2) * 5 + breathe);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(x, y - bodyLen * 0.6 + breathe);
+    ctx.lineTo(x + armLen, y - bodyLen * 0.9 + Math.sin(t * 0.2 + 1) * 5 + breathe);
+    ctx.stroke();
+  } else if (emotion === 'celebrating') {
+    // arms way up
+    ctx.beginPath();
+    ctx.moveTo(x, y - bodyLen * 0.6 + breathe);
+    ctx.lineTo(x - armLen - 10, y - bodyLen - 10 + Math.sin(t * 0.15) * 8 + breathe);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(x, y - bodyLen * 0.6 + breathe);
+    ctx.lineTo(x + armLen + 10, y - bodyLen - 10 + Math.sin(t * 0.15 + 1) * 8 + breathe);
+    ctx.stroke();
+  } else if (emotion === 'thinking') {
+    // one arm to chin
+    ctx.beginPath();
+    ctx.moveTo(x, y - bodyLen * 0.6 + breathe);
+    ctx.lineTo(x - armLen * 0.3, y - bodyLen * 0.5 + breathe);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(x, y - bodyLen * 0.6 + breathe);
+    ctx.lineTo(x + armLen * 0.7, y - bodyLen * 0.85 + breathe);
+    ctx.stroke();
+  } else if (emotion === 'pointing') {
+    // one arm pointing right
+    ctx.beginPath();
+    ctx.moveTo(x, y - bodyLen * 0.6 + breathe);
+    ctx.lineTo(x - armLen * 0.4, y - bodyLen * 0.55 + breathe);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(x, y - bodyLen * 0.6 + breathe);
+    ctx.lineTo(x + armLen + 15, y - bodyLen * 0.75 + breathe);
+    ctx.stroke();
+  } else if (emotion === 'excited') {
+    ctx.beginPath();
+    ctx.moveTo(x, y - bodyLen * 0.6 + breathe);
+    ctx.lineTo(x - armLen, y - bodyLen * 0.8 + Math.sin(t * 0.25) * 10 + breathe);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(x, y - bodyLen * 0.6 + breathe);
+    ctx.lineTo(x + armLen, y - bodyLen * 0.8 + Math.sin(t * 0.25 + 0.5) * 10 + breathe);
+    ctx.stroke();
+  } else {
+    // neutral arms
+    ctx.beginPath();
+    ctx.moveTo(x, y - bodyLen * 0.6 + breathe);
+    ctx.lineTo(x - armLen, y - bodyLen * 0.3 + breathe);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(x, y - bodyLen * 0.6 + breathe);
+    ctx.lineTo(x + armLen, y - bodyLen * 0.3 + breathe);
+    ctx.stroke();
+  }
+
+  // LEGS
+  ctx.lineWidth = 3.5;
+  const legWalk = emotion === 'walking' ? walk : (emotion === 'celebrating' ? Math.sin(t * 0.2) * 12 : 0);
+  ctx.beginPath();
+  ctx.moveTo(x, y);
+  ctx.lineTo(x - 18 - legWalk, y + legLen);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(x, y);
+  ctx.lineTo(x + 18 + legWalk, y + legLen);
+  ctx.stroke();
+
+  // FACE expression
+  drawFace(x, y - bodyLen - headR + breathe, headR, emotion, t);
+
+  ctx.restore();
+}
+
+function drawFace(x, y, r, emotion, t) {
+  ctx.save();
+  ctx.strokeStyle = '#ffffff';
+  ctx.fillStyle = '#ffffff';
+  ctx.lineWidth = 2;
+
+  if (emotion === 'stressed' || emotion === 'scared') {
+    // worried eyes
+    ctx.fillRect(x - 10, y - 6, 5, 5);
+    ctx.fillRect(x + 5, y - 6, 5, 5);
+    // frown
+    ctx.beginPath();
+    ctx.arc(x, y + 10, 10, 0, Math.PI);
+    ctx.stroke();
+    // sweat drop
+    ctx.fillStyle = '#44aaff';
+    ctx.beginPath();
+    ctx.arc(x + r - 8, y - 8, 4, 0, Math.PI * 2);
+    ctx.fill();
+  } else if (emotion === 'celebrating' || emotion === 'excited') {
+    // happy eyes
+    ctx.beginPath();
+    ctx.arc(x - 9, y - 5, 4, Math.PI, Math.PI * 2);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(x + 9, y - 5, 4, Math.PI, Math.PI * 2);
+    ctx.stroke();
+    // big smile
+    ctx.beginPath();
+    ctx.arc(x, y + 5, 12, 0, Math.PI);
+    ctx.stroke();
+  } else if (emotion === 'thinking') {
+    // one eyebrow raised
+    ctx.fillRect(x - 11, y - 8, 5, 4);
+    ctx.fillRect(x + 5, y - 10, 5, 4);
+    // neutral mouth
+    ctx.beginPath();
+    ctx.moveTo(x - 7, y + 9);
+    ctx.lineTo(x + 7, y + 9);
+    ctx.stroke();
+    // thought bubble
+    ctx.fillStyle = '#ffffff44';
+    for (let i = 0; i < 3; i++) {
+      ctx.beginPath();
+      ctx.arc(x + r + 8 + i * 8, y - r - 5 - i * 6, 4 - i * 0.5, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  } else if (emotion === 'pointing') {
+    ctx.fillRect(x - 10, y - 6, 5, 5);
+    ctx.fillRect(x + 5, y - 6, 5, 5);
+    ctx.beginPath();
+    ctx.arc(x, y + 7, 8, 0, Math.PI);
+    ctx.stroke();
+  } else {
+    // neutral
+    ctx.fillRect(x - 10, y - 6, 5, 5);
+    ctx.fillRect(x + 5, y - 6, 5, 5);
+    ctx.beginPath();
+    ctx.moveTo(x - 7, y + 9);
+    ctx.lineTo(x + 7, y + 9);
+    ctx.stroke();
+  }
+  ctx.restore();
+}
+
+function drawProps(sceneIdx, t, accent, fx, fy) {
+  ctx.save();
+  ctx.strokeStyle = accent;
+  ctx.fillStyle = accent + '33';
+  ctx.lineWidth = 2;
+
+  if (sceneIdx === 0) {
+    // Bills/wallet flying
+    for (let i = 0; i < 3; i++) {
+      const bx = fx - 80 + i * 40;
+      const by = fy - 20 + Math.sin(t * 0.1 + i) * 10;
+      ctx.fillStyle = '#ff444433';
+      ctx.strokeStyle = '#ff4444';
+      ctx.beginPath();
+      ctx.roundRect(bx, by, 50, 28, 4);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#ff6666';
+      ctx.font = 'bold 12px monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText('$$$', bx + 25, by + 18);
+    }
+    // X mark over wallet
+    const pulse = Math.sin(t * 0.15) * 0.2 + 1;
+    ctx.save();
+    ctx.translate(fx + 80, fy - 60);
+    ctx.scale(pulse, pulse);
+    ctx.strokeStyle = '#ff4444';
+    ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.moveTo(-15,-15); ctx.lineTo(15,15); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(15,-15); ctx.lineTo(-15,15); ctx.stroke();
+    ctx.restore();
+  }
+
+  if (sceneIdx === 1) {
+    // Clock ticking
+    const cx = fx + 90, cy = fy - 120;
+    ctx.strokeStyle = '#ff9800';
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.arc(cx, cy, 30, 0, Math.PI * 2);
+    ctx.stroke();
+    // Clock hands
+    const angle = (t * 0.05) % (Math.PI * 2);
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + Math.cos(angle) * 20, cy + Math.sin(angle) * 20);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + Math.cos(angle * 12) * 14, cy + Math.sin(angle * 12) * 14);
+    ctx.stroke();
+    // 9-5 label
+    ctx.fillStyle = '#ff980099';
+    ctx.font = 'bold 10px monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText('9-5 TRAP', cx, cy + 48);
+  }
+
+  if (sceneIdx === 2) {
+    // Laptop glow
+    const lx = fx - 50, ly = fy - 30;
+    ctx.fillStyle = '#002244';
+    ctx.strokeStyle = '#4488ff';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.roundRect(lx, ly, 100, 64, 6);
+    ctx.fill(); ctx.stroke();
+    // Screen glow
+    const glow = ctx.createRadialGradient(lx+50, ly+32, 5, lx+50, ly+32, 50);
+    glow.addColorStop(0, '#4488ff44');
+    glow.addColorStop(1, 'transparent');
+    ctx.fillStyle = glow;
+    ctx.fillRect(lx, ly, 100, 64);
+    // Lightbulb
+    const pulse2 = Math.abs(Math.sin(t * 0.1));
+    ctx.fillStyle = `rgba(255,220,0,${pulse2 * 0.9 + 0.1})`;
+    ctx.font = `${28 + pulse2 * 6}px sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.fillText('💡', fx + 70, fy - 100);
+  }
+
+  if (sceneIdx === 3) {
+    // Money rain
+    for (let i = 0; i < 8; i++) {
+      const mx = (fx - 120 + i * 35 + Math.sin(t * 0.05 + i * 0.8) * 15);
+      const my = ((fy - 200 + (t * 2 + i * 60) % 220));
+      ctx.fillStyle = '#00e67688';
+      ctx.font = 'bold 18px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('💵', mx, my);
+    }
+  }
+
+  if (sceneIdx === 4) {
+    // Phone with link
+    const px = fx + 70, py = fy - 100;
+    ctx.fillStyle = '#1a0a2a';
+    ctx.strokeStyle = '#aa44ff';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.roundRect(px - 20, py - 40, 40, 70, 8);
+    ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#aa44ff';
+    ctx.font = '8px monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText('cashflow-', px, py - 18);
+    ctx.fillText('chronicle', px, py - 8);
+    ctx.fillText('.com', px, py + 2);
+    // Arrow pointing
+    ctx.strokeStyle = '#aa44ff';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(fx + 40, fy - 80);
+    ctx.lineTo(px - 24, py - 10);
+    ctx.stroke();
+  }
+
+  ctx.restore();
+}
+
+function drawParticles(t, accent) {
+  ctx.save();
+  for (let i = 0; i < 12; i++) {
+    const px = (Math.sin(i * 137 + t * 0.01) * 0.5 + 0.5) * W;
+    const py = (Math.cos(i * 97 + t * 0.008) * 0.5 + 0.5) * H;
+    const alpha = (Math.sin(t * 0.05 + i) * 0.5 + 0.5) * 0.15;
+    ctx.fillStyle = accent + Math.floor(alpha * 255).toString(16).padStart(2,'0');
+    ctx.beginPath();
+    ctx.arc(px, py, 2 + Math.sin(i) * 1.5, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.restore();
+}
+
+function drawCaption(caption, subcaption, color, progress) {
+  // Caption background
+  const boxH = subcaption ? 140 : 110;
+  const grad = ctx.createLinearGradient(0, H - boxH, 0, H);
+  grad.addColorStop(0, 'transparent');
+  grad.addColorStop(0.3, 'rgba(0,0,0,0.85)');
+  grad.addColorStop(1, 'rgba(0,0,0,0.95)');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, H - boxH, W, boxH);
+
+  // Accent bar
+  ctx.fillStyle = color.accent;
+  ctx.fillRect(30, H - boxH + 14, 4, subcaption ? 76 : 56);
+
+  // Main caption
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 26px "Bebas Neue", sans-serif';
+  ctx.textAlign = 'left';
+  ctx.letterSpacing = '1px';
+  wrapText(ctx, caption.toUpperCase(), 46, H - boxH + 44, W - 60, 32);
+
+  // Sub caption
+  if (subcaption) {
+    ctx.fillStyle = color.accent;
+    ctx.font = 'bold 16px Barlow, sans-serif';
+    wrapText(ctx, subcaption, 46, H - boxH + 82, W - 60, 20);
+  }
+
+  // CashFlow Chronicle watermark
+  ctx.fillStyle = '#ffffff33';
+  ctx.font = '11px monospace';
+  ctx.textAlign = 'right';
+  ctx.fillText('cashflow-chronicle.com', W - 20, H - 16);
+}
+
+function drawCTAOverlay(t, color) {
+  const pulse = Math.abs(Math.sin(t * 0.08)) * 0.3 + 0.7;
+  ctx.save();
+  ctx.fillStyle = `rgba(170,68,255,${pulse * 0.12})`;
+  ctx.fillRect(0, 0, W, H);
+
+  // Big CTA text in middle
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 22px "Bebas Neue", sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('FULL GUIDE AT', W/2, H * 0.28);
+
+  ctx.fillStyle = '#aa44ff';
+  ctx.font = 'bold 30px "Bebas Neue", sans-serif';
+  ctx.fillText('CASHFLOW-CHRONICLE.COM', W/2, H * 0.34);
+
+  ctx.fillStyle = '#ffffff88';
+  ctx.font = 'bold 14px Barlow, sans-serif';
+  ctx.fillText('🔗 Link in bio & description', W/2, H * 0.40);
+
+  ctx.restore();
+}
+
+function wrapText(ctx, text, x, y, maxW, lineH) {
+  const words = text.split(' ');
+  let line = '';
+  for (let w of words) {
+    const test = line + w + ' ';
+    if (ctx.measureText(test).width > maxW && line !== '') {
+      ctx.fillText(line.trim(), x, y);
+      line = w + ' ';
+      y += lineH;
+    } else {
+      line = test;
+    }
+  }
+  ctx.fillText(line.trim(), x, y);
+}
+
+function shadeColor(hex, pct) {
+  const n = parseInt(hex.slice(1), 16);
+  const r = Math.min(255, Math.max(0, (n >> 16) + pct));
+  const g = Math.min(255, Math.max(0, ((n >> 8) & 0xff) + pct));
+  const b = Math.min(255, Math.max(0, (n & 0xff) + pct));
+  return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, '0')}`;
+}
+
+// ============================================================
+// CONTROLS
+// ============================================================
+function replayAnimation() {
+  currentScene = 0;
+  playScene(0);
+}
+
+function prevScene() {
+  if (currentScene > 0) playScene(currentScene - 1);
+}
+
+function nextScene() {
+  if (currentScene < scenes.length - 1) playScene(currentScene + 1);
+}
+
+function buildSceneDots() {
+  const wrap = document.getElementById('scene-dots');
+  wrap.innerHTML = '';
+  scenes.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'sp-dot';
+    d.id = `dot-${i}`;
+    wrap.appendChild(d);
+  });
+}
+
+function updateDots() {
+  scenes.forEach((_, i) => {
+    const d = document.getElementById(`dot-${i}`);
+    if (!d) return;
+    d.className = 'sp-dot' + (i === currentScene ? ' active' : i < currentScene ? ' done' : '');
+  });
+}
+
+// ============================================================
+// VIDEO DOWNLOAD
+// ============================================================
+async function downloadVideo() {
+  const btn = document.getElementById('dl-btn');
+  btn.disabled = true;
+  btn.textContent = '⏳ Recording...';
+  setStatus('🎥 Recording video... please wait (about 25 seconds)');
+
+  recordedChunks = [];
+
+  const stream = canvas.captureStream(30);
+  const mimeType = MediaRecorder.isTypeSupported('video/webm;codecs=vp9')
+    ? 'video/webm;codecs=vp9'
+    : 'video/webm';
+
+  mediaRecorder = new MediaRecorder(stream, { mimeType, videoBitsPerSecond: 4000000 });
+  mediaRecorder.ondataavailable = e => { if (e.data.size > 0) recordedChunks.push(e.data); };
+  mediaRecorder.onstop = () => {
+    const blob = new Blob(recordedChunks, { type: 'video/webm' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'cashflow-chronicle-short.webm';
+    a.click();
+    btn.disabled = false;
+    btn.textContent = '⬇ Download MP4';
+    setStatus('✅ Downloaded! Import into CapCut to add voiceover & export as MP4.');
+  };
+
+  mediaRecorder.start();
+  currentScene = 0;
+  playScene(0);
+
+  // Record for total duration of all scenes
+  const totalDuration = scenes.reduce((sum, s) => sum + (s.duration || 4) * 1000, 0) + 500;
+  setTimeout(() => {
+    mediaRecorder.stop();
+  }, totalDuration);
+}
+
+// ============================================================
+// SCRIPT OUTPUT
+// ============================================================
+function renderScriptOutput(data) {
+  const list = document.getElementById('scenes-list');
+  list.innerHTML = '';
+  data.scenes.forEach((s, i) => {
+    const div = document.createElement('div');
+    div.className = 'scene-card';
+    div.innerHTML = `
+      <div class="scene-num">SCENE ${i+1} — ${s.type.toUpperCase()}</div>
+      <div class="scene-caption">"${s.caption}"</div>
+      <div class="scene-action">🎬 ${s.action}</div>
+      <div class="scene-action" style="color:#a0c8a0;margin-top:4px">🎙 ${s.voiceover}</div>
+    `;
+    list.appendChild(div);
+  });
+
+  document.getElementById('vo-script').textContent = data.voiceover_full;
+  document.getElementById('script-out').style.display = 'block';
+}
+
+function copyVO() {
+  navigator.clipboard.writeText(voiceoverText);
+  const btn = event.target;
+  btn.textContent = '✅ Copied!';
+  setTimeout(() => btn.textContent = '📋 Copy Voiceover Script', 2000);
+}
+
+// ============================================================
+// UTILS
+// ============================================================
+function setStatus(msg) { document.getElementById('status').textContent = msg; }
+function setProgress(pct) {
+  document.getElementById('progress-fill').style.width = pct + '%';
+}
+
+// Draw placeholder on load
+(function initCanvas() {
+  ctx.fillStyle = '#0a100a';
+  ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = '#1a3a1a';
+  ctx.font = 'bold 18px "Bebas Neue", monospace';
+  ctx.textAlign = 'center';
+  ctx.fillText('PASTE YOUR POST & GENERATE', W/2, H/2 - 20);
+  ctx.fillStyle = '#2a5a2a';
+  ctx.font = '13px monospace';
+  ctx.fillText('Your animated short will appear here', W/2, H/2 + 14);
+})();
+</script>
+</body>
+</html>
