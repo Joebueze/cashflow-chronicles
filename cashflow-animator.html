@@ -140,15 +140,11 @@ IMPORTANT: Return ONLY raw JSON. No markdown. No backticks. No explanation. Just
 {"title":"video title","scenes":[{"id":1,"label":"HOOK","caption":"max 8 words on screen","voiceover":"1-2 sentences narrator says","action":"what stick figure does"},{"id":2,"label":"STRUGGLE","caption":"...","voiceover":"...","action":"..."},{"id":3,"label":"DISCOVERY","caption":"...","voiceover":"...","action":"..."},{"id":4,"label":"WIN","caption":"...","voiceover":"...","action":"..."},{"id":5,"label":"CTA","caption":"cashflow-chronicle.com — link in bio!","voiceover":"...","action":"figure pointing excitedly"}]}`;
 
   try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{
+    const r=await fetch('/claude-proxy.php',{
       method:'POST',
-      headers:{
-        'content-type':'application/json',
-        'x-api-key':key,
-        'anthropic-version':'2023-06-01',
-        'anthropic-dangerous-request-allowed':'true'
-      },
+      headers:{'content-type':'application/json'},
       body:JSON.stringify({
+        api_key:key,
         model:'claude-haiku-4-5-20251001',
         max_tokens:1000,
         messages:[{role:'user',content:prompt}]
