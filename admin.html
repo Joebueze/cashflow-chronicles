@@ -15,6 +15,8 @@
   --green:#4eca8b;--red:#e25454;
 }
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px}
+
+/* LOGIN */
 #login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh}
 .login-box{background:var(--bg3);border:1px solid var(--border2);border-radius:4px;padding:2.5rem 2rem;width:360px}
 .login-logo{font-family:'Playfair Display',serif;font-size:1.3rem;text-align:center;margin-bottom:0.3rem}
@@ -29,7 +31,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .login-error{background:rgba(226,84,84,0.12);border:1px solid rgba(226,84,84,0.3);color:var(--red);font-size:0.78rem;padding:0.5rem 0.75rem;border-radius:2px;margin-bottom:1rem;display:none}
 .login-hint{font-size:0.72rem;color:var(--text3);text-align:center;margin-top:1rem}
 .login-hint span{color:var(--accent)}
+
+/* ADMIN LAYOUT */
 #admin-screen{display:none;min-height:100vh;flex-direction:column}
+
+/* TOPBAR */
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px;background:var(--bg2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
 .topbar-logo{font-family:'Playfair Display',serif;font-size:1.05rem}
 .topbar-logo span{color:var(--accent)}
@@ -48,12 +54,17 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .post-mgr-edit:hover{background:var(--accent);color:#0a0a0f}
 .publish-btn{background:var(--accent);border:none;color:#0a0a0f;padding:0.38rem 1.1rem;border-radius:2px;font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif}
 .publish-btn:disabled{opacity:0.5;cursor:not-allowed}
+/* Edit mode banner */
 #edit-mode-bar{display:none;padding:0.6rem 2rem;background:rgba(201,168,76,0.08);border-bottom:1px solid var(--border2);align-items:center;justify-content:space-between}
 .edit-mode-label{font-size:0.78rem;color:var(--accent);display:flex;align-items:center;gap:0.5rem}
 .edit-mode-label strong{color:var(--text);font-weight:600}
 .edit-cancel-btn{background:none;border:1px solid var(--border);color:var(--text3);padding:0.28rem 0.8rem;border-radius:2px;font-size:0.72rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s}
 .edit-cancel-btn:hover{border-color:var(--red);color:var(--red)}
+
+/* ADMIN BODY */
 .admin-body{display:grid;grid-template-columns:1fr 260px;flex:1;min-height:calc(100vh - 56px)}
+
+/* EDITOR */
 .editor-area{padding:2rem 2.5rem;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:1.2rem}
 .cover-upload{border:2px dashed var(--border2);border-radius:4px;height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden;background:var(--bg3)}
 .cover-upload:hover{border-color:var(--accent);background:var(--bg4)}
@@ -74,6 +85,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .excerpt-box{width:100%;background:var(--bg2);border:1px solid var(--border);color:var(--text);padding:0.7rem 0.9rem;font-size:0.83rem;border-radius:2px;font-family:'DM Sans',sans-serif;outline:none;resize:vertical;min-height:70px;line-height:1.6}
 .excerpt-box:focus{border-color:rgba(255,255,255,0.15)}
 .excerpt-box::placeholder{color:var(--text3)}
+
+/* TOOLBAR */
 .editor-toolbar{display:flex;align-items:center;gap:0.3rem;padding:0.5rem 0;border-bottom:1px solid var(--border);flex-wrap:wrap}
 .tb-btn{background:transparent;border:1px solid transparent;color:var(--text2);padding:0.3rem 0.55rem;border-radius:2px;font-size:0.78rem;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s;line-height:1}
 .tb-btn:hover{background:var(--bg4);border-color:var(--border);color:var(--text)}
@@ -83,6 +96,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .editor-content{min-height:320px;background:var(--bg2);border:1px solid var(--border);border-radius:2px;padding:1.2rem 1.4rem;outline:none;line-height:1.8;color:var(--text);font-size:0.92rem;position:relative}
 .editor-content:empty::before{content:'Start writing your post here...\A\AShare tips, insights, strategies — your readers are waiting!';white-space:pre;color:var(--text3);font-weight:300;pointer-events:none}
 .editor-content:focus{border-color:rgba(255,255,255,0.12)}
+
+/* ── Editor rich-content styles (matches post.html exactly) ── */
 .editor-content h1{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:var(--text);margin:2rem 0 0.8rem;line-height:1.2}
 .editor-content h2{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:700;color:var(--text);margin:2.5rem 0 0.8rem;line-height:1.25}
 .editor-content h3{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--text);margin:2rem 0 0.6rem;line-height:1.3}
@@ -105,36 +120,127 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .inline-img-caption{padding:0.4rem 0.7rem;background:var(--bg3);font-size:0.72rem;color:var(--text3)}
 .remove-img{position:absolute;top:6px;right:6px;background:rgba(0,0,0,0.7);border:1px solid var(--border);color:var(--text2);width:22px;height:22px;border-radius:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.75rem}
 .remove-img:hover{color:var(--red);border-color:var(--red)}
+/* Floating Medium-style "+" insert button */
+.editor-wrap{position:relative}
+.float-add-btn{
+  position:absolute;left:-2.6rem;width:30px;height:30px;
+  border-radius:50%;border:1px solid var(--border2);
+  background:var(--bg4);color:var(--accent);
+  display:none;align-items:center;justify-content:center;
+  font-size:1.15rem;font-weight:400;cursor:pointer;
+  z-index:20;transition:background 0.15s,transform 0.1s;
+  font-family:'DM Sans',sans-serif;line-height:1;
+}
+.float-add-btn:hover{background:var(--bg5);transform:scale(1.07)}
+.float-add-btn.visible{display:flex}
+@media (max-width:900px){
+  .float-add-btn{left:0.4rem}
+}
+
 .wc-bar{display:flex;gap:1.2rem;padding:0.5rem 0;border-top:1px solid var(--border);margin-top:0.2rem}
 .wc-item{font-size:0.72rem;color:var(--text3)}
 .wc-item span{color:var(--text2);font-weight:500}
-#import-panel{display:none;padding:1.5rem 2rem;border-bottom:1px solid var(--border);background:var(--bg2);animation:slideDown 0.2s ease}
+
+/* ============================================================
+   HTML IMPORT PANEL
+   ============================================================ */
+#import-panel{
+  display:none;
+  padding:1.5rem 2rem;
+  border-bottom:1px solid var(--border);
+  background:var(--bg2);
+  animation:slideDown 0.2s ease;
+}
 @keyframes slideDown{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
-.import-panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
-.import-panel-title{font-size:0.9rem;font-weight:600;color:var(--text);display:flex;align-items:center;gap:0.5rem}
-.import-panel-title span{font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;background:rgba(201,168,76,0.12);color:var(--accent);padding:0.18rem 0.5rem;border-radius:2px;font-weight:500}
-.import-close{background:none;border:1px solid var(--border);color:var(--text3);width:26px;height:26px;border-radius:2px;cursor:pointer;font-size:0.85rem;display:flex;align-items:center;justify-content:center;transition:all 0.15s}
+
+.import-panel-header{
+  display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;
+}
+.import-panel-title{
+  font-size:0.9rem;font-weight:600;color:var(--text);
+  display:flex;align-items:center;gap:0.5rem;
+}
+.import-panel-title span{
+  font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;
+  background:rgba(201,168,76,0.12);color:var(--accent);
+  padding:0.18rem 0.5rem;border-radius:2px;font-weight:500;
+}
+.import-close{
+  background:none;border:1px solid var(--border);color:var(--text3);
+  width:26px;height:26px;border-radius:2px;cursor:pointer;font-size:0.85rem;
+  display:flex;align-items:center;justify-content:center;transition:all 0.15s;
+}
 .import-close:hover{border-color:var(--red);color:var(--red)}
+
 .import-body{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+
+/* Paste zone */
 .import-paste-zone{display:flex;flex-direction:column;gap:0.5rem}
-.import-textarea{width:100%;height:220px;background:var(--bg4);border:1px solid var(--border);color:var(--text);padding:0.75rem 0.9rem;font-size:0.78rem;font-family:'DM Sans',sans-serif;border-radius:2px;outline:none;resize:vertical;line-height:1.6;transition:border 0.15s}
+.import-textarea{
+  width:100%;height:220px;
+  background:var(--bg4);border:1px solid var(--border);
+  color:var(--text);padding:0.75rem 0.9rem;
+  font-size:0.78rem;font-family:'DM Sans',sans-serif;
+  border-radius:2px;outline:none;resize:vertical;
+  line-height:1.6;transition:border 0.15s;
+}
 .import-textarea:focus{border-color:var(--border2)}
 .import-textarea::placeholder{color:var(--text3)}
+
 .import-actions{display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap;margin-top:0.2rem}
-.import-btn-primary{background:var(--accent);border:none;color:#0a0a0f;padding:0.45rem 1.1rem;border-radius:2px;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.15s;display:flex;align-items:center;gap:0.4rem}
+.import-btn-primary{
+  background:var(--accent);border:none;color:#0a0a0f;
+  padding:0.45rem 1.1rem;border-radius:2px;font-size:0.75rem;
+  font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+  cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.15s;
+  display:flex;align-items:center;gap:0.4rem;
+}
 .import-btn-primary:hover{background:var(--accent2)}
-.import-btn-secondary{background:transparent;border:1px solid var(--border);color:var(--text2);padding:0.45rem 0.9rem;border-radius:2px;font-size:0.75rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s}
+.import-btn-secondary{
+  background:transparent;border:1px solid var(--border);color:var(--text2);
+  padding:0.45rem 0.9rem;border-radius:2px;font-size:0.75rem;
+  font-weight:500;letter-spacing:0.06em;text-transform:uppercase;
+  cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s;
+}
 .import-btn-secondary:hover{border-color:var(--text2);color:var(--text)}
-.import-clear{background:none;border:none;color:var(--text3);font-size:0.72rem;cursor:pointer;font-family:'DM Sans',sans-serif;margin-left:auto;padding:0.2rem 0;transition:color 0.15s}
+.import-clear{
+  background:none;border:none;color:var(--text3);font-size:0.72rem;
+  cursor:pointer;font-family:'DM Sans',sans-serif;margin-left:auto;
+  padding:0.2rem 0;transition:color 0.15s;
+}
 .import-clear:hover{color:var(--red)}
+
+/* Preview zone */
 .import-preview-zone{display:flex;flex-direction:column;gap:0.5rem}
-.import-preview-label{font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);font-weight:500;display:flex;align-items:center;justify-content:space-between}
-.import-preview-label .preview-tag{background:rgba(78,202,139,0.1);color:var(--green);padding:0.15rem 0.45rem;border-radius:2px;font-size:0.62rem;display:none}
+.import-preview-label{
+  font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--text3);font-weight:500;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.import-preview-label .preview-tag{
+  background:rgba(78,202,139,0.1);color:var(--green);
+  padding:0.15rem 0.45rem;border-radius:2px;font-size:0.62rem;
+  display:none;
+}
 .import-preview-label .preview-tag.visible{display:inline-block}
-.import-preview-box{flex:1;min-height:220px;max-height:260px;overflow-y:auto;background:var(--bg3);border:1px solid var(--border);border-radius:2px;padding:0.9rem 1rem;font-size:0.82rem;line-height:1.7;color:var(--text2)}
+.import-preview-box{
+  flex:1;min-height:220px;max-height:260px;overflow-y:auto;
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:2px;padding:0.9rem 1rem;
+  font-size:0.82rem;line-height:1.7;color:var(--text2);
+}
 .import-preview-box.has-content{color:var(--text)}
-.import-preview-empty{color:var(--text3);font-size:0.78rem;font-weight:300;pointer-events:none}
-.import-preview-box h1,.import-preview-box h2,.import-preview-box h3,.import-preview-box h4,.import-preview-box h5{font-family:'Playfair Display',serif;color:var(--text);margin:0.6rem 0 0.3rem;line-height:1.3}
+.import-preview-box:empty::before,
+.import-preview-empty{
+  color:var(--text3);font-size:0.78rem;font-weight:300;
+  pointer-events:none;
+}
+/* Style imported HTML inside preview */
+.import-preview-box h1,.import-preview-box h2,.import-preview-box h3,
+.import-preview-box h4,.import-preview-box h5{
+  font-family:'Playfair Display',serif;color:var(--text);
+  margin:0.6rem 0 0.3rem;line-height:1.3;
+}
 .import-preview-box h2{font-size:1.05rem}
 .import-preview-box h3{font-size:0.95rem}
 .import-preview-box p{margin-bottom:0.5rem}
@@ -142,21 +248,47 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .import-preview-box a{color:var(--accent);text-decoration:none}
 .import-preview-box strong,.import-preview-box b{color:var(--text);font-weight:600}
 .import-preview-box img{max-width:100%;border-radius:2px;margin:0.4rem 0;display:block}
-.import-preview-box blockquote{border-left:2px solid var(--accent);padding-left:0.8rem;color:var(--text2);margin:0.6rem 0;font-style:italic}
-.import-preview-box code{background:var(--bg4);padding:0.1rem 0.35rem;border-radius:2px;font-size:0.78rem;color:var(--accent2)}
-.import-preview-box pre{background:var(--bg4);padding:0.7rem;border-radius:2px;overflow-x:auto;margin:0.5rem 0}
+.import-preview-box blockquote{
+  border-left:2px solid var(--accent);padding-left:0.8rem;
+  color:var(--text2);margin:0.6rem 0;font-style:italic;
+}
+.import-preview-box code{
+  background:var(--bg4);padding:0.1rem 0.35rem;border-radius:2px;
+  font-size:0.78rem;color:var(--accent2);
+}
+.import-preview-box pre{
+  background:var(--bg4);padding:0.7rem;border-radius:2px;
+  overflow-x:auto;margin:0.5rem 0;
+}
+/* Scrollbar for preview */
 .import-preview-box::-webkit-scrollbar{width:4px}
 .import-preview-box::-webkit-scrollbar-track{background:var(--bg4)}
 .import-preview-box::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
-.import-mode-row{display:flex;align-items:center;gap:0.8rem;padding:0.6rem 0.8rem;background:var(--bg3);border:1px solid var(--border);border-radius:2px;margin-top:0.3rem}
+
+/* Insert mode options */
+.import-mode-row{
+  display:flex;align-items:center;gap:0.8rem;
+  padding:0.6rem 0.8rem;background:var(--bg3);
+  border:1px solid var(--border);border-radius:2px;
+  margin-top:0.3rem;
+}
 .import-mode-label{font-size:0.72rem;color:var(--text3);font-weight:500;white-space:nowrap}
 .mode-option{display:flex;align-items:center;gap:0.35rem;cursor:pointer}
 .mode-option input[type=radio]{accent-color:var(--accent);cursor:pointer}
 .mode-option span{font-size:0.75rem;color:var(--text2)}
-.import-info{display:flex;align-items:center;gap:0.5rem;padding:0.5rem 0.8rem;background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.15);border-radius:2px;margin-top:0.8rem}
+
+/* Info strip */
+.import-info{
+  display:flex;align-items:center;gap:0.5rem;
+  padding:0.5rem 0.8rem;
+  background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.15);
+  border-radius:2px;margin-top:0.8rem;
+}
 .import-info-icon{font-size:0.85rem}
 .import-info-text{font-size:0.72rem;color:var(--text3);line-height:1.5}
 .import-info-text strong{color:var(--accent2)}
+
+/* SIDEBAR */
 .admin-sidebar{padding:1.5rem 1.2rem;display:flex;flex-direction:column;gap:1.2rem}
 .sidebar-card{background:var(--bg3);border:1px solid var(--border);border-radius:3px;padding:1rem 1.1rem}
 .sidebar-card-title{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text3);font-weight:500;margin-bottom:0.9rem;padding-bottom:0.6rem;border-bottom:1px solid var(--border)}
@@ -177,55 +309,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .seo-title{color:#8ab4f8;font-size:0.82rem;margin-bottom:0.2rem}
 .seo-url{color:#4eca8b;font-size:0.7rem;margin-bottom:0.2rem}
 .seo-desc{color:var(--text2);font-size:0.72rem;line-height:1.5}
+
+/* TOAST */
 #toast{position:fixed;bottom:2rem;right:2rem;background:var(--green);color:#0a0a0f;padding:0.7rem 1.3rem;border-radius:3px;font-size:0.82rem;font-weight:600;display:none;z-index:999;letter-spacing:0.05em}
 #toast.error{background:var(--red);color:#fff}
 .hidden-file{display:none}
-
-/* ── MEDIUM-STYLE FLOATING IMAGE INSERT ── */
-.editor-wrap{position:relative}
-#float-img-btn{
-  position:absolute;
-  left:-42px;
-  width:28px;height:28px;
-  background:var(--bg3);
-  border:1px solid var(--border2);
-  border-radius:50%;
-  color:var(--accent);
-  font-size:1.2rem;line-height:1;
-  display:none;
-  align-items:center;justify-content:center;
-  cursor:pointer;
-  z-index:50;
-  transition:background 0.15s,transform 0.15s;
-  padding:0;
-}
-#float-img-btn:hover{background:var(--bg5);transform:scale(1.1)}
-#float-img-btn.open{background:var(--accent);color:#0a0a0f;transform:rotate(45deg)}
-#float-img-popup{
-  position:absolute;
-  left:0;
-  background:var(--bg3);
-  border:1px solid var(--border2);
-  border-radius:4px;
-  padding:0.9rem 1rem;
-  display:none;
-  z-index:60;
-  width:310px;
-  box-shadow:0 6px 24px rgba(0,0,0,0.5);
-}
-#float-img-popup.visible{display:block}
-.fip-label{font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);font-weight:500;margin-bottom:0.5rem}
-.fip-url-row{display:flex;gap:0.5rem;margin-bottom:0.6rem}
-.fip-url-input{flex:1;height:34px;background:var(--bg4);border:1px solid var(--border);color:var(--text);font-size:0.78rem;padding:0 0.7rem;border-radius:2px;outline:none;font-family:'DM Sans',sans-serif}
-.fip-url-input:focus{border-color:var(--accent)}
-.fip-url-input::placeholder{color:var(--text3)}
-.fip-insert-btn{height:34px;padding:0 0.9rem;background:var(--accent);border:none;color:#0a0a0f;font-size:0.72rem;font-weight:700;border-radius:2px;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:0.06em;text-transform:uppercase;white-space:nowrap}
-.fip-insert-btn:hover{background:var(--accent2)}
-.fip-divider{display:flex;align-items:center;gap:0.5rem;margin:0.5rem 0}
-.fip-divider span{font-size:0.68rem;color:var(--text3);letter-spacing:0.08em}
-.fip-divider::before,.fip-divider::after{content:'';flex:1;height:1px;background:var(--border)}
-.fip-upload-btn{width:100%;height:34px;background:var(--bg4);border:1px solid var(--border);color:var(--text2);font-size:0.75rem;border-radius:2px;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:0.4rem;transition:all 0.15s}
-.fip-upload-btn:hover{border-color:var(--text2);color:var(--text)}
 </style>
 </head>
 <body>
@@ -265,17 +353,20 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       <button class="topbar-btn" onclick="saveDraft()">Save Draft</button>
       <button class="topbar-btn" onclick="viewSite()">View Site</button>
       <button class="topbar-btn" onclick="toggleManage()" id="manage-btn">📋 Manage Posts</button>
+      <!-- HTML IMPORT BUTTON -->
       <button class="topbar-btn" onclick="toggleImport()" id="import-btn">⬇ Import HTML</button>
       <button class="topbar-btn danger" onclick="doLogout()">Log Out</button>
       <button class="publish-btn" id="publish-btn" onclick="doPublish()">⚡ Publish Post</button>
     </div>
   </div>
 
+  <!-- EDIT MODE BANNER -->
   <div id="edit-mode-bar">
     <div class="edit-mode-label">✏️ Editing: <strong id="edit-mode-title">—</strong></div>
     <button class="edit-cancel-btn" onclick="cancelEdit()">✕ Cancel Edit</button>
   </div>
 
+  <!-- MANAGE POSTS PANEL -->
   <div id="manage-panel" style="display:none;padding:1.5rem 2rem;border-bottom:1px solid var(--border);background:var(--bg2)">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
       <h3 style="font-size:0.9rem;font-weight:600;color:var(--text)">All Published Posts</h3>
@@ -284,39 +375,78 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     <div id="posts-manager-list" style="color:var(--text3);font-size:0.85rem">Loading posts...</div>
   </div>
 
+  <!-- ============================================================
+    HTML IMPORT PANEL
+  ============================================================= -->
   <div id="import-panel">
     <div class="import-panel-header">
-      <div class="import-panel-title">Import HTML from AI Tool <span>Beta</span></div>
+      <div class="import-panel-title">
+        Import HTML from AI Tool
+        <span>Beta</span>
+      </div>
       <button class="import-close" onclick="toggleImport()" title="Close">✕</button>
     </div>
+
     <div class="import-body">
+      <!-- LEFT: Paste zone -->
       <div class="import-paste-zone">
         <label class="field-label">Paste HTML Code</label>
-        <textarea class="import-textarea" id="import-html-input" placeholder="Paste your HTML here from ChatGPT, Claude, Gemini or any AI tool...&#10;&#10;Example:&#10;&lt;h2&gt;Introduction&lt;/h2&gt;&#10;&lt;p&gt;Your blog content here...&lt;/p&gt;" oninput="previewImport()" onpaste="setTimeout(previewImport,50)"></textarea>
+        <textarea
+          class="import-textarea"
+          id="import-html-input"
+          placeholder="Paste your HTML here from ChatGPT, Claude, Gemini or any AI tool...&#10;&#10;Example:&#10;&lt;h2&gt;Introduction&lt;/h2&gt;&#10;&lt;p&gt;Your blog content here...&lt;/p&gt;"
+          oninput="previewImport()"
+          onpaste="setTimeout(previewImport, 50)"
+        ></textarea>
+
+        <!-- Insert mode -->
         <div class="import-mode-row">
           <span class="import-mode-label">Insert mode:</span>
-          <label class="mode-option"><input type="radio" name="import-mode" value="append" checked/><span>Append to editor</span></label>
-          <label class="mode-option"><input type="radio" name="import-mode" value="replace"/><span>Replace editor content</span></label>
+          <label class="mode-option">
+            <input type="radio" name="import-mode" value="append" checked/>
+            <span>Append to editor</span>
+          </label>
+          <label class="mode-option">
+            <input type="radio" name="import-mode" value="replace"/>
+            <span>Replace editor content</span>
+          </label>
         </div>
+
         <div class="import-actions">
-          <button class="import-btn-primary" onclick="doImportHtml()">✓ Insert into Editor</button>
-          <button class="import-btn-secondary" onclick="clearImport()">Clear</button>
-          <button class="import-clear" onclick="clearImport()">✕ Clear paste</button>
+          <button class="import-btn-primary" onclick="doImportHtml()">
+            ✓ Insert into Editor
+          </button>
+          <button class="import-btn-secondary" onclick="clearImport()">
+            Clear
+          </button>
+          <button class="import-clear" onclick="clearImport()" title="Clear paste area">✕ Clear paste</button>
         </div>
       </div>
+
+      <!-- RIGHT: Preview zone -->
       <div class="import-preview-zone">
-        <div class="import-preview-label">Live Preview <span class="preview-tag" id="preview-tag">HTML Detected ✓</span></div>
-        <div class="import-preview-box" id="import-preview-box"><div class="import-preview-empty">Your HTML preview will appear here as you paste...</div></div>
+        <div class="import-preview-label">
+          Live Preview
+          <span class="preview-tag" id="preview-tag">HTML Detected ✓</span>
+        </div>
+        <div class="import-preview-box" id="import-preview-box">
+          <div class="import-preview-empty">Your HTML preview will appear here as you paste...</div>
+        </div>
       </div>
     </div>
+
     <div class="import-info">
       <div class="import-info-icon">💡</div>
-      <div class="import-info-text"><strong>Tip:</strong> Ask your AI tool to "write a blog post in clean HTML with h2 headings, p tags, and ul/li lists — no CSS, no inline styles." Then paste the output above. Use <strong>Append</strong> to add to existing content, or <strong>Replace</strong> to start fresh.</div>
+      <div class="import-info-text">
+        <strong>Tip:</strong> Ask your AI tool to "write a blog post in clean HTML with h2 headings, p tags, and ul/li lists — no CSS, no inline styles." Then paste the output above. Use <strong>Append</strong> to add to existing content, or <strong>Replace</strong> to start fresh.
+      </div>
     </div>
   </div>
 
   <div class="admin-body">
     <div class="editor-area">
+
+      <!-- COVER IMAGE -->
       <div>
         <label class="field-label">Cover Image (Top of Post)</label>
         <div class="cover-upload" id="cover-drop" onclick="document.getElementById('cover-file').click()">
@@ -330,14 +460,20 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
         </div>
         <input type="file" id="cover-file" class="hidden-file" accept="image/*" onchange="loadCover(event)"/>
       </div>
+
+      <!-- TITLE -->
       <div class="field-row">
         <label class="field-label">Post Title</label>
         <input class="title-input" id="post-title" type="text" placeholder="Enter your post title..." oninput="updateMeta()"/>
       </div>
+
+      <!-- EXCERPT -->
       <div class="field-row">
         <label class="field-label">Excerpt / Summary</label>
         <textarea class="excerpt-box" id="post-excerpt" placeholder="Write a short summary (shown on homepage and in Google)..." oninput="updateMeta()"></textarea>
       </div>
+
+      <!-- CONTENT -->
       <div>
         <label class="field-label">Post Content</label>
         <div class="editor-toolbar">
@@ -357,10 +493,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
           <button class="tb-img-btn" onclick="document.getElementById('inline-file').click()">📷 Insert Image</button>
           <input type="file" id="inline-file" class="hidden-file" accept="image/*" onchange="insertInlineImage(event)"/>
         </div>
-        <!-- WRAP editor in a relative container for the floating button -->
         <div class="editor-wrap">
+          <button class="float-add-btn" id="float-add-btn" title="Insert image here" onclick="floatAddImage()">+</button>
           <div class="editor-content" id="editor" contenteditable="true" oninput="countWords()"></div>
-          <!-- Floating + button (injected by JS, declared here for clarity) -->
         </div>
         <div class="wc-bar">
           <div class="wc-item">Words: <span id="wc">0</span></div>
@@ -370,6 +505,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       </div>
     </div>
 
+    <!-- SIDEBAR -->
     <div class="admin-sidebar">
       <div class="sidebar-card">
         <div class="sidebar-card-title">Post Status</div>
@@ -377,6 +513,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
         <div class="status-row"><span class="status-label">Visibility</span><span class="status-label" style="color:var(--text)">Public</span></div>
         <div class="status-row" style="margin-top:0.5rem"><span class="status-label">Published</span><span class="status-label" style="color:var(--text);font-size:0.75rem" id="pub-date">—</span></div>
       </div>
+
       <div class="sidebar-card">
         <div class="sidebar-card-title">Category</div>
         <select class="field-select" id="post-category">
@@ -396,6 +533,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
           <input class="tags-real-input" id="tag-input" placeholder="Add tag, press Enter..." onkeydown="addTag(event)"/>
         </div>
       </div>
+
       <div class="sidebar-card">
         <div class="sidebar-card-title">SEO Preview</div>
         <div class="seo-preview">
@@ -404,6 +542,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
           <div class="seo-desc" id="seo-desc">Your excerpt will show as the Google description...</div>
         </div>
       </div>
+
       <div class="sidebar-card">
         <div class="sidebar-card-title">Writing Tips</div>
         <div style="display:flex;flex-direction:column;gap:0.6rem">
@@ -419,10 +558,16 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 
 <div id="toast">✓ Post Published Successfully!</div>
 
+<!-- ============================================================
+  FIREBASE — Auth + Firestore + Storage
+  STEP: Paste your Firebase config values below
+=============================================================== -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script>
+
+  // ⬇️ PASTE YOUR FIREBASE CONFIG HERE
   const firebaseConfig = {
     apiKey: "AIzaSyDzQNQUd5ppfjib6TE0M_New44Hp0uvuP8",
     authDomain: "cashflow-chronicles.firebaseapp.com",
@@ -431,570 +576,764 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     messagingSenderId: "503268643904",
     appId: "1:503268643904:web:a617fe71e68c58bbdd3ba5"
   };
+
   firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
-  const db   = firebase.firestore();
-  const CLOUDINARY_CLOUD  = 'dsyev4eqm';
+  const auth    = firebase.auth();
+  const db      = firebase.firestore();
+  const CLOUDINARY_CLOUD = 'dsyev4eqm';
   const CLOUDINARY_PRESET = 'ml_default';
 
-  auth.onAuthStateChanged(user => { if(user) showAdmin(); else showLogin(); });
+  // Check if already logged in
+  auth.onAuthStateChanged(user => {
+    if (user) showAdmin();
+    else showLogin();
+  });
 
   function showAdmin() {
-    document.getElementById('login-screen').style.display='none';
-    const s=document.getElementById('admin-screen');
-    s.style.display='flex'; s.style.flexDirection='column';
+    document.getElementById('login-screen').style.display = 'none';
+    const s = document.getElementById('admin-screen');
+    s.style.display = 'flex';
+    s.style.flexDirection = 'column';
   }
   function showLogin() {
-    document.getElementById('admin-screen').style.display='none';
-    document.getElementById('login-screen').style.display='flex';
+    document.getElementById('admin-screen').style.display = 'none';
+    document.getElementById('login-screen').style.display = 'flex';
   }
 
+  // LOGIN
   window.doGoogleLogin = async () => {
-    const btn=document.getElementById('google-btn');
-    btn.textContent='Signing in...'; btn.disabled=true;
-    try { await auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()); }
-    catch(e) {
-      btn.innerHTML=`<svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg> Sign in with Google`;
-      btn.disabled=false;
-      document.getElementById('login-error').textContent=e.message;
-      document.getElementById('login-error').style.display='block';
+    const btn = document.getElementById('google-btn');
+    btn.textContent = 'Signing in...';
+    btn.disabled = true;
+    try {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      await auth.signInWithPopup(provider);
+    } catch(e) {
+      btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg> Sign in with Google`;
+      btn.disabled = false;
+      document.getElementById('login-error').textContent = e.message;
+      document.getElementById('login-error').style.display = 'block';
     }
   };
 
   window.doLogin = async () => {
-    const btn=document.getElementById('login-btn');
-    const err=document.getElementById('login-error');
-    const email=document.getElementById('login-user').value.trim();
-    const pass=document.getElementById('login-pass').value;
-    btn.textContent='Signing in...'; btn.disabled=true; err.style.display='none';
-    try { await auth.signInWithEmailAndPassword(email,pass); showAdmin(); }
-    catch(e) { err.style.display='block'; btn.textContent='Sign In →'; btn.disabled=false; }
+    const btn = document.getElementById('login-btn');
+    const err = document.getElementById('login-error');
+    const email = document.getElementById('login-user').value.trim();
+    const pass  = document.getElementById('login-pass').value;
+    btn.textContent = 'Signing in...';
+    btn.disabled = true;
+    err.style.display = 'none';
+    try {
+      await auth.signInWithEmailAndPassword(email, pass);
+      showAdmin();
+    } catch(e) {
+      err.style.display = 'block';
+      btn.textContent = 'Sign In →';
+      btn.disabled = false;
+    }
   };
 
-  window.doLogout = async () => { await auth.signOut(); showLogin(); };
+  // LOGOUT
+  window.doLogout = async () => {
+    await auth.signOut();
+    showLogin();
+  };
+
   window.viewSite = () => window.open('index.html','_blank');
 
+  // Upload image to Cloudinary
   async function uploadToCloudinary(file) {
-    const fd=new FormData();
-    fd.append('file',file); fd.append('upload_preset',CLOUDINARY_PRESET);
-    const res=await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`,{method:'POST',body:fd});
-    return (await res.json()).secure_url;
+    const fd = new FormData();
+    fd.append('file', file);
+    fd.append('upload_preset', CLOUDINARY_PRESET);
+    const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`, { method: 'POST', body: fd });
+    const data = await res.json();
+    return data.secure_url;
   }
 
+  // Upload all inline images to Cloudinary
   async function uploadInlineImages(editorEl) {
-    const imgs=editorEl.querySelectorAll('img');
-    for(const img of imgs){
-      if(img.src.startsWith('https://res.cloudinary.com')) continue;
+    const imgs = editorEl.querySelectorAll('img');
+    for (const img of imgs) {
+      if (img.src.startsWith('https://res.cloudinary.com')) continue;
       try {
-        const res=await fetch(img.src);
-        const blob=await res.blob();
-        const file=new File([blob],`inline_${Date.now()}.jpg`,{type:'image/jpeg'});
-        img.src=await uploadToCloudinary(file);
-      } catch(e){ console.warn('Inline image upload failed',e); }
+        const res  = await fetch(img.src);
+        const blob = await res.blob();
+        const file = new File([blob], `inline_${Date.now()}.jpg`, {type: 'image/jpeg'});
+        img.src = await uploadToCloudinary(file);
+      } catch(e) { console.warn('Inline image upload failed', e); }
     }
     return editorEl.innerHTML;
   }
 
-  let editingPostId=null, editingOriginalDate=null, editingOriginalCoverURL=null;
+  // Track edit state
+  let editingPostId = null;
+  let editingOriginalDate = null;
+  let editingOriginalCoverURL = null;
 
-  window.doPublish = async () => { editingPostId ? await doUpdatePost() : await doNewPost(); };
+  // PUBLISH or UPDATE
+  window.doPublish = async () => {
+    if (editingPostId) {
+      await doUpdatePost();
+    } else {
+      await doNewPost();
+    }
+  };
 
+  // NEW POST
   async function doNewPost() {
-    const title=document.getElementById('post-title').value.trim();
-    const excerpt=document.getElementById('post-excerpt').value.trim();
-    const category=document.getElementById('post-category').value;
-    const words=parseInt(document.getElementById('wc').textContent)||0;
-    const coverFile=document.getElementById('cover-file').files[0];
-    if(!title){showToast('Please add a post title.',true);return;}
-    if(!category){showToast('Please select a category.',true);return;}
-    if(!excerpt){showToast('Please add an excerpt.',true);return;}
-    const btn=document.getElementById('publish-btn');
-    btn.textContent='Publishing...'; btn.disabled=true;
+    const title    = document.getElementById('post-title').value.trim();
+    const excerpt  = document.getElementById('post-excerpt').value.trim();
+    const category = document.getElementById('post-category').value;
+    const words    = parseInt(document.getElementById('wc').textContent) || 0;
+    const coverFile= document.getElementById('cover-file').files[0];
+
+    if (!title)    { showToast('Please add a post title.', true); return; }
+    if (!category) { showToast('Please select a category.', true); return; }
+    if (!excerpt)  { showToast('Please add an excerpt.', true); return; }
+
+    const btn = document.getElementById('publish-btn');
+    btn.textContent = 'Publishing...';
+    btn.disabled = true;
+
     try {
-      let coverURL='';
-      if(coverFile) coverURL=await uploadToCloudinary(coverFile);
-      const editor=document.getElementById('editor');
+      let coverURL = '';
+      if (coverFile) coverURL = await uploadToCloudinary(coverFile);
+
+      const editor  = document.getElementById('editor');
       cleanCaptions(editor);
-      const content=await uploadInlineImages(editor);
+      const content = await uploadInlineImages(editor);
+
       await db.collection('posts').add({
-        title,excerpt,content,category,
-        coverImage:coverURL,
-        readTime:Math.max(1,Math.round(words/200)),
-        date:new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}),
-        status:'published',
-        createdAt:firebase.firestore.FieldValue.serverTimestamp()
+        title, excerpt, content, category,
+        coverImage: coverURL,
+        readTime: Math.max(1, Math.round(words / 200)),
+        date: new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}),
+        status: 'published',
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
       });
-      const badge=document.getElementById('status-badge');
-      badge.textContent='Published'; badge.className='status-badge published';
-      document.getElementById('pub-date').textContent=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+
+      const badge = document.getElementById('status-badge');
+      badge.textContent = 'Published';
+      badge.className = 'status-badge published';
+      document.getElementById('pub-date').textContent = new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
       showToast('✓ Post Published Successfully!');
-      setTimeout(()=>{ if(confirm('Post published! Clear the editor for a new post?')) resetEditor(); },3000);
-    } catch(e){ console.error(e); showToast('Error publishing. Check your Firebase config.',true); }
-    btn.textContent='⚡ Publish Post'; btn.disabled=false;
+
+      setTimeout(() => {
+        if (confirm('Post published! Clear the editor for a new post?')) {
+          resetEditor();
+        }
+      }, 3000);
+
+    } catch(e) {
+      console.error(e);
+      showToast('Error publishing. Check your Firebase config.', true);
+    }
+    btn.textContent = '⚡ Publish Post';
+    btn.disabled = false;
   }
 
+  // UPDATE EXISTING POST
   async function doUpdatePost() {
-    const title=document.getElementById('post-title').value.trim();
-    const excerpt=document.getElementById('post-excerpt').value.trim();
-    const category=document.getElementById('post-category').value;
-    const words=parseInt(document.getElementById('wc').textContent)||0;
-    const coverFile=document.getElementById('cover-file').files[0];
-    if(!title){showToast('Please add a post title.',true);return;}
-    if(!category){showToast('Please select a category.',true);return;}
-    if(!excerpt){showToast('Please add an excerpt.',true);return;}
-    const btn=document.getElementById('publish-btn');
-    btn.textContent='Updating...'; btn.disabled=true;
+    const title    = document.getElementById('post-title').value.trim();
+    const excerpt  = document.getElementById('post-excerpt').value.trim();
+    const category = document.getElementById('post-category').value;
+    const words    = parseInt(document.getElementById('wc').textContent) || 0;
+    const coverFile= document.getElementById('cover-file').files[0];
+
+    if (!title)    { showToast('Please add a post title.', true); return; }
+    if (!category) { showToast('Please select a category.', true); return; }
+    if (!excerpt)  { showToast('Please add an excerpt.', true); return; }
+
+    const btn = document.getElementById('publish-btn');
+    btn.textContent = 'Updating...';
+    btn.disabled = true;
+
     try {
-      let coverURL=editingOriginalCoverURL||'';
-      if(coverFile) coverURL=await uploadToCloudinary(coverFile);
-      const editor=document.getElementById('editor');
+      // Only upload new cover if user selected a new file
+      let coverURL = editingOriginalCoverURL || '';
+      if (coverFile) coverURL = await uploadToCloudinary(coverFile);
+
+      const editor  = document.getElementById('editor');
       cleanCaptions(editor);
-      const content=await uploadInlineImages(editor);
+      const content = await uploadInlineImages(editor);
+
       await db.collection('posts').doc(editingPostId).update({
-        title,excerpt,content,category,
-        coverImage:coverURL,
-        readTime:Math.max(1,Math.round(words/200)),
-        updatedAt:firebase.firestore.FieldValue.serverTimestamp()
+        title, excerpt, content, category,
+        coverImage: coverURL,
+        readTime: Math.max(1, Math.round(words / 200)),
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
       });
+
       showToast('✓ Post Updated Successfully!');
-      setTimeout(()=>{ if(confirm('Post updated! Go back to new post mode?')) cancelEdit(); },2000);
-    } catch(e){ console.error(e); showToast('Error updating post. Try again.',true); }
-    btn.textContent='💾 Update Post'; btn.disabled=false;
+
+      setTimeout(() => {
+        if (confirm('Post updated! Go back to new post mode?')) {
+          cancelEdit();
+        }
+      }, 2000);
+
+    } catch(e) {
+      console.error(e);
+      showToast('Error updating post. Try again.', true);
+    }
+    btn.textContent = '💾 Update Post';
+    btn.disabled = false;
   }
 
+  // LOAD POST INTO EDITOR FOR EDITING
   window.editPost = async (id) => {
     try {
-      const snap=await db.collection('posts').doc(id).get();
-      if(!snap.exists){showToast('Post not found.',true);return;}
-      const p=snap.data();
-      editingPostId=id; editingOriginalDate=p.date||''; editingOriginalCoverURL=p.coverImage||'';
-      document.getElementById('post-title').value=p.title||'';
-      document.getElementById('post-excerpt').value=p.excerpt||'';
-      document.getElementById('post-category').value=p.category||'';
-      document.getElementById('editor').innerHTML=p.content||'';
-      const prev=document.getElementById('cover-preview');
-      const drop=document.getElementById('cover-drop');
-      if(p.coverImage){ prev.src=p.coverImage; prev.style.display='block'; drop.classList.add('has-image'); }
-      else { prev.style.display='none'; drop.classList.remove('has-image'); }
-      document.getElementById('publish-btn').textContent='💾 Update Post';
-      const bar=document.getElementById('edit-mode-bar');
-      bar.style.display='flex';
-      document.getElementById('edit-mode-title').textContent=p.title||'Untitled';
-      const badge=document.getElementById('status-badge');
-      badge.textContent='Editing'; badge.className='status-badge saving';
-      document.getElementById('pub-date').textContent=p.date||'—';
-      updateMeta(); countWords();
-      document.getElementById('manage-panel').style.display='none';
-      document.getElementById('post-title').scrollIntoView({behavior:'smooth',block:'start'});
+      const snap = await db.collection('posts').doc(id).get();
+      if (!snap.exists) { showToast('Post not found.', true); return; }
+      const p = snap.data();
+
+      // Store edit state
+      editingPostId = id;
+      editingOriginalDate = p.date || '';
+      editingOriginalCoverURL = p.coverImage || '';
+
+      // Load data into editor fields
+      document.getElementById('post-title').value   = p.title || '';
+      document.getElementById('post-excerpt').value = p.excerpt || '';
+      document.getElementById('post-category').value= p.category || '';
+      document.getElementById('editor').innerHTML   = p.content || '';
+
+      // Load cover image preview if exists
+      const prev = document.getElementById('cover-preview');
+      const drop = document.getElementById('cover-drop');
+      if (p.coverImage) {
+        prev.src = p.coverImage;
+        prev.style.display = 'block';
+        drop.classList.add('has-image');
+      } else {
+        prev.style.display = 'none';
+        drop.classList.remove('has-image');
+      }
+
+      // Update UI to edit mode
+      const btn = document.getElementById('publish-btn');
+      btn.textContent = '💾 Update Post';
+
+      const bar = document.getElementById('edit-mode-bar');
+      bar.style.display = 'flex';
+      document.getElementById('edit-mode-title').textContent = p.title || 'Untitled';
+
+      // Update status badge
+      const badge = document.getElementById('status-badge');
+      badge.textContent = 'Editing';
+      badge.className = 'status-badge saving';
+      document.getElementById('pub-date').textContent = p.date || '—';
+
+      updateMeta();
+      countWords();
+
+      // Close manage panel and scroll to editor
+      document.getElementById('manage-panel').style.display = 'none';
+      document.getElementById('post-title').scrollIntoView({ behavior: 'smooth', block: 'start' });
       showToast('Post loaded — make your changes and click Update Post.');
-    } catch(e){ console.error(e); showToast('Error loading post for editing.',true); }
-  };
 
+    } catch(e) {
+      console.error(e);
+      showToast('Error loading post for editing.', true);
+    }
+  };
+  window.editPost = window.editPost;
+
+  // CANCEL EDIT — go back to new post mode
   window.cancelEdit = () => {
-    editingPostId=null; editingOriginalDate=null; editingOriginalCoverURL=null;
+    editingPostId = null;
+    editingOriginalDate = null;
+    editingOriginalCoverURL = null;
     resetEditor();
-    document.getElementById('edit-mode-bar').style.display='none';
-    document.getElementById('publish-btn').textContent='⚡ Publish Post';
-    const badge=document.getElementById('status-badge');
-    badge.textContent='Draft'; badge.className='status-badge draft';
-    document.getElementById('pub-date').textContent='—';
+    document.getElementById('edit-mode-bar').style.display = 'none';
+    document.getElementById('publish-btn').textContent = '⚡ Publish Post';
+    const badge = document.getElementById('status-badge');
+    badge.textContent = 'Draft';
+    badge.className = 'status-badge draft';
+    document.getElementById('pub-date').textContent = '—';
   };
 
+  // RESET EDITOR to blank new post
   function resetEditor() {
-    document.getElementById('post-title').value='';
-    document.getElementById('post-excerpt').value='';
-    document.getElementById('editor').innerHTML='';
-    document.getElementById('cover-file').value='';
-    document.getElementById('cover-preview').style.display='none';
+    document.getElementById('post-title').value = '';
+    document.getElementById('post-excerpt').value = '';
+    document.getElementById('editor').innerHTML = '';
+    document.getElementById('cover-file').value = '';
+    document.getElementById('cover-preview').style.display = 'none';
     document.getElementById('cover-drop').classList.remove('has-image');
-    document.getElementById('post-category').value='';
-    const badge=document.getElementById('status-badge');
-    badge.textContent='Draft'; badge.className='status-badge draft';
-    document.getElementById('pub-date').textContent='—';
-    countWords(); updateMeta();
+    document.getElementById('post-category').value = '';
+    const badge = document.getElementById('status-badge');
+    badge.textContent = 'Draft';
+    badge.className = 'status-badge draft';
+    document.getElementById('pub-date').textContent = '—';
+    countWords();
+    updateMeta();
   }
 
+  // CLEAN empty captions before saving
   function cleanCaptions(editor) {
-    editor.querySelectorAll('.inline-img-caption').forEach(cap=>{
-      if(cap.textContent.trim()==='Add image caption (optional)'||cap.textContent.trim()==='') cap.remove();
+    editor.querySelectorAll('.inline-img-caption').forEach(cap => {
+      if (cap.textContent.trim() === 'Add image caption (optional)' || cap.textContent.trim() === '') {
+        cap.remove();
+      }
     });
   }
 
-  function showToast(msg,isError=false) {
-    const t=document.getElementById('toast');
-    t.textContent=msg; t.className=isError?'error':'';
-    t.style.display='block';
-    setTimeout(()=>t.style.display='none',4000);
+  function showToast(msg, isError=false) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = isError ? 'error' : '';
+    t.style.display = 'block';
+    setTimeout(() => t.style.display='none', 4000);
   }
-  window.showToast=showToast;
+  window.showToast = showToast;
 </script>
 
 <script>
+// Cover image preview
 function loadCover(e) {
-  const file=e.target.files[0]; if(!file) return;
-  const reader=new FileReader();
-  reader.onload=ev=>{
-    const prev=document.getElementById('cover-preview');
-    prev.src=ev.target.result; prev.style.display='block';
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const prev = document.getElementById('cover-preview');
+    prev.src = ev.target.result;
+    prev.style.display = 'block';
     document.getElementById('cover-drop').classList.add('has-image');
   };
   reader.readAsDataURL(file);
 }
 
+// Shared: build the inline image wrapper element and insert at a saved range
+function buildInlineImageWrapper(dataUrl) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'inline-img-wrapper';
+  wrapper.contentEditable = 'false';
+  const btn = document.createElement('button');
+  btn.className = 'remove-img';
+  btn.innerHTML = '✕';
+  btn.onclick = () => wrapper.remove();
+  const img = document.createElement('img');
+  img.src = dataUrl;
+  const cap = document.createElement('div');
+  cap.className = 'inline-img-caption';
+  cap.contentEditable = 'true';
+  cap.textContent = 'Add image caption (optional)';
+  cap.onfocus = () => { if (cap.textContent === 'Add image caption (optional)') cap.textContent = ''; };
+  wrapper.appendChild(btn);
+  wrapper.appendChild(img);
+  wrapper.appendChild(cap);
+  return wrapper;
+}
+
+// Inline image insert (toolbar button)
 function insertInlineImage(e) {
-  const file=e.target.files[0]; if(!file) return;
-  const reader=new FileReader();
-  reader.onload=ev=>{
-    const editor=document.getElementById('editor');
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const editor = document.getElementById('editor');
     editor.focus();
-    const wrapper=document.createElement('div');
-    wrapper.className='inline-img-wrapper'; wrapper.contentEditable='false';
-    const btn=document.createElement('button');
-    btn.className='remove-img'; btn.innerHTML='✕'; btn.type='button';
-    btn.onclick=()=>wrapper.remove();
-    const img=document.createElement('img'); img.src=ev.target.result;
-    const cap=document.createElement('div');
-    cap.className='inline-img-caption'; cap.contentEditable='true';
-    cap.textContent='Add image caption (optional)';
-    cap.onfocus=()=>{ if(cap.textContent==='Add image caption (optional)') cap.textContent=''; };
-    wrapper.appendChild(btn); wrapper.appendChild(img); wrapper.appendChild(cap);
-    const sel=window.getSelection();
-    if(sel.rangeCount){ const range=sel.getRangeAt(0); range.collapse(false); range.insertNode(wrapper); range.setStartAfter(wrapper); range.collapse(true); sel.removeAllRanges(); sel.addRange(range); }
-    else editor.appendChild(wrapper);
-    const p=document.createElement('p'); p.innerHTML='<br>'; wrapper.after(p);
+    const wrapper = buildInlineImageWrapper(ev.target.result);
+    const sel = window.getSelection();
+    if (sel.rangeCount) {
+      const range = sel.getRangeAt(0);
+      range.collapse(false);
+      range.insertNode(wrapper);
+      range.setStartAfter(wrapper);
+      range.collapse(true);
+      sel.removeAllRanges();
+      sel.addRange(range);
+    } else { editor.appendChild(wrapper); }
+    const p = document.createElement('p');
+    p.innerHTML = '<br>';
+    wrapper.after(p);
     countWords();
   };
   reader.readAsDataURL(file);
-  e.target.value='';
+  e.target.value = '';
 }
 
-function fmt(cmd){ document.getElementById('editor').focus(); document.execCommand(cmd,false,null); }
-function fmtBlock(tag){ document.getElementById('editor').focus(); document.execCommand('formatBlock',false,tag); }
+function fmt(cmd) { document.getElementById('editor').focus(); document.execCommand(cmd,false,null); }
+function fmtBlock(tag) { document.getElementById('editor').focus(); document.execCommand('formatBlock',false,tag); }
 
 function countWords() {
-  const text=(document.getElementById('editor').innerText||'').trim();
-  const words=text===''?0:text.split(/\s+/).length;
-  document.getElementById('wc').textContent=words;
-  document.getElementById('cc').textContent=text.replace(/\s/g,'').length;
-  document.getElementById('rt').textContent=Math.max(1,Math.round(words/200))+' min';
+  const text = (document.getElementById('editor').innerText || '').trim();
+  const words = text === '' ? 0 : text.split(/\s+/).length;
+  document.getElementById('wc').textContent = words;
+  document.getElementById('cc').textContent = text.replace(/\s/g,'').length;
+  document.getElementById('rt').textContent = Math.max(1, Math.round(words/200)) + ' min';
 }
 
 function updateMeta() {
-  const title=document.getElementById('post-title').value||'Your post title';
-  const excerpt=document.getElementById('post-excerpt').value||'Your excerpt will show as the Google description...';
-  const slug=title.toLowerCase().replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,'-').slice(0,50);
-  document.getElementById('seo-title').textContent=title;
-  document.getElementById('seo-url').textContent='cashflowchronicle.com/'+slug;
-  document.getElementById('seo-desc').textContent=excerpt.slice(0,155)+(excerpt.length>155?'...':'');
+  const title   = document.getElementById('post-title').value || 'Your post title';
+  const excerpt = document.getElementById('post-excerpt').value || 'Your excerpt will show as the Google description...';
+  const slug    = title.toLowerCase().replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,'-').slice(0,50);
+  document.getElementById('seo-title').textContent = title;
+  document.getElementById('seo-url').textContent   = 'cashflowchronicle.com/' + slug;
+  document.getElementById('seo-desc').textContent  = excerpt.slice(0,155) + (excerpt.length>155?'...':'');
 }
 
-const tags=[];
+const tags = [];
 function addTag(e) {
-  if(e.key==='Enter'||e.key===','){
+  if (e.key==='Enter' || e.key===',') {
     e.preventDefault();
-    const val=e.target.value.trim().replace(',','');
-    if(val&&!tags.includes(val)){
+    const val = e.target.value.trim().replace(',','');
+    if (val && !tags.includes(val)) {
       tags.push(val);
-      const pill=document.createElement('div'); pill.className='tag-pill';
-      pill.innerHTML=val+` <button onclick="removeTag(this,'${val}')">✕</button>`;
-      document.getElementById('tags-wrap').insertBefore(pill,document.getElementById('tag-input'));
+      const pill = document.createElement('div');
+      pill.className = 'tag-pill';
+      pill.innerHTML = val + ` <button onclick="removeTag(this,'${val}')">✕</button>`;
+      document.getElementById('tags-wrap').insertBefore(pill, document.getElementById('tag-input'));
     }
-    e.target.value='';
+    e.target.value = '';
   }
 }
-function removeTag(btn,val){ tags.splice(tags.indexOf(val),1); btn.parentElement.remove(); }
+function removeTag(btn, val) { tags.splice(tags.indexOf(val),1); btn.parentElement.remove(); }
 
+// MANAGE POSTS
 function toggleManage() {
-  const panel=document.getElementById('manage-panel');
-  const isHidden=panel.style.display==='none';
-  panel.style.display=isHidden?'block':'none';
-  if(isHidden) loadAllPosts();
+  const panel = document.getElementById('manage-panel');
+  const isHidden = panel.style.display === 'none';
+  panel.style.display = isHidden ? 'block' : 'none';
+  if (isHidden) loadAllPosts();
 }
 
 async function loadAllPosts() {
-  const list=document.getElementById('posts-manager-list');
-  list.innerHTML='<span style="color:var(--text3)">Loading...</span>';
+  const list = document.getElementById('posts-manager-list');
+  list.innerHTML = '<span style="color:var(--text3)">Loading...</span>';
   try {
-    const snap=await db.collection('posts').get();
-    const posts=[];
-    snap.forEach(d=>posts.push({id:d.id,...d.data()}));
-    posts.sort((a,b)=>(b.createdAt?.seconds||0)-(a.createdAt?.seconds||0));
-    if(!posts.length){list.innerHTML='<span style="color:var(--text3)">No posts yet.</span>';return;}
-    list.innerHTML=posts.map(p=>`
+    const snap = await db.collection('posts').get();
+    const posts = [];
+    snap.forEach(d => posts.push({id: d.id, ...d.data()}));
+    posts.sort((a,b) => (b.createdAt?.seconds||0) - (a.createdAt?.seconds||0));
+    if (!posts.length) { list.innerHTML = '<span style="color:var(--text3)">No posts yet.</span>'; return; }
+    list.innerHTML = posts.map(p => `
       <div class="post-mgr-item">
         <div style="flex:1;overflow:hidden">
-          <div class="post-mgr-title">${p.title||'Untitled'}</div>
-          <div class="post-mgr-cat">${p.category||''} · ${p.date||''}</div>
+          <div class="post-mgr-title">${p.title || 'Untitled'}</div>
+          <div class="post-mgr-cat">${p.category || ''} · ${p.date || ''}</div>
         </div>
         <button class="post-mgr-edit" onclick="editPost('${p.id}')">✏️ Edit</button>
-        <button class="post-mgr-del" onclick="deletePost('${p.id}',this)">🗑 Delete</button>
+        <button class="post-mgr-del" onclick="deletePost('${p.id}', this)">🗑 Delete</button>
       </div>`).join('');
-  } catch(e){ list.innerHTML='<span style="color:var(--red)">Error loading posts: '+e.message+'</span>'; }
+  } catch(e) {
+    list.innerHTML = '<span style="color:var(--red)">Error loading posts: ' + e.message + '</span>';
+  }
 }
 
-async function deletePost(id,btn) {
-  if(!confirm('Are you sure you want to delete this post? This cannot be undone.')) return;
-  btn.textContent='Deleting...'; btn.disabled=true;
-  try { await db.collection('posts').doc(id).delete(); btn.closest('.post-mgr-item').remove(); }
-  catch(e){ alert('Error deleting post: '+e.message); btn.textContent='🗑 Delete'; btn.disabled=false; }
+async function deletePost(id, btn) {
+  if (!confirm('Are you sure you want to delete this post? This cannot be undone.')) return;
+  btn.textContent = 'Deleting...';
+  btn.disabled = true;
+  try {
+    await db.collection('posts').doc(id).delete();
+    btn.closest('.post-mgr-item').remove();
+  } catch(e) {
+    alert('Error deleting post: ' + e.message);
+    btn.textContent = '🗑 Delete';
+    btn.disabled = false;
+  }
 }
 
 function saveDraft() {
-  const badge=document.getElementById('status-badge');
-  badge.textContent='Saved ✓'; badge.className='status-badge saving';
-  setTimeout(()=>{ badge.textContent='Draft'; badge.className='status-badge draft'; },2000);
+  const badge = document.getElementById('status-badge');
+  badge.textContent = 'Saved ✓';
+  badge.className = 'status-badge saving';
+  setTimeout(() => { badge.textContent = 'Draft'; badge.className = 'status-badge draft'; }, 2000);
 }
 
-document.getElementById('login-pass').addEventListener('keydown',e=>{ if(e.key==='Enter') doLogin(); });
-document.getElementById('login-user').addEventListener('keydown',e=>{ if(e.key==='Enter') doLogin(); });
+document.getElementById('login-pass').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
+document.getElementById('login-user').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
 
-// HTML IMPORT
+
+// ============================================================
+//  HTML IMPORT FEATURE
+// ============================================================
+
+/**
+ * Toggle the import panel open/closed.
+ * Also closes the manage-posts panel if it's open (they share the same slot).
+ */
 function toggleImport() {
-  const panel=document.getElementById('import-panel');
-  const importBtn=document.getElementById('import-btn');
-  const isHidden=panel.style.display==='none'||panel.style.display==='';
-  if(isHidden){
-    document.getElementById('manage-panel').style.display='none';
-    panel.style.display='block'; importBtn.classList.add('import-active');
-    setTimeout(()=>document.getElementById('import-html-input').focus(),220);
-  } else { panel.style.display='none'; importBtn.classList.remove('import-active'); }
+  const panel     = document.getElementById('import-panel');
+  const importBtn = document.getElementById('import-btn');
+  const isHidden  = panel.style.display === 'none' || panel.style.display === '';
+
+  if (isHidden) {
+    // Close manage panel if open
+    document.getElementById('manage-panel').style.display = 'none';
+    panel.style.display = 'block';
+    importBtn.classList.add('import-active');
+    // Focus the textarea after animation
+    setTimeout(() => document.getElementById('import-html-input').focus(), 220);
+  } else {
+    panel.style.display = 'none';
+    importBtn.classList.remove('import-active');
+  }
 }
 
+/**
+ * Sanitise raw HTML pasted from AI tools.
+ * Removes <script>, <style>, <iframe>, on* attributes, and dangerous hrefs.
+ * Strips outer <html>/<head>/<body> wrappers if present.
+ * Removes inline style attributes to keep the editor's own styling intact.
+ */
 function sanitiseHtml(raw) {
-  const bodyMatch=raw.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
-  let html=bodyMatch?bodyMatch[1]:raw;
-  const parser=new DOMParser();
-  const doc=parser.parseFromString('<div id="_root">'+html+'</div>','text/html');
-  const root=doc.getElementById('_root');
-  ['script','iframe','object','embed','form','input','button','noscript'].forEach(tag=>{
-    root.querySelectorAll(tag).forEach(el=>el.remove());
+  // Extract <style> blocks from anywhere in the document (usually <head>)
+  const styleBlocks = [];
+  raw.replace(/<style[^>]*>([\s\S]*?)<\/style>/gi, (m, css) => {
+    styleBlocks.push(css);
+    return '';
   });
-  root.querySelectorAll('*').forEach(el=>{
-    Array.from(el.attributes).forEach(attr=>{ if(attr.name.startsWith('on')) el.removeAttribute(attr.name); });
-    if(el.hasAttribute('href')&&/^javascript:/i.test(el.getAttribute('href'))) el.removeAttribute('href');
-    if(el.hasAttribute('src')&&/^javascript:/i.test(el.getAttribute('src'))) el.removeAttribute('src');
+
+  // Extract just the <body> content if a full document was pasted
+  const bodyMatch = raw.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+  let html = bodyMatch ? bodyMatch[1] : raw;
+
+  // Use DOMParser for safe parsing
+  const parser = new DOMParser();
+  const doc = parser.parseFromString('<div id="_root">' + html + '</div>', 'text/html');
+  const root = doc.getElementById('_root');
+
+  // Remove dangerous elements entirely (keep style tags for custom HTML styling)
+  ['script', 'iframe', 'object', 'embed', 'form', 'input', 'button', 'noscript', 'style'].forEach(tag => {
+    root.querySelectorAll(tag).forEach(el => el.remove());
   });
-  return root.innerHTML;
+
+  // Remove dangerous attributes from every element
+  root.querySelectorAll('*').forEach(el => {
+    // Remove all event handlers (on*)
+    Array.from(el.attributes).forEach(attr => {
+      if (attr.name.startsWith('on')) el.removeAttribute(attr.name);
+    });
+    // Keep class, id and style so custom HTML styling works correctly
+    // Sanitise hrefs
+    if (el.hasAttribute('href')) {
+      const href = el.getAttribute('href');
+      if (/^javascript:/i.test(href)) el.removeAttribute('href');
+    }
+    // Sanitise src
+    if (el.hasAttribute('src')) {
+      const src = el.getAttribute('src');
+      if (/^javascript:/i.test(src)) el.removeAttribute('src');
+    }
+  });
+
+  let content = root.innerHTML;
+
+  // If the pasted document had custom <style> rules, scope and reattach them
+  // so the imported article keeps its full custom design (cards, tables,
+  // FAQ blocks, stat bars, etc.) both in the editor preview and on the live site.
+  if (styleBlocks.length) {
+    const scopeId = 'imported-' + Date.now().toString(36) + Math.random().toString(36).slice(2,6);
+    let css = styleBlocks.join('\n');
+
+    const scopeSelectors = (block) => block.replace(/(^|\})\s*([^{}@]+)\s*\{/g, (m, brace, selectors) => {
+      const scoped = selectors.split(',').map(sel => {
+        sel = sel.trim();
+        if (!sel) return sel;
+        if (sel === ':root' || sel === 'html' || sel === 'body') return '#' + scopeId;
+        if (sel === '*') return '#' + scopeId + ' *';
+        return '#' + scopeId + ' ' + sel;
+      }).join(', ');
+      return brace + ' ' + scoped + ' {';
+    });
+
+    // Handle @media blocks separately: scope only the rules inside them
+    css = css.replace(/(@media[^{]*\{)([\s\S]*?\})(\s*\})/g, (m, open, inner, close) => {
+      return open + scopeSelectors(inner) + close;
+    });
+    // Scope all remaining top-level rules (skip anything already inside @media, which is now scoped)
+    css = css.replace(/(^|\})\s*([^{}@]+)\s*\{/g, (m, brace, selectors) => {
+      const scoped = selectors.split(',').map(sel => {
+        sel = sel.trim();
+        if (!sel) return sel;
+        if (sel === ':root' || sel === 'html' || sel === 'body') return '#' + scopeId;
+        if (sel === '*') return '#' + scopeId + ' *';
+        return '#' + scopeId + ' ' + sel;
+      }).join(', ');
+      return brace + ' ' + scoped + ' {';
+    });
+    content = `<div id="${scopeId}" class="imported-html-block"><style>${css}</style>${content}</div>`;
+  }
+
+  return content;
 }
 
+/**
+ * Called on every keystroke / paste in the import textarea.
+ * Updates the live preview pane.
+ */
 function previewImport() {
-  const raw=document.getElementById('import-html-input').value.trim();
-  const box=document.getElementById('import-preview-box');
-  const tag=document.getElementById('preview-tag');
-  if(!raw){
-    box.innerHTML='<div class="import-preview-empty">Your HTML preview will appear here as you paste...</div>';
-    box.classList.remove('has-content'); tag.classList.remove('visible'); return;
+  const raw     = document.getElementById('import-html-input').value.trim();
+  const box     = document.getElementById('import-preview-box');
+  const tag     = document.getElementById('preview-tag');
+
+  if (!raw) {
+    box.innerHTML = '<div class="import-preview-empty">Your HTML preview will appear here as you paste...</div>';
+    box.classList.remove('has-content');
+    tag.classList.remove('visible');
+    return;
   }
-  box.innerHTML=sanitiseHtml(raw); box.classList.add('has-content'); tag.classList.add('visible');
+
+  const clean = sanitiseHtml(raw);
+  box.innerHTML = clean;
+  box.classList.add('has-content');
+  tag.classList.add('visible');
 }
 
+/**
+ * Insert the sanitised HTML into the main editor.
+ * Respects the Append / Replace radio choice.
+ */
 function doImportHtml() {
-  const raw=document.getElementById('import-html-input').value.trim();
-  if(!raw){showToast('Nothing to import — paste some HTML first.',true);return;}
-  const clean=sanitiseHtml(raw);
-  const editor=document.getElementById('editor');
-  const mode=document.querySelector('input[name="import-mode"]:checked').value;
-  if(mode==='replace'){
-    if(editor.innerHTML.trim()&&!confirm('This will replace your current editor content. Continue?')) return;
-    editor.innerHTML=clean;
-  } else {
-    if(editor.innerHTML.trim()){ const spacer=document.createElement('p'); spacer.innerHTML='<br>'; editor.appendChild(spacer); }
-    editor.insertAdjacentHTML('beforeend',clean);
+  const raw = document.getElementById('import-html-input').value.trim();
+  if (!raw) {
+    showToast('Nothing to import — paste some HTML first.', true);
+    return;
   }
-  countWords(); showToast('✓ HTML imported into editor!');
-  toggleImport(); editor.scrollIntoView({behavior:'smooth',block:'start'});
+
+  const clean  = sanitiseHtml(raw);
+  const editor = document.getElementById('editor');
+  const mode   = document.querySelector('input[name="import-mode"]:checked').value;
+
+  if (mode === 'replace') {
+    if (editor.innerHTML.trim() && !confirm('This will replace your current editor content. Continue?')) return;
+    editor.innerHTML = clean;
+  } else {
+    // Append: add a small spacer paragraph first if editor already has content
+    if (editor.innerHTML.trim()) {
+      const spacer = document.createElement('p');
+      spacer.innerHTML = '<br>';
+      editor.appendChild(spacer);
+    }
+    editor.insertAdjacentHTML('beforeend', clean);
+  }
+
+  countWords();
+  showToast('✓ HTML imported into editor!');
+
+  // Close the import panel
+  toggleImport();
+
+  // Scroll editor into view
+  editor.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function clearImport() { document.getElementById('import-html-input').value=''; previewImport(); }
-</script>
+/**
+ * Clear the import textarea and preview.
+ */
+function clearImport() {
+  document.getElementById('import-html-input').value = '';
+  previewImport();
+}
 
-<!-- ============================================================
-  MEDIUM-STYLE FLOATING IMAGE INSERT
-  Adds a "+" button that floats beside your cursor in the editor.
-  Click it → paste a URL or upload a file → image inserted inline.
-============================================================= -->
-<script>
-(function(){
-  function initFloatImg(){
-    const editor=document.getElementById('editor');
-    const wrap=editor.closest('.editor-wrap');
-    if(!editor||!wrap) return;
+// ============================================================
+//  FLOATING "+" INSERT BUTTON (Medium-style)
+// ============================================================
 
-    // --- Build floating + button ---
-    const btn=document.createElement('button');
-    btn.id='float-img-btn';
-    btn.title='Insert image at cursor';
-    btn.innerHTML='+';
-    btn.type='button';
-    wrap.appendChild(btn);
+let floatBtnRange = null; // saved range/line where the + button will insert
 
-    // --- Build popup ---
-    const popup=document.createElement('div');
-    popup.id='float-img-popup';
-    popup.innerHTML=
-      '<div class="fip-label">Insert Image</div>'+
-      '<div class="fip-url-row">'+
-        '<input class="fip-url-input" id="fip-url" type="text" placeholder="Paste image URL or Cloudinary link..." />'+
-        '<button class="fip-insert-btn" id="fip-insert-url-btn" type="button">Insert</button>'+
-      '</div>'+
-      '<div class="fip-divider"><span>OR</span></div>'+
-      '<button class="fip-upload-btn" id="fip-upload-btn" type="button">📁 Upload from device</button>'+
-      '<input type="file" id="fip-file" style="display:none" accept="image/*" />';
-    wrap.appendChild(popup);
+function isLineEmpty(node) {
+  if (!node) return false;
+  // node could be a text node or element; find the enclosing block
+  let el = node.nodeType === 3 ? node.parentElement : node;
+  if (!el) return false;
+  if (el.id === 'editor') {
+    // caret directly in editor root (no block wrapper)
+    return (editor.innerText || '').trim() === '';
+  }
+  // walk up to a direct child of editor (the block element)
+  while (el.parentElement && el.parentElement.id !== 'editor') {
+    el = el.parentElement;
+  }
+  if (!el || el.classList.contains('inline-img-wrapper')) return false;
+  const txt = (el.innerText || el.textContent || '').replace(/\u200B/g,'').trim();
+  return txt === '';
+}
 
-    let savedRange=null;
-    let popupOpen=false;
+function getCaretBlock() {
+  const sel = window.getSelection();
+  if (!sel.rangeCount) return null;
+  let el = sel.getRangeAt(0).startContainer;
+  if (el.nodeType === 3) el = el.parentElement;
+  if (!el) return null;
+  if (el.id === 'editor') return editor;
+  while (el.parentElement && el.parentElement.id !== 'editor') {
+    el = el.parentElement;
+  }
+  return el;
+}
 
-    // --- Position floating button on cursor move ---
-    function positionBtn(){
-      const sel=window.getSelection();
-      if(!sel||sel.rangeCount===0){hideBtn();return;}
-      const range=sel.getRangeAt(0);
-      if(!editor.contains(range.commonAncestorContainer)){hideBtn();return;}
-      savedRange=range.cloneRange();
-      const rects=range.getClientRects();
-      if(!rects.length){hideBtn();return;}
-      const rect=rects[0];
-      const wrapRect=wrap.getBoundingClientRect();
-      const top=rect.top-wrapRect.top+wrap.scrollTop-1;
-      btn.style.top=top+'px';
-      btn.style.display='flex';
-    }
+function updateFloatButton() {
+  const btn = document.getElementById('float-add-btn');
+  const editor = document.getElementById('editor');
+  const sel = window.getSelection();
 
-    function hideBtn(){
-      if(popupOpen) return;
-      btn.style.display='none';
-    }
-
-    editor.addEventListener('keyup',positionBtn);
-    editor.addEventListener('mouseup',positionBtn);
-    editor.addEventListener('click',positionBtn);
-
-    // --- Toggle popup ---
-    btn.addEventListener('click',function(e){
-      e.stopPropagation();
-      popupOpen=!popupOpen;
-      if(popupOpen){
-        btn.classList.add('open');
-        const btnTop=parseInt(btn.style.top)||0;
-        popup.style.top=(btnTop+34)+'px';
-        popup.style.left='0px';
-        popup.classList.add('visible');
-        setTimeout(()=>document.getElementById('fip-url').focus(),50);
-      } else { closePopup(); }
-    });
-
-    // --- Close popup on outside click ---
-    document.addEventListener('click',function(e){
-      if(popupOpen&&!popup.contains(e.target)&&e.target!==btn) closePopup();
-    });
-
-    // --- Escape key closes popup ---
-    document.addEventListener('keydown',function(e){
-      if(e.key==='Escape'&&popupOpen) closePopup();
-    });
-
-    function closePopup(){
-      popupOpen=false;
-      btn.classList.remove('open');
-      popup.classList.remove('visible');
-      document.getElementById('fip-url').value='';
-    }
-
-    // --- Insert from URL ---
-    document.getElementById('fip-insert-url-btn').addEventListener('click',function(){
-      const url=document.getElementById('fip-url').value.trim();
-      if(!url){showToast('Please enter an image URL.',true);return;}
-      insertImageAtRange(url);
-      closePopup();
-    });
-
-    // --- Enter key in URL field ---
-    document.getElementById('fip-url').addEventListener('keydown',function(e){
-      if(e.key==='Enter'){e.preventDefault();document.getElementById('fip-insert-url-btn').click();}
-    });
-
-    // --- Upload from device ---
-    document.getElementById('fip-upload-btn').addEventListener('click',function(){
-      document.getElementById('fip-file').click();
-    });
-
-    document.getElementById('fip-file').addEventListener('change',function(e){
-      const file=e.target.files[0]; if(!file) return;
-      const reader=new FileReader();
-      reader.onload=function(ev){ insertImageAtRange(ev.target.result); closePopup(); };
-      reader.readAsDataURL(file);
-      e.target.value='';
-    });
-
-    // --- Core: insert image wrapper at saved cursor range ---
-    function insertImageAtRange(src){
-      editor.focus();
-
-      const wrapper=document.createElement('div');
-      wrapper.className='inline-img-wrapper';
-      wrapper.contentEditable='false';
-
-      const removeBtn=document.createElement('button');
-      removeBtn.className='remove-img';
-      removeBtn.innerHTML='✕';
-      removeBtn.type='button';
-      removeBtn.onclick=function(){ wrapper.remove(); };
-
-      const img=document.createElement('img');
-      img.src=src;
-      img.alt='';
-
-      const cap=document.createElement('div');
-      cap.className='inline-img-caption';
-      cap.contentEditable='true';
-      cap.textContent='Add image caption (optional)';
-      cap.onfocus=function(){ if(cap.textContent==='Add image caption (optional)') cap.textContent=''; };
-
-      wrapper.appendChild(removeBtn);
-      wrapper.appendChild(img);
-      wrapper.appendChild(cap);
-
-      if(savedRange){
-        const sel=window.getSelection();
-        sel.removeAllRanges();
-        sel.addRange(savedRange);
-        savedRange.collapse(false);
-        savedRange.insertNode(wrapper);
-        savedRange.setStartAfter(wrapper);
-        savedRange.collapse(true);
-        sel.removeAllRanges();
-        sel.addRange(savedRange);
-      } else {
-        editor.appendChild(wrapper);
-      }
-
-      // Add empty paragraph after image for continued typing
-      const p=document.createElement('p');
-      p.innerHTML='<br>';
-      wrapper.after(p);
-
-      // Move cursor into new paragraph
-      const newRange=document.createRange();
-      newRange.setStart(p,0);
-      newRange.collapse(true);
-      const sel2=window.getSelection();
-      sel2.removeAllRanges();
-      sel2.addRange(newRange);
-
-      countWords();
-      showToast('✓ Image inserted!');
-    }
+  if (!sel.rangeCount || document.activeElement !== editor) {
+    btn.classList.remove('visible');
+    floatBtnRange = null;
+    return;
   }
 
-  // Init after DOM is ready
-  if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded',initFloatImg);
+  const range = sel.getRangeAt(0);
+  const startNode = range.startContainer;
+
+  if (!isLineEmpty(startNode)) {
+    btn.classList.remove('visible');
+    floatBtnRange = null;
+    return;
+  }
+
+  // Position the button next to the current line
+  const blockEl = getCaretBlock();
+  const wrap = btn.parentElement; // .editor-wrap
+  const wrapRect = wrap.getBoundingClientRect();
+  let targetRect;
+  if (blockEl && blockEl !== editor) {
+    targetRect = blockEl.getBoundingClientRect();
   } else {
-    // Admin screen might not be visible yet — wait for auth
-    setTimeout(initFloatImg, 500);
+    targetRect = range.getClientRects()[0] || editor.getBoundingClientRect();
   }
-})();
+
+  const top = targetRect.top - wrapRect.top + (targetRect.height/2) - 15;
+  btn.style.top = Math.max(0, top) + 'px';
+  btn.classList.add('visible');
+
+  // Save the range so we can restore it when the button is clicked
+  floatBtnRange = range.cloneRange();
+}
+
+function floatAddImage() {
+  // Restore the saved caret position before opening the file picker
+  if (floatBtnRange) {
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(floatBtnRange);
+  }
+  document.getElementById('editor').focus();
+  document.getElementById('inline-file').click();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const editor = document.getElementById('editor');
+  if (!editor) return;
+  ['keyup','click','mouseup','input'].forEach(evt =>
+    editor.addEventListener(evt, () => setTimeout(updateFloatButton, 0))
+  );
+  editor.addEventListener('blur', () => {
+    // Delay so a click on the float button isn't lost
+    setTimeout(() => {
+      if (document.activeElement.id !== 'float-add-btn') {
+        document.getElementById('float-add-btn').classList.remove('visible');
+      }
+    }, 150);
+  });
+});
+
 </script>
 </body>
 </html>
