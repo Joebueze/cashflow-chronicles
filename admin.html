@@ -473,6 +473,16 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
         <textarea class="excerpt-box" id="post-excerpt" placeholder="Write a short summary (shown on homepage and in Google)..." oninput="updateMeta()"></textarea>
       </div>
 
+      <!-- TELEGRAM HOOK -->
+      <div class="field-row">
+        <label class="field-label" style="display:flex;align-items:center;gap:0.5rem">
+          📣 Telegram Hook
+          <span style="font-size:0.65rem;background:rgba(201,168,76,0.12);color:var(--accent);padding:0.15rem 0.5rem;border-radius:2px;letter-spacing:0.08em;text-transform:uppercase;font-weight:500">Auto-posts to channel</span>
+        </label>
+        <textarea class="excerpt-box" id="telegram-hook" placeholder="Write a punchy 2–3 sentence hook for Telegram (make them curious enough to click the link)..." style="min-height:80px"></textarea>
+        <div style="font-size:0.68rem;color:var(--text3);margin-top:0.3rem">💡 This + your cover image + post link will be sent to @cashflowchronicle automatically on publish.</div>
+      </div>
+
       <!-- CONTENT -->
       <div>
         <label class="field-label">Post Content</label>
@@ -681,13 +691,42 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     }
   };
 
+  // TELEGRAM CONFIG
+  const TELEGRAM_TOKEN  = '8883209148:AAEPFmHnhKPqTq2zIt0r_lT1-AChGF-WTB0';
+  const TELEGRAM_CHAT   = '@cashflowchronicle';
+
+  async function sendToTelegram(postId, coverURL, hook) {
+    const postLink = `https://www.cashflow-chronicle.com/post.html?id=${postId}`;
+    const caption  = `${hook}\n\n🔗 Read the full post:\n${postLink}`;
+    try {
+      if (coverURL) {
+        // Send photo + caption
+        await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendPhoto`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ chat_id: TELEGRAM_CHAT, photo: coverURL, caption })
+        });
+      } else {
+        // No cover image — send text only
+        await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ chat_id: TELEGRAM_CHAT, text: caption })
+        });
+      }
+    } catch(e) {
+      console.warn('Telegram send failed (post still published):', e);
+    }
+  }
+
   // NEW POST
   async function doNewPost() {
-    const title    = document.getElementById('post-title').value.trim();
-    const excerpt  = document.getElementById('post-excerpt').value.trim();
-    const category = document.getElementById('post-category').value;
-    const words    = parseInt(document.getElementById('wc').textContent) || 0;
-    const coverFile= document.getElementById('cover-file').files[0];
+    const title         = document.getElementById('post-title').value.trim();
+    const excerpt       = document.getElementById('post-excerpt').value.trim();
+    const category      = document.getElementById('post-category').value;
+    const words         = parseInt(document.getElementById('wc').textContent) || 0;
+    const coverFile     = document.getElementById('cover-file').files[0];
+    const telegramHook  = document.getElementById('telegram-hook').value.trim();
 
     if (!title)    { showToast('Please add a post title.', true); return; }
     if (!category) { showToast('Please select a category.', true); return; }
@@ -705,9 +744,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       cleanCaptions(editor);
       const content = await uploadInlineImages(editor);
 
-      await db.collection('posts').add({
+      const docRef = await db.collection('posts').add({
         title, excerpt, content, category,
         coverImage: coverURL,
+        telegramHook,
         readTime: Math.max(1, Math.round(words / 200)),
         date: new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}),
         status: 'published',
@@ -718,7 +758,15 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       badge.textContent = 'Published';
       badge.className = 'status-badge published';
       document.getElementById('pub-date').textContent = new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
-      showToast('✓ Post Published Successfully!');
+
+      // Fire Telegram notification if hook was filled in
+      if (telegramHook) {
+        btn.textContent = 'Notifying Telegram...';
+        await sendToTelegram(docRef.id, coverURL, telegramHook);
+        showToast('✓ Post Published & Sent to Telegram!');
+      } else {
+        showToast('✓ Post Published Successfully!');
+      }
 
       setTimeout(() => {
         if (confirm('Post published! Clear the editor for a new post?')) {
@@ -859,6 +907,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   function resetEditor() {
     document.getElementById('post-title').value = '';
     document.getElementById('post-excerpt').value = '';
+    document.getElementById('telegram-hook').value = '';
     document.getElementById('editor').innerHTML = '';
     document.getElementById('cover-file').value = '';
     document.getElementById('cover-preview').style.display = 'none';
