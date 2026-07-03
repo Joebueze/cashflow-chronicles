@@ -120,6 +120,19 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .inline-img-caption{padding:0.4rem 0.7rem;background:var(--bg3);font-size:0.72rem;color:var(--text3)}
 .remove-img{position:absolute;top:6px;right:6px;background:rgba(0,0,0,0.7);border:1px solid var(--border);color:var(--text2);width:22px;height:22px;border-radius:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.75rem}
 .remove-img:hover{color:var(--red);border-color:var(--red)}
+/* Image delete button */
+.img-delete-btn{
+  position:absolute;top:6px;right:6px;
+  background:rgba(226,84,84,0.92);color:#fff;
+  border:none;border-radius:50%;width:26px;height:26px;
+  font-size:0.85rem;cursor:pointer;display:flex;
+  align-items:center;justify-content:center;
+  box-shadow:0 2px 6px rgba(0,0,0,0.4);
+  z-index:999;line-height:1;
+}
+.img-delete-btn:hover{background:#e25454}
+.editor-img-wrap{position:relative;display:inline-block;max-width:100%}
+
 /* Floating Medium-style "+" insert button */
 .editor-wrap{position:relative}
 .float-add-btn{
@@ -847,6 +860,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       document.getElementById('post-excerpt').value = p.excerpt || '';
       document.getElementById('post-category').value= p.category || '';
       document.getElementById('editor').innerHTML   = p.content || '';
+      makeImagesDeleteable(document.getElementById('editor'));
 
       // Load cover image preview if exists
       const prev = document.getElementById('cover-preview');
@@ -1285,6 +1299,38 @@ function clearImport() {
 // ============================================================
 
 let floatBtnRange = null; // saved range/line where the + button will insert
+
+// IMAGE DELETE — wrap images in editor with a deletable container
+function makeImagesDeleteable(editorEl) {
+  editorEl.querySelectorAll('img').forEach(img => {
+    // skip if already wrapped
+    if (img.parentElement && img.parentElement.classList.contains('editor-img-wrap')) return;
+    const wrap = document.createElement('span');
+    wrap.className = 'editor-img-wrap';
+    wrap.contentEditable = 'false';
+    img.parentNode.insertBefore(wrap, img);
+    wrap.appendChild(img);
+    const btn = document.createElement('button');
+    btn.className = 'img-delete-btn';
+    btn.title = 'Delete image';
+    btn.innerHTML = '✕';
+    btn.onmousedown = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      wrap.remove();
+    };
+    wrap.appendChild(btn);
+  });
+}
+
+// Run on editor input and also on edit post load
+document.addEventListener('DOMContentLoaded', () => {
+  const editor = document.getElementById('editor');
+  if (editor) {
+    const obs = new MutationObserver(() => makeImagesDeleteable(editor));
+    obs.observe(editor, { childList: true, subtree: true });
+  }
+});
 
 function isLineEmpty(node) {
   if (!node) return false;
