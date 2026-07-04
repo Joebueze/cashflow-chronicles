@@ -29,16 +29,25 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:16px;line-height:1.8}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
-nav{display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:64px;border-bottom:1px solid var(--border);background:rgba(10,10,15,0.97);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:64px;border-bottom:1px solid var(--border);background:rgba(10,10,15,0.97);position:sticky;top:0;z-index:1000;backdrop-filter:blur(10px)}
 .logo{font-family:'Playfair Display',serif;font-size:1.35rem}.logo span{color:var(--accent)}
 .nav-back{font-size:0.82rem;color:var(--text2);letter-spacing:0.06em;text-transform:uppercase}.nav-back:hover{color:var(--accent)}
-.container{max-width:780px;margin:0 auto;padding:3rem 2rem 5rem}
+
+/* LAYOUT */
+.page-wrap{display:grid;grid-template-columns:160px 1fr 160px;gap:0;max-width:1200px;margin:0 auto;padding:0 1rem;align-items:start}
+.sidebar-left,.sidebar-right{position:sticky;top:80px;padding-top:2rem}
+.main-content{min-width:0;padding:3rem 2rem 5rem}
+
+/* POST HEADER */
 .post-tag{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:1.2rem}.post-tag::before{content:'';display:block;width:18px;height:1px;background:var(--accent)}
 .post-title{font-family:'Playfair Display',serif;font-size:2.2rem;line-height:1.2;margin-bottom:1.2rem;color:var(--text)}
-.post-meta{display:flex;align-items:center;gap:1.5rem;font-size:0.78rem;color:var(--text3);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:0.9rem 0;margin-bottom:2.5rem;flex-wrap:wrap}
-.cover-img{width:100%;border-radius:6px;margin-bottom:2.5rem;display:block;max-height:500px;object-fit:cover}
-.ad-slot{max-width:780px;margin:1.5rem auto;padding:0}
-.ad-inner{border:1px dashed rgba(255,255,255,0.07);border-radius:3px;padding:0.8rem;min-height:90px;display:flex;align-items:center;justify-content:center}
+.post-meta{display:flex;align-items:center;gap:1.5rem;font-size:0.78rem;color:var(--text3);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:0.9rem 0;margin-bottom:2rem;flex-wrap:wrap}
+.cover-img{width:100%;border-radius:6px;margin-bottom:2rem;display:block;max-height:500px;object-fit:cover}
+.back-link{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.82rem;color:var(--text3);margin-bottom:2rem;letter-spacing:0.06em;text-transform:uppercase}.back-link:hover{color:var(--accent);text-decoration:none}
+
+/* POST BODY */
 .post-body{line-height:1.85}
 .post-body h2{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--text);margin:2.5rem 0 1rem;border-left:3px solid var(--accent);padding-left:1rem}
 .post-body h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--accent2);margin:2rem 0 0.75rem}
@@ -51,14 +60,34 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 2.5r
 .post-body th{background:var(--bg3);color:var(--accent);padding:0.7rem 1rem;text-align:left;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;border-bottom:1px solid var(--border2)}
 .post-body td{padding:0.7rem 1rem;color:var(--text2);border-bottom:1px solid rgba(255,255,255,0.05)}
 .post-body a{color:var(--accent)}
-.back-link{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.82rem;color:var(--text3);margin-bottom:2rem;letter-spacing:0.06em;text-transform:uppercase}.back-link:hover{color:var(--accent);text-decoration:none}
+
+/* AD SLOTS */
+.ad-slot-top{margin:1.5rem 0 2rem;text-align:center}
+.ad-slot-mid{margin:2rem 0;text-align:center;padding:0.5rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.ad-slot-bottom{margin:2rem 0;text-align:center}
+.ad-sidebar{text-align:center;margin-bottom:1.5rem}
+.ad-label{font-size:0.6rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.4rem}
+
+/* STICKY FOOTER AD */
+.sticky-footer-ad{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(10,10,15,0.97);border-top:1px solid var(--border);padding:0.4rem 0;text-align:center;backdrop-filter:blur(10px)}
+.sticky-footer-close{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text3);font-size:1.1rem;cursor:pointer;padding:0.2rem 0.5rem;font-family:'DM Sans',sans-serif}.sticky-footer-close:hover{color:var(--accent)}
+body{padding-bottom:110px}
+
+/* SHARE */
 .share-section{border-top:1px solid var(--border);padding:1.5rem 0;margin-top:2rem}
 .share-label{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);margin-bottom:0.8rem}
 .share-btns{display:flex;gap:0.5rem;flex-wrap:wrap}
 .share-btn{padding:0.4rem 0.9rem;border-radius:3px;font-size:0.76rem;font-weight:500;cursor:pointer;border:1px solid var(--border);background:var(--bg2);color:var(--text2);transition:all 0.15s;font-family:'DM Sans',sans-serif}.share-btn:hover{border-color:var(--accent);color:var(--accent)}
+
 footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-size:0.78rem;color:var(--text3)}
 footer a{color:var(--accent)}
-@media(max-width:600px){.post-title{font-size:1.6rem}nav{padding:0 1.2rem}.container{padding:2rem 1.2rem 4rem}}
+
+@media(max-width:900px){
+  .page-wrap{grid-template-columns:1fr}
+  .sidebar-left,.sidebar-right{display:none}
+  .main-content{padding:2rem 1.2rem 4rem}
+}
+@media(max-width:600px){.post-title{font-size:1.6rem}nav{padding:0 1.2rem}}
 </style>
 </head>
 <body>
@@ -66,22 +95,43 @@ footer a{color:var(--accent)}
   <a href="https://www.cashflow-chronicle.com" class="logo">CashFlow <span>Chronicle</span></a>
   <a href="https://www.cashflow-chronicle.com" class="nav-back">← Back to Home</a>
 </nav>
-<main class="container">
-  <article>
+
+
+<div class="sticky-footer-ad" id="sticky-footer-ad">
+  <button class="sticky-footer-close" onclick="document.getElementById('sticky-footer-ad').style.display='none';document.body.style.paddingBottom='0'">✕</button>
+  <script>atOptions={'key':'0c59fa9d6ca3e16a45ab1e5c963696ef','format':'iframe','height':250,'width':300,'params':{}}</script>
+  <script src="https://www.highperformanceformat.com/0c59fa9d6ca3e16a45ab1e5c963696ef/invoke.js"></script>
+</div>
+
+<div class="page-wrap">
+  <aside class="sidebar-left">
+<div class="ad-sidebar">
+  <div class="ad-label">Ad</div>
+  <script>atOptions={'key':'c86954ff90e8d12cb92ad6969a8586e7','format':'iframe','height':600,'width':160,'params':{}}</script>
+  <script src="https://www.highperformanceformat.com/c86954ff90e8d12cb92ad6969a8586e7/invoke.js"></script>
+</div></aside>
+  <div class="main-content">
     <a href="https://www.cashflow-chronicle.com" class="back-link">← All Articles</a>
     <div class="post-tag">Passive Income</div>
     <h1 class="post-title">Affiliate Passive Income: 7 Proven Ways to Earn in 2026</h1>
     <div class="post-meta">
       <span>📅 31 May 2026</span>
-      <span>✍️ CashFlow Chronicle</span>
+      <span>✌️ CashFlow Chronicle</span>
       <span>⏱ 8 min read</span>
     </div>
     <img src="https://res.cloudinary.com/dsyev4eqm/image/upload/v1780189248/affiliate-passive-income-ways-to-earn-2026.jpg_2_x4wagd.webp" alt="Affiliate Passive Income: 7 Proven Ways to Earn in 2026" class="cover-img"/>
-    <div class="ad-slot"><div class="ad-inner">
-      <script>atOptions={'key':'93ce30f44b14d149ecb6a1d59fdf3d28','format':'iframe','height':90,'width':728,'params':{}}</script>
-      <script src="https://www.highperformanceformat.com/93ce30f44b14d149ecb6a1d59fdf3d28/invoke.js"></script>
-    </div></div>
-    <div class="post-body"><h2><p></p><p><span style="font-size: 15.52px;"></span></p><div class="inline-img-caption" contenteditable="true"><span style="font-size: 11.52px;">affiliate-passive-income-ways-to-earn-2026.</span></div></h2><div class="cc-post-tag">Passive Income</div>
+    
+<div class="ad-slot-top">
+  <div class="ad-label">Advertisement</div>
+  <script>atOptions={'key':'93ce30f44b14d149ecb6a1d59fdf3d28','format':'iframe','height':90,'width':728,'params':{}}</script>
+  <script src="https://www.highperformanceformat.com/93ce30f44b14d149ecb6a1d59fdf3d28/invoke.js"></script>
+</div>
+    <div class="post-body"><h2><p></p><p><span style="font-size: 15.52px;"></span></p>
+<div class="ad-slot-mid">
+  <div class="ad-label">Advertisement</div>
+  <script>atOptions={'key':'0c59fa9d6ca3e16a45ab1e5c963696ef','format':'iframe','height':250,'width':300,'params':{}}</script>
+  <script src="https://www.highperformanceformat.com/0c59fa9d6ca3e16a45ab1e5c963696ef/invoke.js"></script>
+</div><div class="inline-img-caption" contenteditable="true"><span style="font-size: 11.52px;">affiliate-passive-income-ways-to-earn-2026.</span></div></h2><div class="cc-post-tag">Passive Income</div>
 
 
 
@@ -129,6 +179,11 @@ footer a{color:var(--accent)}
 <p>They pick a product randomly, slap a link in a social media post or blog, get zero clicks, and conclude "affiliate marketing doesn't work." What actually happened is they skipped the most important step — <strong>building trust with an audience that has a specific problem your affiliate product solves.</strong></p>
 
 <p>Affiliate passive income works when there's a real match between your content, your audience, and the product. A finance blog recommending budgeting software converts. A random tweet with an Amazon link does not. The seven methods below all share one thing — they have clear, proven audience-product alignment.</p>
+<div class="ad-slot-mid">
+  <div class="ad-label">Advertisement</div>
+  <script>atOptions={'key':'0c59fa9d6ca3e16a45ab1e5c963696ef','format':'iframe','height':250,'width':300,'params':{}}</script>
+  <script src="https://www.highperformanceformat.com/0c59fa9d6ca3e16a45ab1e5c963696ef/invoke.js"></script>
+</div>
 
 <hr class="cc-divider">
 
@@ -476,21 +531,31 @@ footer a{color:var(--accent)}
   .cc-related-tags{display:flex;flex-wrap:wrap;gap:0.5rem}
   .cc-related-tag{font-size:0.78rem;color:#a09d97;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);padding:0.3rem 0.7rem;border-radius:2px}
 </style></div>
-    <div class="ad-slot"><div class="ad-inner">
-      <script>atOptions={'key':'0c59fa9d6ca3e16a45ab1e5c963696ef','format':'iframe','height':90,'width':728,'params':{}}</script>
-      <script src="https://www.highperformanceformat.com/0c59fa9d6ca3e16a45ab1e5c963696ef/invoke.js"></script>
-    </div></div>
-    <div class="share-section">
-      <div class="share-label">Share this article</div>
-      <div class="share-btns">
-        <button class="share-btn" onclick="window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href),'_blank')">𝕏 Share on X</button>
-        <button class="share-btn" onclick="window.open('https://wa.me/?text='+encodeURIComponent(document.title+' '+location.href),'_blank')">💬 WhatsApp</button>
-        <button class="share-btn" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),'_blank')">📘 Facebook</button>
-        <button class="share-btn" onclick="navigator.clipboard.writeText(location.href).then(()=>{this.textContent='✓ Copied!';setTimeout(()=>{this.textContent='🔗 Copy Link'},2000)})">🔗 Copy Link</button>
-      </div>
-    </div>
-  </article>
-</main>
+    
+<div class="ad-slot-bottom">
+  <div class="ad-label">Advertisement</div>
+  <script>atOptions={'key':'93ce30f44b14d149ecb6a1d59fdf3d28','format':'iframe','height':90,'width':728,'params':{}}</script>
+  <script src="https://www.highperformanceformat.com/93ce30f44b14d149ecb6a1d59fdf3d28/invoke.js"></script>
+</div>
+    
+<div class="share-section">
+  <div class="share-label">Share this article</div>
+  <div class="share-btns">
+    <button class="share-btn" onclick="window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href),'_blank')">𝕏 Share on X</button>
+    <button class="share-btn" onclick="window.open('https://wa.me/?text='+encodeURIComponent(document.title+' '+location.href),'_blank')">💬 WhatsApp</button>
+    <button class="share-btn" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),'_blank')">📘 Facebook</button>
+    <button class="share-btn" onclick="navigator.clipboard.writeText(location.href).then(()=>{this.textContent='✔ Copied!';setTimeout(()=>{this.textContent='🔗 Copy Link'},2000)})">🔗 Copy Link</button>
+  </div>
+</div>
+  </div>
+  <aside class="sidebar-right">
+<div class="ad-sidebar">
+  <div class="ad-label">Ad</div>
+  <script>atOptions={'key':'c86954ff90e8d12cb92ad6969a8586e7','format':'iframe','height':600,'width':160,'params':{}}</script>
+  <script src="https://www.highperformanceformat.com/c86954ff90e8d12cb92ad6969a8586e7/invoke.js"></script>
+</div></aside>
+</div>
+
 <footer>
   <p>© 2026 CashFlow Chronicle &nbsp;|&nbsp; <a href="https://www.cashflow-chronicle.com/privacy.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="https://www.cashflow-chronicle.com/contact.html">Contact</a></p>
 </footer>
