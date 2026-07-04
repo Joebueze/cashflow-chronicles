@@ -29,16 +29,25 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:16px;line-height:1.8}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
-nav{display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:64px;border-bottom:1px solid var(--border);background:rgba(10,10,15,0.97);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:64px;border-bottom:1px solid var(--border);background:rgba(10,10,15,0.97);position:sticky;top:0;z-index:1000;backdrop-filter:blur(10px)}
 .logo{font-family:'Playfair Display',serif;font-size:1.35rem}.logo span{color:var(--accent)}
 .nav-back{font-size:0.82rem;color:var(--text2);letter-spacing:0.06em;text-transform:uppercase}.nav-back:hover{color:var(--accent)}
-.container{max-width:780px;margin:0 auto;padding:3rem 2rem 5rem}
+
+/* LAYOUT */
+.page-wrap{display:grid;grid-template-columns:160px 1fr 160px;gap:0;max-width:1200px;margin:0 auto;padding:0 1rem;align-items:start}
+.sidebar-left,.sidebar-right{position:sticky;top:80px;padding-top:2rem}
+.main-content{min-width:0;padding:3rem 2rem 5rem}
+
+/* POST HEADER */
 .post-tag{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:1.2rem}.post-tag::before{content:'';display:block;width:18px;height:1px;background:var(--accent)}
 .post-title{font-family:'Playfair Display',serif;font-size:2.2rem;line-height:1.2;margin-bottom:1.2rem;color:var(--text)}
-.post-meta{display:flex;align-items:center;gap:1.5rem;font-size:0.78rem;color:var(--text3);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:0.9rem 0;margin-bottom:2.5rem;flex-wrap:wrap}
-.cover-img{width:100%;border-radius:6px;margin-bottom:2.5rem;display:block;max-height:500px;object-fit:cover}
-.ad-slot{max-width:780px;margin:1.5rem auto;padding:0}
-.ad-inner{border:1px dashed rgba(255,255,255,0.07);border-radius:3px;padding:0.8rem;min-height:90px;display:flex;align-items:center;justify-content:center}
+.post-meta{display:flex;align-items:center;gap:1.5rem;font-size:0.78rem;color:var(--text3);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:0.9rem 0;margin-bottom:2rem;flex-wrap:wrap}
+.cover-img{width:100%;border-radius:6px;margin-bottom:2rem;display:block;max-height:500px;object-fit:cover}
+.back-link{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.82rem;color:var(--text3);margin-bottom:2rem;letter-spacing:0.06em;text-transform:uppercase}.back-link:hover{color:var(--accent);text-decoration:none}
+
+/* POST BODY */
 .post-body{line-height:1.85}
 .post-body h2{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--text);margin:2.5rem 0 1rem;border-left:3px solid var(--accent);padding-left:1rem}
 .post-body h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--accent2);margin:2rem 0 0.75rem}
@@ -51,14 +60,34 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 2.5r
 .post-body th{background:var(--bg3);color:var(--accent);padding:0.7rem 1rem;text-align:left;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;border-bottom:1px solid var(--border2)}
 .post-body td{padding:0.7rem 1rem;color:var(--text2);border-bottom:1px solid rgba(255,255,255,0.05)}
 .post-body a{color:var(--accent)}
-.back-link{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.82rem;color:var(--text3);margin-bottom:2rem;letter-spacing:0.06em;text-transform:uppercase}.back-link:hover{color:var(--accent);text-decoration:none}
+
+/* AD SLOTS */
+.ad-slot-top{margin:1.5rem 0 2rem;text-align:center}
+.ad-slot-mid{margin:2rem 0;text-align:center;padding:0.5rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.ad-slot-bottom{margin:2rem 0;text-align:center}
+.ad-sidebar{text-align:center;margin-bottom:1.5rem}
+.ad-label{font-size:0.6rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.4rem}
+
+/* STICKY FOOTER AD */
+.sticky-footer-ad{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(10,10,15,0.97);border-top:1px solid var(--border);padding:0.4rem 0;text-align:center;backdrop-filter:blur(10px)}
+.sticky-footer-close{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text3);font-size:1.1rem;cursor:pointer;padding:0.2rem 0.5rem;font-family:'DM Sans',sans-serif}.sticky-footer-close:hover{color:var(--accent)}
+body{padding-bottom:110px}
+
+/* SHARE */
 .share-section{border-top:1px solid var(--border);padding:1.5rem 0;margin-top:2rem}
 .share-label{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);margin-bottom:0.8rem}
 .share-btns{display:flex;gap:0.5rem;flex-wrap:wrap}
 .share-btn{padding:0.4rem 0.9rem;border-radius:3px;font-size:0.76rem;font-weight:500;cursor:pointer;border:1px solid var(--border);background:var(--bg2);color:var(--text2);transition:all 0.15s;font-family:'DM Sans',sans-serif}.share-btn:hover{border-color:var(--accent);color:var(--accent)}
+
 footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-size:0.78rem;color:var(--text3)}
 footer a{color:var(--accent)}
-@media(max-width:600px){.post-title{font-size:1.6rem}nav{padding:0 1.2rem}.container{padding:2rem 1.2rem 4rem}}
+
+@media(max-width:900px){
+  .page-wrap{grid-template-columns:1fr}
+  .sidebar-left,.sidebar-right{display:none}
+  .main-content{padding:2rem 1.2rem 4rem}
+}
+@media(max-width:600px){.post-title{font-size:1.6rem}nav{padding:0 1.2rem}}
 </style>
 </head>
 <body>
@@ -66,27 +95,48 @@ footer a{color:var(--accent)}
   <a href="https://www.cashflow-chronicle.com" class="logo">CashFlow <span>Chronicle</span></a>
   <a href="https://www.cashflow-chronicle.com" class="nav-back">← Back to Home</a>
 </nav>
-<main class="container">
-  <article>
+
+
+<div class="sticky-footer-ad" id="sticky-footer-ad">
+  <button class="sticky-footer-close" onclick="document.getElementById('sticky-footer-ad').style.display='none';document.body.style.paddingBottom='0'">✕</button>
+  <script>atOptions={'key':'0c59fa9d6ca3e16a45ab1e5c963696ef','format':'iframe','height':250,'width':300,'params':{}}</script>
+  <script src="https://www.highperformanceformat.com/0c59fa9d6ca3e16a45ab1e5c963696ef/invoke.js"></script>
+</div>
+
+<div class="page-wrap">
+  <aside class="sidebar-left">
+<div class="ad-sidebar">
+  <div class="ad-label">Ad</div>
+  <script>atOptions={'key':'c86954ff90e8d12cb92ad6969a8586e7','format':'iframe','height':600,'width':160,'params':{}}</script>
+  <script src="https://www.highperformanceformat.com/c86954ff90e8d12cb92ad6969a8586e7/invoke.js"></script>
+</div></aside>
+  <div class="main-content">
     <a href="https://www.cashflow-chronicle.com" class="back-link">← All Articles</a>
     <div class="post-tag">Make Money Online</div>
     <h1 class="post-title">NBA Draft 2026: The Money Behind the Picks</h1>
     <div class="post-meta">
       <span>📅 24 Jun 2026</span>
-      <span>✍️ CashFlow Chronicle</span>
+      <span>✌️ CashFlow Chronicle</span>
       <span>⏱ 10 min read</span>
     </div>
     <img src="https://res.cloudinary.com/dsyev4eqm/image/upload/v1782295937/rupixen-4kIM7ED8F1A-unsplash_ykehpq.webp" alt="NBA Draft 2026: The Money Behind the Picks" class="cover-img"/>
-    <div class="ad-slot"><div class="ad-inner">
-      <script>atOptions={'key':'93ce30f44b14d149ecb6a1d59fdf3d28','format':'iframe','height':90,'width':728,'params':{}}</script>
-      <script src="https://www.highperformanceformat.com/93ce30f44b14d149ecb6a1d59fdf3d28/invoke.js"></script>
-    </div></div>
+    
+<div class="ad-slot-top">
+  <div class="ad-label">Advertisement</div>
+  <script>atOptions={'key':'93ce30f44b14d149ecb6a1d59fdf3d28','format':'iframe','height':90,'width':728,'params':{}}</script>
+  <script src="https://www.highperformanceformat.com/93ce30f44b14d149ecb6a1d59fdf3d28/invoke.js"></script>
+</div>
     <div class="post-body"><!-- HOOK -->
 <div style="background:linear-gradient(135deg,#1a1a24 0%,#22222f 100%);border-left:4px solid #c9a84c;border-radius:0 8px 8px 0;padding:1.8rem 2rem;margin:0 0 2rem">
   <p style="color:#f0ede8;font-size:1.08rem;line-height:1.9;margin:0;font-style:italic">Last night, an 18-year-old kid from Texas walked across a stage in Brooklyn, shook a commissioner's hand, and became a millionaire before midnight. His name is AJ Dybantsa. He is one year out of high school. And in the next four years, he will earn more money than most people will see in their entire lifetime. This article is not about him. It's about what his payday reveals about money, wealth, and what the rest of us can actually do about it.</p>
 </div>
 
 <p>The 2026 NBA Draft happened last night at the Barclays Center in Brooklyn — and if you weren't watching, you missed one of the most financially jaw-dropping nights in recent sports history. A loaded draft class, years in the making, finally found their NBA homes. And with those homes came contracts that will make your head spin.</p>
+<div class="ad-slot-mid">
+  <div class="ad-label">Advertisement</div>
+  <script>atOptions={'key':'0c59fa9d6ca3e16a45ab1e5c963696ef','format':'iframe','height':250,'width':300,'params':{}}</script>
+  <script src="https://www.highperformanceformat.com/0c59fa9d6ca3e16a45ab1e5c963696ef/invoke.js"></script>
+</div>
 
 <p>But here's what most sports coverage won't tell you: the real story of NBA Draft night isn't just about basketball. It's about <strong>generational wealth being created in real time</strong> — and what that means for the rest of us who aren't 6'8" with a 40-inch vertical.</p>
 
@@ -223,6 +273,11 @@ footer a{color:var(--accent)}
 <h2>The Part Nobody Wants to Talk About: What Happens to the Money</h2>
 
 <p>Let's go deeper than the highlight reel for a moment. Because what happens <em>after</em> the draft is where the real financial story begins — and it's not always pretty.</p>
+<div class="ad-slot-mid">
+  <div class="ad-label">Advertisement</div>
+  <script>atOptions={'key':'0c59fa9d6ca3e16a45ab1e5c963696ef','format':'iframe','height':250,'width':300,'params':{}}</script>
+  <script src="https://www.highperformanceformat.com/0c59fa9d6ca3e16a45ab1e5c963696ef/invoke.js"></script>
+</div>
 
 <p>Studies on professional athlete finances consistently show the same pattern: <strong>within five years of retirement, 60% of NBA players face serious financial difficulty.</strong> The number drops to 78% within five years for NFL players. These are people who earned millions — sometimes hundreds of millions — over their careers.</p>
 
@@ -305,21 +360,31 @@ footer a{color:var(--accent)}
   <a href="https://singingfiles.com/show.php?l=0&amp;u=141620&amp;id=74820" style="display:inline-block;background:transparent;border:1px solid #c9a84c;color:#c9a84c;font-weight:600;font-size:0.92rem;padding:0.85rem 1.8rem;border-radius:6px;text-decoration:none;margin-left:0.8rem;margin-bottom:0.5rem" target="_blank" rel="noopener">💸 Enter $1,000 CashApp Giveaway</a>
   <p style="font-size:0.75rem;color:#6a6760;margin-top:0.8rem;margin-bottom:0">⚠️ US residents on Apple iOS only</p>
 </div></div>
-    <div class="ad-slot"><div class="ad-inner">
-      <script>atOptions={'key':'0c59fa9d6ca3e16a45ab1e5c963696ef','format':'iframe','height':90,'width':728,'params':{}}</script>
-      <script src="https://www.highperformanceformat.com/0c59fa9d6ca3e16a45ab1e5c963696ef/invoke.js"></script>
-    </div></div>
-    <div class="share-section">
-      <div class="share-label">Share this article</div>
-      <div class="share-btns">
-        <button class="share-btn" onclick="window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href),'_blank')">𝕏 Share on X</button>
-        <button class="share-btn" onclick="window.open('https://wa.me/?text='+encodeURIComponent(document.title+' '+location.href),'_blank')">💬 WhatsApp</button>
-        <button class="share-btn" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),'_blank')">📘 Facebook</button>
-        <button class="share-btn" onclick="navigator.clipboard.writeText(location.href).then(()=>{this.textContent='✓ Copied!';setTimeout(()=>{this.textContent='🔗 Copy Link'},2000)})">🔗 Copy Link</button>
-      </div>
-    </div>
-  </article>
-</main>
+    
+<div class="ad-slot-bottom">
+  <div class="ad-label">Advertisement</div>
+  <script>atOptions={'key':'93ce30f44b14d149ecb6a1d59fdf3d28','format':'iframe','height':90,'width':728,'params':{}}</script>
+  <script src="https://www.highperformanceformat.com/93ce30f44b14d149ecb6a1d59fdf3d28/invoke.js"></script>
+</div>
+    
+<div class="share-section">
+  <div class="share-label">Share this article</div>
+  <div class="share-btns">
+    <button class="share-btn" onclick="window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href),'_blank')">𝕏 Share on X</button>
+    <button class="share-btn" onclick="window.open('https://wa.me/?text='+encodeURIComponent(document.title+' '+location.href),'_blank')">💬 WhatsApp</button>
+    <button class="share-btn" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),'_blank')">📘 Facebook</button>
+    <button class="share-btn" onclick="navigator.clipboard.writeText(location.href).then(()=>{this.textContent='✔ Copied!';setTimeout(()=>{this.textContent='🔗 Copy Link'},2000)})">🔗 Copy Link</button>
+  </div>
+</div>
+  </div>
+  <aside class="sidebar-right">
+<div class="ad-sidebar">
+  <div class="ad-label">Ad</div>
+  <script>atOptions={'key':'c86954ff90e8d12cb92ad6969a8586e7','format':'iframe','height':600,'width':160,'params':{}}</script>
+  <script src="https://www.highperformanceformat.com/c86954ff90e8d12cb92ad6969a8586e7/invoke.js"></script>
+</div></aside>
+</div>
+
 <footer>
   <p>© 2026 CashFlow Chronicle &nbsp;|&nbsp; <a href="https://www.cashflow-chronicle.com/privacy.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="https://www.cashflow-chronicle.com/contact.html">Contact</a></p>
 </footer>
