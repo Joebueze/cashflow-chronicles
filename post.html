@@ -253,6 +253,12 @@ function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{bt
   const db = firebase.firestore();
   const postId = new URLSearchParams(location.search).get('id');
 
+  // ✅ Same slugify logic as publish.js — keeps canonical URL consistent with the static page
+  function slugify(title) {
+    return (title || '').toLowerCase().replace(/[^a-z0-9\s-]/g, "").trim()
+      .replace(/\s+/g, "-").substring(0, 60).replace(/-+$/, "");
+  }
+
   // ✅ Set dynamic canonical tag immediately using postId
   if (postId) {
     const canonicalTag = document.getElementById('canonical-tag');
@@ -339,7 +345,8 @@ function copyLink(btn){navigator.clipboard.writeText(location.href).then(()=>{bt
         img.setAttribute('loading', 'lazy');
       });
       insertMidContentAd();
-      const pageUrl  = 'https://www.cashflow-chronicle.com/post.html?id=' + postId;
+      const slug     = p.slug || slugify(p.title || postId);
+      const pageUrl  = 'https://www.cashflow-chronicle.com/posts/' + slug + '.html';
       const imageUrl = p.coverImage || 'https://www.cashflow-chronicle.com/og-image.jpg';
       updateMetaTags(p.title || 'CashFlow Chronicle', (p.excerpt||'').slice(0,155), imageUrl, pageUrl);
       loadRelated(postId);
